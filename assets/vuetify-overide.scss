@@ -1,0 +1,104 @@
+// Vuetify class overide
+.v-app-bar {
+  // transition: $transition-bg-theme !important;
+  // border-radius: 0 0 $rounded-lg 0 !important;
+  @include shadow-lg;
+}
+
+.v-navigation-drawer {
+  // border-radius: 0 0 $rounded-lg 0;
+  @include shadow-lg;
+  
+  .v-navigation-drawer__border {
+    display: none !important;
+  }
+}
+
+.v-list {
+  * {
+    transition: $transition-bg-theme !important;
+  }
+}
+
+.v-application {
+  font-family: 'TT Commons', 'Roboto', Arial, Helvetica, sans-serif !important;
+}
+
+h1, h2.xl {
+  font-weight: 600;
+  font-size: 4rem; // 64px
+  letter-spacing: -0.25px;
+  line-height: 1.125;
+  // margin-bottom: 20px;
+}
+h1.title {
+  text-align: center;
+  // margin-bottom: 60px;
+}
+h2 {
+  font-weight: 500;
+  font-size: 2.75rem; // 44px
+  letter-spacing: -0.5px;
+  line-height: 1;
+  // margin-bottom: 20px;
+}
+h3 {
+  // color: #022144;
+  font-weight: 500;
+  font-size: 2rem; // 32px
+  line-height: 1.125;
+  // margin-bottom: 20px;
+  &.sub-h1 {
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+  }
+}
+h4 {
+  font-weight: 500;
+  font-size: 1.5rem; // 24px
+  line-height: 1.167;
+  // margin-bottom: 10px;
+}
+h5 {
+  font-weight: 500;
+  font-size: 1.25rem; // 20px
+  line-height: 1.125;
+  // margin-bottom: 10px;
+}
+h6 {
+  font-weight: 500;
+  font-size: 1.125rem; // 18px
+  line-height: 1.125;
+  // margin-bottom: 10px;
+}
+.large-p {
+  font-size: 1.25rem; // 20px
+  letter-spacing: -0.25px;
+  line-height: 1.2;
+  // margin-bottom: 15px;
+}
+p {
+  font-size: 1.0625rem; // 17px
+  line-height: 1.375;
+  // margin-bottom: 22px;
+}
+.small-p {
+  font-size: 12px;
+}
+@media screen and (max-width: 991px) {
+  h1 {
+    font-size: 3rem; // 48px
+  }
+  h2 {
+    font-size: 2.5rem; // 40px
+  }
+}
+@media screen and (max-width: 575px) {
+  h1 {
+    font-size: 2.5rem; // 48px
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+}
