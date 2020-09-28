@@ -2,6 +2,7 @@
   <v-card flat :dark="dark" :height="height" :color="background" class="pa-1">
     <v-container grid-list-xs fluid>
       <v-layout row wrap align-center justify-center>
+        <slot />
         <slot name="leftContent" />
         <slot name="rightContent" />
       </v-layout>

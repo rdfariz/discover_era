@@ -2,61 +2,66 @@
   <div>
     <Background color="primary" :height="isSearchPage ? '100%' : '100vh'">
       <v-layout fill-height row wrap align-center class="w-full ma-auto">
-        <Container>
+        <Container fluid>
           <v-layout row wrap align-center>
-            <v-flex xs12 md6>
+            <v-flex xs12>
               <Fragment dark background="transparent" height="100%">
                 <template #leftContent>
-                  <v-flex xs12 class="text-center text-md-left pa-3 pa-md-4 pa-lg-6 pa-xl-10">
-                    <p class="mb-0">Hai, aku</p>
-                    <h1 class="lg">
-                      fullmoon
-                    </h1>
-                    <p>
-                      Hadir sebagai solusi masa depan bersama
-                    </p>
-                    <v-layout row wrap>
-                      <v-text-field
-                        v-model="search"
-                        label="Cari sesuatu.."
-                        single-line
-                        outlined
-                        :disabled="isSearchLoading"
-                        class="mr-2"
-                        clearable
-                        :loading="isSearchLoading"
-                        append-icon="mdi-magnify"
-                        @click:append="handleSearch"
-                        @keydown.enter="handleSearch"
-                      />
-                    </v-layout>
-                    <!-- <template v-if="!isSearchPage">
-                      <h3>For you</h3>
-                      <swiper
-                        ref="mySwiper"
-                        class="mt-2"
-                        :options="swiperOptions"
-                        :delete-instance-on-destroy="true"
-                        :cleanup-styles-on-destroy="false"
-                      >
-                        <swiper-slide v-for="(item, index) in lomba" :key="index">
-                          <v-card flat class="pa-1 mr-1">
-                            <v-sheet :color="isDarkMode ? '' : 'grey lighten-4'">
-                              <v-img height="200" :src="item.src" />
-                            </v-sheet>
-                            <v-card-title>
-                              <Truncate>Top western road trips</Truncate>
-                            </v-card-title>
+                  <Container>
+                    <v-flex xs12 class="text-center text-md-left">
+                      <p class="mb-0">
+                        Hai, aku
+                      </p>
+                      <h1 class="lg">
+                        fullmoon
+                      </h1>
+                      <p>
+                        Hadir sebagai solusi masa depan bersama
+                      </p>
+                      <v-layout row wrap>
+                        <v-text-field
+                          v-model="search"
+                          label="Cari sesuatu.."
+                          single-line
+                          outlined
+                          :disabled="isSearchLoading"
+                          class="mr-2"
+                          clearable
+                          color="white"
+                          :loading="isSearchLoading"
+                          append-icon="mdi-magnify"
+                          @click:append="handleSearch"
+                          @keydown.enter="handleSearch"
+                        />
+                      </v-layout>
+                      <template v-if="!isSearchPage">
+                        <h3>For you</h3>
+                        <swiper
+                          ref="mySwiper"
+                          class="mt-2"
+                          :options="swiperOptions"
+                          :delete-instance-on-destroy="true"
+                          :cleanup-styles-on-destroy="false"
+                        >
+                          <swiper-slide v-for="(item, index) in lomba" :key="index">
+                            <v-card color="transparent" flat class="pa-1 mr-1 mr-md-3">
+                              <v-sheet :color="isDarkMode ? '' : 'grey lighten-4'">
+                                <v-img height="200" :src="item.src" />
+                              </v-sheet>
+                              <v-card-title>
+                                <Truncate>Top western road trips</Truncate>
+                              </v-card-title>
 
-                            <v-card-subtitle>
-                              <Truncate>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus excepturi, iste dignissimos quas tempore dolore. Voluptatum eveniet quis placeat debitis nihil officia corrupti in nam delectus, quisquam vel laborum nobis.</Truncate>
-                            </v-card-subtitle>
-                          </v-card>
-                        </swiper-slide>
-                        <div slot="pagination" class="swiper-pagination" />
-                      </swiper>
-                    </template> -->
-                  </v-flex>
+                              <v-card-subtitle>
+                                <Truncate>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus excepturi, iste dignissimos quas tempore dolore. Voluptatum eveniet quis placeat debitis nihil officia corrupti in nam delectus, quisquam vel laborum nobis.</Truncate>
+                              </v-card-subtitle>
+                            </v-card>
+                          </swiper-slide>
+                          <div slot="pagination" class="swiper-pagination" />
+                        </swiper>
+                      </template>
+                    </v-flex>
+                  </Container>
                 </template>
               </Fragment>
             </v-flex>
@@ -129,7 +134,7 @@ export default {
           slidesPerView: 2
         },
         1200: {
-          slidesPerView: 2.5
+          slidesPerView: 3.5
         }
       }
     }

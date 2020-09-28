@@ -4,11 +4,6 @@ dotenv.config()
 
 export default {
   /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
-  mode: 'universal',
-  /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
@@ -18,7 +13,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: pckg.title || 'Olivia 2020',
+    title: pckg.title || 'Fullmoon',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -32,7 +27,7 @@ export default {
   ** Customize the progress-bar color
   */
   loading: {
-    color: '#FF6600',
+    color: '#3742fa',
     height: '5px'
   },
   /*
@@ -66,15 +61,15 @@ export default {
     { src: '~/plugins/vue-read-progress.js', ssr: false }
   ],
   // manifest: {
-  //   name: 'D3RPLA-41',
+  //   name: 'Fullmoon',
   //   lang: 'id',
   //   display: 'fullscreen',
-  //   title: 'D3RPLA-41',
-  //   description: 'Website Ucapan untuk Wisudawan D3 RPLA 41 Telkom University',
+  //   title: 'Fullmoon',
+  //   description: 'Fullmoon Website - Olivia 2020',
   //   theme_color: '#5352ed',
   //   background_color: '#5352ed',
   //   start_url: '/',
-  //   short_name: 'D3RPLA-41',
+  //   short_name: 'Fullmoon',
   //   icons: [
   //     {
   //       src: '/icon.png',
@@ -84,8 +79,19 @@ export default {
   //   ]
   // },
   pwa: {
-    icon: false,
-    manifest: false
+    // icon: false,
+    manifest: {
+      name: 'Fullmoon',
+      lang: 'id',
+      display: 'fullscreen',
+      title: 'Fullmoon',
+      description: 'Fullmoon Website - Olivia 2020',
+      theme_color: '#5352ed',
+      background_color: '#5352ed',
+      start_url: '/',
+      short_name: 'Fullmoon',
+      useWebmanifestExtension: false
+    }
   },
   /*
   ** Auto import components

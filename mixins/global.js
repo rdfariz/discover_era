@@ -27,6 +27,9 @@ export default {
         return true
       }
       return false
+    },
+    classContainer () {
+      return 'pa-2 pa-md-4 px-lg-16 py-lg-6'
     }
   },
   methods: {

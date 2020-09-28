@@ -1,34 +1,32 @@
 <template>
-  <Container>
+  <Container spacing-top>
     <v-layout
       v-for="(parent, index) in headers"
       :key="index"
-      row
       wrap
-      class="pa-3 pa-md-4 pa-lg-6 pa-xl-10"
     >
-      <template>
-        <v-flex xs12>
-          <h4 class="text-capitalize">
-            {{ parent }}
-          </h4>
-        </v-flex>
-        <v-flex
-          v-for="(item, i) in data[parent]"
-          :key="i"
-          xs12
-          md6
-          lg4
-          class="pa-2"
-        >
-          <blog-card :story="item" />
-        </v-flex>
-      </template>
+      <v-flex xs12>
+        <h4 class="text-capitalize text-center text-md-left">
+          {{ parent }}
+        </h4>
+      </v-flex>
+      <v-flex
+        v-for="(item, i) in data[parent]"
+        :key="i"
+        xs12
+        md6
+        lg4
+        class="pa-2"
+      >
+        <blog-card :story="item" />
+      </v-flex>
     </v-layout>
     {{ perPage }} | {{ total }}
   </Container>
 </template>
 <script>
+import global from '@/mixins/global'
+
 import blogCard from '@/components/blog'
 import Container from '@/components/container'
 
@@ -37,6 +35,7 @@ export default {
     blogCard,
     Container
   },
+  mixins: [global],
   async asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
     await store.dispatch('search/getData', {
       sort_by: 'first_published_at:desc',

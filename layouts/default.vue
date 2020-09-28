@@ -7,7 +7,7 @@
       :dense="content.appbar_type === 'dense'"
       :src="content.appbar_background || ''"
       height="75"
-      :color="content.appbar_color.color ? content.appbar_color.color : (isDarkMode ? 'black' : 'white')"
+      :color="content.appbar_color.color ? content.appbar_color.color : ''"
       :value="$vuetify.breakpoint.mobile"
     >
       <Container>
@@ -87,19 +87,6 @@
           <!-- <v-app-bar-nav-icon @click="drawer = !drawer" /> -->
         </v-layout>
       </Container>
-      <template v-if="detailMenu" #extension>
-        <Container fluid>
-          <v-layout row wrap>
-            <v-flex xs12>
-              <v-tabs align-with-title>
-                <v-tab>Tab 1</v-tab>
-                <v-tab>Tab 2</v-tab>
-                <v-tab>Tab 3</v-tab>
-              </v-tabs>
-            </v-flex>
-          </v-layout>
-        </Container>
-      </template>
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
@@ -107,6 +94,7 @@
       :mini-variant="false"
       mini-variant-width="85"
       width="300"
+      height="100%"
       app
       :right="isRtl"
       :class="isReadPage ? 'read--mode' : ''"
@@ -114,7 +102,7 @@
       <template v-slot:prepend>
         <v-flex xs12 class="my-6">
           <v-sheet v-if="drawerLogo" :height="drawerLogoHeight" color="transparent">
-            <v-img :contain="drawerLogoContain" height="100%" :src="drawerLogo" />
+            <v-img :contain="drawerLogoContain" height="100%" :src="isDarkMode ? drawerLogoDark : drawerLogo" />
           </v-sheet>
         </v-flex>
         <v-divider />
@@ -193,6 +181,9 @@ export default {
       return this.content.menu.map((el) => {
         return { icon: el.icon.icon, link: el.link, title: el.title }
       })
+    },
+    drawerLogoDark () {
+      return this.content.drawer_logo_dark || this.drawerLogo
     },
     drawerLogo () {
       return this.content.drawer_logo || ''

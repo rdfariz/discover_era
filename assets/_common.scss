@@ -91,3 +91,23 @@ $duration: 0.5s ease-out;
   width: 100%;
 }
 
+.rounded {
+  border-radius: $rounded-md;
+  &--sm {
+    border-radius: $rounded-sm;
+  }
+  &--md {
+    border-radius: $rounded-md;
+  }
+  &--lg {
+    border-radius: $rounded-lg;
+  }
+  &--xl {
+    border-radius: $rounded-xl;
+  }
+}
+.overflow {
+  &--hidden {
+    overflow: hidden;
+  }
+}

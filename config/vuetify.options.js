@@ -8,11 +8,11 @@ if (typeof Storage !== 'undefined') { // eslint-disable-line
 }
 
 const base = {
-  primary: '#FF6600', // primary main
-  primarylight: '#FF6600', // primary light
+  primary: '#5352ed', // primary main
+  primarylight: '#5352ed', // primary light
   primarydark: '#FF6600', // primary dark
-  secondary: '#505050', // secondary main
-  secondarylight: '#505050', // secondary light
+  secondary: '#3742fa', // secondary main
+  secondarylight: '#3742fa', // secondary light
   secondarydark: '#505050', // secondary dark
   anchor: '#5352ed' // link
 }

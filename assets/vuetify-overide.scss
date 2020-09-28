@@ -9,7 +9,7 @@
   // border-radius: 0 0 $rounded-lg 0;
   @include shadow-lg;
   &.read--mode:not(.v-navigation-drawer--is-mobile) {
-    opacity: 0.5;
+    opacity: 0.4;
     transition: $transition-unit;
     &:hover {
       opacity: 1;
@@ -36,26 +36,40 @@
   font-family: 'TT Commons', 'Roboto', Arial, Helvetica, sans-serif !important;
 }
 
-h1, h2.xl {
+h1 {
   font-weight: 600;
   font-size: 4rem; // 64px
   letter-spacing: -0.25px;
   line-height: 1.125;
   // margin-bottom: 20px;
+  
+  // xs: 340,
+  // sm: 540,
+  // md: 800,
+  // lg: 1280
 
-  &.md {
-    font-size: 4rem;
+  @media only screen and (min-width: $md) {
+    &.md {
+      font-size: 4rem;
+    }
+    &.lg {
+      font-size: 4.5rem;
+    }
+    &.xl {
+      font-size: 5.5rem;
+    }
   }
-  &.lg {
-    font-size: 5rem;
+  @media only screen and (min-width: $lg) {
+    &.md {
+      font-size: 4rem;
+    }
+    &.lg {
+      font-size: 5rem;
+    }
+    &.xl {
+      font-size: 6rem;
+    }
   }
-  &.xl {
-    font-size: 6rem;
-  }
-}
-h1.title {
-  text-align: center;
-  // margin-bottom: 60px;
 }
 h2 {
   font-weight: 500;

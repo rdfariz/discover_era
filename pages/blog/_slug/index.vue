@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <vue-read-progress color="#32AAEA" opacity="0.5" height="5px" :shadow="false" />
+    <vue-read-progress color="#2ed573" opacity="0.7" height="5px" :shadow="false" />
     <v-layout>
       <v-flex xs12>
         <Read :story="story" />
