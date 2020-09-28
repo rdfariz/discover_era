@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-sheet class="bg-info" :color="content.background_color.color || 'transparent'" width="100%" :height="content.background_height || 'auto'">
+    <v-sheet class="bg-page" :color="content.background_color.color || 'transparent'" width="100%" :height="content.background_height || 'auto'">
       <v-img v-if="content.background" :src="content.background" :contain="content.background_contain" height="100%" />
     </v-sheet>
     <Container>

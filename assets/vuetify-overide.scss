@@ -1,6 +1,6 @@
 // Vuetify class overide
 .v-app-bar {
-  // transition: $transition-bg-theme !important;
+  transition: $transition-bg-theme !important;
   // border-radius: 0 0 $rounded-lg 0 !important;
   @include shadow-lg;
 }
@@ -8,9 +8,21 @@
 .v-navigation-drawer {
   // border-radius: 0 0 $rounded-lg 0;
   @include shadow-lg;
+  &.read--mode:not(.v-navigation-drawer--is-mobile) {
+    opacity: 0.5;
+    transition: $transition-unit;
+    &:hover {
+      opacity: 1;
+    }
+  }
   
   .v-navigation-drawer__border {
     display: none !important;
+  }
+  
+  .v-navigation-drawer__content {
+    // height: auto !important;
+    // max-height: 100% !important;
   }
 }
 
@@ -30,6 +42,16 @@ h1, h2.xl {
   letter-spacing: -0.25px;
   line-height: 1.125;
   // margin-bottom: 20px;
+
+  &.md {
+    font-size: 4rem;
+  }
+  &.lg {
+    font-size: 5rem;
+  }
+  &.xl {
+    font-size: 6rem;
+  }
 }
 h1.title {
   text-align: center;

@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <Container>
     <v-layout
       v-for="(parent, index) in headers"
       :key="index"
       row
       wrap
-      class="pa-2 pa-md-4"
+      class="pa-3 pa-md-4 pa-lg-6 pa-xl-10"
     >
       <template>
         <v-flex xs12>
@@ -26,14 +26,16 @@
       </template>
     </v-layout>
     {{ perPage }} | {{ total }}
-  </div>
+  </Container>
 </template>
 <script>
 import blogCard from '@/components/blog'
+import Container from '@/components/container'
 
 export default {
   components: {
-    blogCard
+    blogCard,
+    Container
   },
   async asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
     await store.dispatch('search/getData', {

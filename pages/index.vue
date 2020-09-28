@@ -1,99 +1,92 @@
 <template>
-  <Container spacing-top>
-    <v-layout class="mb-10" row wrap justify-center align-center>
-      <v-flex xs12>
-        <Fragment>
-          <template #leftContent>
-            <v-flex xs12 :md6="!isSearchPage" class="pa-2 pa-md-4">
-              <h1>Via Explore</h1>
-              <p class="text--secondary">
-                Find all about your question
-              </p>
-              <v-layout row wrap>
-                <v-text-field
-                  v-model="search"
-                  label="Ex: lomba olivia"
-                  single-line
-                  outlined
-                  :disabled="isSearchLoading"
-                  class="mr-2"
-                  color="secondary"
-                  clearable
-                  @keydown.enter="handleSearch"
-                />
-                <v-btn
-                  :loading="isSearchLoading"
-                  depressed
-                  color="blue"
-                  class="white--text"
-                  height="55"
-                  @click="handleSearch"
-                >
-                  Search
-                </v-btn>
-              </v-layout>
-              <template v-if="!isSearchPage">
-                <h3>For you</h3>
-                <swiper
-                  ref="mySwiper"
-                  class="mt-2"
-                  :options="swiperOptions"
-                  :delete-instance-on-destroy="true"
-                  :cleanup-styles-on-destroy="false"
-                >
-                  <swiper-slide v-for="(item, index) in lomba" :key="index">
-                    <v-card flat class="pa-1 mr-1">
-                      <v-sheet :color="isDarkMode ? '' : 'grey lighten-4'">
-                        <v-img height="200" :src="item.src" />
-                      </v-sheet>
-                      <v-card-title>
-                        <Truncate>Top western road trips</Truncate>
-                      </v-card-title>
-
-                      <v-card-subtitle>
-                        <Truncate>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus excepturi, iste dignissimos quas tempore dolore. Voluptatum eveniet quis placeat debitis nihil officia corrupti in nam delectus, quisquam vel laborum nobis.</Truncate>
-                      </v-card-subtitle>
-                    </v-card>
-                  </swiper-slide>
-                  <div slot="pagination" class="swiper-pagination" />
-                </swiper>
-              </template>
-            </v-flex>
-          </template>
-
-          <template v-if="!isSearchPage" #rightContent>
+  <div>
+    <Background color="primary" :height="isSearchPage ? '100%' : '100vh'">
+      <v-layout fill-height row wrap align-center class="w-full ma-auto">
+        <Container>
+          <v-layout row wrap align-center>
             <v-flex xs12 md6>
-              <v-sheet :color="isDarkMode ? '' : 'grey lighten-4'" height="100%">
-                <v-img contain width="100%" height="100%" class="ma-auto" :src="illustration[1]" />
-              </v-sheet>
-            </v-flex>
-          </template>
+              <Fragment dark background="transparent" height="100%">
+                <template #leftContent>
+                  <v-flex xs12 class="text-center text-md-left pa-3 pa-md-4 pa-lg-6 pa-xl-10">
+                    <p class="mb-0">Hai, aku</p>
+                    <h1 class="lg">
+                      fullmoon
+                    </h1>
+                    <p>
+                      Hadir sebagai solusi masa depan bersama
+                    </p>
+                    <v-layout row wrap>
+                      <v-text-field
+                        v-model="search"
+                        label="Cari sesuatu.."
+                        single-line
+                        outlined
+                        :disabled="isSearchLoading"
+                        class="mr-2"
+                        clearable
+                        :loading="isSearchLoading"
+                        append-icon="mdi-magnify"
+                        @click:append="handleSearch"
+                        @keydown.enter="handleSearch"
+                      />
+                    </v-layout>
+                    <!-- <template v-if="!isSearchPage">
+                      <h3>For you</h3>
+                      <swiper
+                        ref="mySwiper"
+                        class="mt-2"
+                        :options="swiperOptions"
+                        :delete-instance-on-destroy="true"
+                        :cleanup-styles-on-destroy="false"
+                      >
+                        <swiper-slide v-for="(item, index) in lomba" :key="index">
+                          <v-card flat class="pa-1 mr-1">
+                            <v-sheet :color="isDarkMode ? '' : 'grey lighten-4'">
+                              <v-img height="200" :src="item.src" />
+                            </v-sheet>
+                            <v-card-title>
+                              <Truncate>Top western road trips</Truncate>
+                            </v-card-title>
 
-          <template #append>
-            <NuxtChild />
-          </template>
-        </Fragment>
-      </v-flex>
-    </v-layout>
-  </Container>
+                            <v-card-subtitle>
+                              <Truncate>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus excepturi, iste dignissimos quas tempore dolore. Voluptatum eveniet quis placeat debitis nihil officia corrupti in nam delectus, quisquam vel laborum nobis.</Truncate>
+                            </v-card-subtitle>
+                          </v-card>
+                        </swiper-slide>
+                        <div slot="pagination" class="swiper-pagination" />
+                      </swiper>
+                    </template> -->
+                  </v-flex>
+                </template>
+              </Fragment>
+            </v-flex>
+          </v-layout>
+        </Container>
+      </v-layout>
+    </Background>
+    <NuxtChild />
+  </div>
 </template>
 
 <script>
 import global from '@/mixins/global'
 
 import illustration1 from '@/static/images/background/1.jpg'
-import illustration2 from '@/static/images/illustration/19.svg'
+import illustration2 from '@/static/images/background/2.jpg'
+// import illustration2 from '@/static/images/illustration/19.svg'
 import illustration3 from '@/static/images/illustration/stubborn/17.svg'
 
-import Truncate from '@/components/text/truncate'
+// import Truncate from '@/components/text/truncate'
 import Container from '@/components/container/'
 import Fragment from '@/components/fragment/'
+import Background from '@/components/background/'
 
 export default {
   components: {
     Container,
-    Truncate,
-    Fragment
+    // Truncate,
+    Fragment,
+    Background
   },
   mixins: [global],
   asyncData ({ app, isDev, route, store, env, params, query, req, res, redirect, error }) {
@@ -101,7 +94,7 @@ export default {
     return { search }
   },
   data: () => ({
-    illustration: [illustration1, illustration2, illustration3],
+    illustration: [illustration1, 'https://superscene.pro/img/header/person.png', illustration2, illustration3],
     lomba: [
       {
         title: 'Web design',

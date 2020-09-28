@@ -2,32 +2,45 @@ import moment from 'moment'
 
 export default {
   computed: {
-    isDarkMode () {
-      return this.$vuetify.theme.dark
+    isDarkMode: {
+      get () {
+        return this.$vuetify.theme.dark
+      },
+      set () {
+        this.toggleDarkMode()
+      }
     },
-    isRtl () {
-      return this.$vuetify.rtl
+    isRtl: {
+      get () {
+        return this.$vuetify.rtl
+      },
+      set () {
+        this.toggleRtl()
+      }
     },
     isLoading () {
       return this.$store.getters.loading
+    },
+    isReadPage () {
+      const route = this.$route.name
+      if (route === 'blog-slug' || route === 'info-slug-index') {
+        return true
+      }
+      return false
     }
   },
   methods: {
-    _onUpdated () {
-    },
     toggleDarkMode () {
       if (typeof Storage !== 'undefined') {
         localStorage.setItem('_olivia_darkmode', !this.$vuetify.theme.dark)
       }
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-      this._onUpdated()
     },
     toggleRtl () {
       if (typeof Storage !== 'undefined') {
         localStorage.setItem('_olivia_rtl', !this.$vuetify.rtl)
       }
       this.$vuetify.rtl = !this.$vuetify.rtl
-      this._onUpdated()
     },
     richtext (content) {
       return this.$storyapi.richTextResolver.render(content)

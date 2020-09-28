@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar
+    <!-- <v-app-bar
       :fixed="content.appbar_position === 'fixed'"
       :absolute="content.appbar_position === 'absolute'"
       :dense="content.appbar_type === 'dense'"
@@ -26,29 +26,19 @@
           <v-spacer />
         </v-layout>
       </Container>
-    </v-app-bar>
-    <v-main>
-      <NuxtChild />
-    </v-main>
+    </v-app-bar> -->
+    <NuxtChild />
   </div>
 </template>
-
-<style lang="scss">
-.bg-info {
-  position: absolute;
-  z-index: 0;
-}
-</style>
 
 <script>
 import global from '@/mixins/global'
 import infoDetail from '@/mixins/infoDetail'
-import Container from '@/components/container/'
+// import Container from '@/components/container/'
 
 export default {
-  layout: 'custom',
   components: {
-    Container
+    // Container
   },
   mixins: [global, infoDetail],
   async asyncData ({ app, isDev, route, store, env, params, query, req, res, redirect, error }) {
