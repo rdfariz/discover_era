@@ -32,6 +32,12 @@
   }
 }
 
+.hide-detail {
+  .v-text-field__details {
+    display: none !important;
+  }
+}
+
 .v-application {
   font-family: 'TT Commons', 'Roboto', Arial, Helvetica, sans-serif !important;
 }

@@ -1,5 +1,7 @@
 import dotenv from 'dotenv'
 import pckg from './package.json'
+import { theme } from './config/vuetify.options'
+
 dotenv.config()
 
 export default {
@@ -17,7 +19,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pckg.description || '' }
+      { hid: 'description', name: 'description', content: pckg.description || '' },
+      // PWA primary color
+      { name: 'theme-color', content: theme.primary }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }
@@ -27,7 +31,7 @@ export default {
   ** Customize the progress-bar color
   */
   loading: {
-    color: '#3742fa',
+    color: theme.primary,
     height: '5px'
   },
   /*
@@ -35,7 +39,8 @@ export default {
   */
   css: [
     '~/assets/transition.scss',
-    '~/assets/vuetify-overide.scss'
+    '~/assets/vuetify-overide.scss',
+    '@fortawesome/fontawesome-free/css/all.css'
   ],
   /*
   ** Custom Layout Transition
@@ -58,36 +63,31 @@ export default {
     { src: '~/plugins/vue-swiper.js', ssr: false },
     { src: '~/plugins/feather-icon.js', ssr: false },
     { src: '~/plugins/vue-social-sharing.js', ssr: false },
-    { src: '~/plugins/vue-read-progress.js', ssr: false }
+    { src: '~/plugins/vue-read-progress.js', ssr: false },
+    { src: '~/plugins/vue-skip-to.js', ssr: false }
   ],
-  // manifest: {
-  //   name: 'Fullmoon',
-  //   lang: 'id',
-  //   display: 'fullscreen',
-  //   title: 'Fullmoon',
-  //   description: 'Fullmoon Website - Olivia 2020',
-  //   theme_color: '#5352ed',
-  //   background_color: '#5352ed',
-  //   start_url: '/',
-  //   short_name: 'Fullmoon',
-  //   icons: [
-  //     {
-  //       src: '/icon.png',
-  //       size: '144x144',
-  //       type: 'image/png'
-  //     }
-  //   ]
-  // },
+  /*
+  ** Render configuration
+  */
+  render: {
+    bundleRenderer: {
+      directives: {
+        shouldPreload: (file, type) => {
+          return ['script', 'style', 'font'].includes(type)
+        }
+      }
+    }
+  },
+  // PWA Configuration
   pwa: {
-    // icon: false,
     manifest: {
       name: 'Fullmoon',
       lang: 'id',
       display: 'fullscreen',
-      title: 'Fullmoon',
-      description: 'Fullmoon Website - Olivia 2020',
-      theme_color: '#5352ed',
-      background_color: '#5352ed',
+      title: pckg.title || 'Fullmoon',
+      description: pckg.description || 'Fullmoon - Creating Innovation and Competence in the new normal era',
+      theme_color: theme.primary,
+      background_color: theme.primary,
       start_url: '/',
       short_name: 'Fullmoon',
       useWebmanifestExtension: false
@@ -110,13 +110,15 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
+    ['@nuxtjs/html-minifier', { log: 'once', logHtml: true }],
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     [
       'storyblok-nuxt',
       {
-        accessToken: 'zdU9mrZK3l2eKGVuMfDGWgtt',
+        accessToken: process.env.NODE_ENV === 'production'
+          ? 'UxTOoeRsp6D0HYFmcqkdZAtt'
+          : 'zdU9mrZK3l2eKGVuMfDGWgtt',
         cacheProvider: 'memory'
       }
     ]
@@ -126,11 +128,6 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {},
-  /*
-  ** Content module configuration
-  ** See https://content.nuxtjs.org/configuration
-  */
-  content: {},
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module

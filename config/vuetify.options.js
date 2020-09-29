@@ -1,28 +1,43 @@
-import '@fortawesome/fontawesome-free/css/all.css' // Ensure you are using css-loader
-
 let darkMode = false
 let rtl = false
+
+// Color
+export const defaultColors = {
+  primary: '#5352ed',
+  primarylight: '#5352ed',
+  primarydark: '#FF6600',
+  secondary: '#3742fa',
+  secondarylight: '#3742fa',
+  secondarydark: '#505050',
+  anchor: '#5352ed'
+}
+let colors = { ...defaultColors }
+
 if (typeof Storage !== 'undefined') { // eslint-disable-line
-  darkMode = localStorage.getItem('_olivia_darkmode') || false
-  rtl = localStorage.getItem('_olivia_rtl') || false
+  // ColorPallete Configuration
+  try {
+    const _pallete = localStorage.getItem('_fullmoon_pallete') || {}
+    const palletejson = JSON.parse(_pallete)
+    Object.assign(colors, palletejson)
+  } catch (err) {
+    colors = { ...defaultColors }
+  }
+
+  // DarkMode & RTL
+  darkMode = localStorage.getItem('_fullmoon_darkmode') || false
+  rtl = localStorage.getItem('_fullmoon_rtl') || false
 }
 
-const base = {
-  primary: '#5352ed', // primary main
-  primarylight: '#5352ed', // primary light
-  primarydark: '#FF6600', // primary dark
-  secondary: '#3742fa', // secondary main
-  secondarylight: '#3742fa', // secondary light
-  secondarydark: '#505050', // secondary dark
-  anchor: '#5352ed' // link
-}
+// const base = {
+//   ...colors
+// }
 
-const palette = {
-  base
-}
+// const palette = {
+//   base
+// }
 
 export const theme = {
-  ...palette.base
+  ...colors
 }
 
 export default {

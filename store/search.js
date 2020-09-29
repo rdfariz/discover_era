@@ -1,4 +1,5 @@
 export const state = () => ({
+  keyword: '',
   data: [],
   rawData: [],
   loading: false,
@@ -7,6 +8,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  SET_KEYWORD (state, data) {
+    state.keyword = data
+  },
   SET_LOADING (state, data) {
     state.loading = data
   },
@@ -26,6 +30,9 @@ export const actions = {
   reset ({ commit }) {
     commit('SET_DATA', [])
     commit('SET_META', { perPage: 0, total: 0 })
+  },
+  setKeyword ({ commit }, payload = '') {
+    commit('SET_KEYWORD', payload)
   },
   setLoading ({ commit }, payload) {
     commit('SET_LOADING', payload)

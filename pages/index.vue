@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="main">
     <Background color="primary" :height="isSearchPage ? '100%' : '100vh'">
       <v-layout fill-height row wrap align-center class="w-full ma-auto">
         <Container fluid>
@@ -30,8 +30,8 @@
                           color="white"
                           :loading="isSearchLoading"
                           append-icon="mdi-magnify"
-                          @click:append="handleSearch"
-                          @keydown.enter="handleSearch"
+                          @click:append="onSubmitSearch"
+                          @keydown.enter="onSubmitSearch"
                         />
                       </v-layout>
                       <template v-if="!isSearchPage">
@@ -75,6 +75,7 @@
 
 <script>
 import global from '@/mixins/global'
+import search from '@/mixins/search'
 
 import illustration1 from '@/static/images/background/1.jpg'
 import illustration2 from '@/static/images/background/2.jpg'
@@ -93,10 +94,11 @@ export default {
     Fragment,
     Background
   },
-  mixins: [global],
-  asyncData ({ app, isDev, route, store, env, params, query, req, res, redirect, error }) {
-    const search = params.keyword || ''
-    return { search }
+  mixins: [global, search],
+  asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
+    if (route.name === 'index') {
+      store.dispatch('search/setKeyword', '')
+    }
   },
   data: () => ({
     illustration: [illustration1, 'https://superscene.pro/img/header/person.png', illustration2, illustration3],
@@ -140,16 +142,6 @@ export default {
     }
   }),
   computed: {
-    isSearchPage () {
-      const route = this.$route.name
-      if (route === 'index-search-keyword' || route === 'index-search') {
-        return true
-      }
-      return false
-    },
-    isSearchLoading () {
-      return this.$store.getters.search.loading
-    },
     swiper () {
       return this.$refs.mySwiper.$swiper
     }
@@ -157,21 +149,11 @@ export default {
   mounted () {
     this.reInitSwiper()
   },
-  updated () {
-    this.search = this.$route.params.keyword
-  },
   methods: {
     reInitSwiper () {
       const swiper = this.$refs.mySwiper
       if (swiper) {
         swiper.initSwiper()
-      }
-    },
-    handleSearch () {
-      if (this.search !== '' && this.search !== null) {
-        this.$router.push(`/search/${this.search}`)
-      } else {
-        this.$router.push('/')
       }
     }
   }
