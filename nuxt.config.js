@@ -1,9 +1,8 @@
-/* eslint-disable nuxt/no-cjs-in-config */
-const dotenv = require('dotenv')
-const pckg = require('./package.json')
+import dotenv from 'dotenv'
+import pckg from './package.json'
 dotenv.config()
 
-module.exports = {
+export default {
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
