@@ -1,0 +1,31 @@
+// Vue Skip To
+.vue-skip-to {
+  z-index: 1000 !important;
+  border-radius: 0 0 $rounded-md 0;
+  border: 0.5px solid #333333 !important;
+}
+.vue-skip-to__link {
+  background-color: var(--v-primary-base) !important;
+  margin: 1px;
+  border-radius: 0 0 $rounded-md 0;
+}
+.vue-skip-to__nav {
+}
+.vue-skip-to__nav-list {
+}
+.vue-skip-to__nav-list-item {
+}
+
+// Vue Perfect Scrollbar
+.ps {
+  height: 100%;
+
+  &.y-only {
+    overflow-y: auto;
+    overflow-x: hidden !important;
+  }
+  &.x-only {
+    overflow-y: hidden !important;
+    overflow-x: auto;
+  }
+}

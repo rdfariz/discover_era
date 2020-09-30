@@ -2,6 +2,9 @@ import moment from 'moment'
 
 export default {
   computed: {
+    pallete () {
+      return this.$store.getters.pallete || {}
+    },
     isDarkMode: {
       get () {
         return this.$vuetify.theme.dark
@@ -34,16 +37,22 @@ export default {
   },
   methods: {
     toggleDarkMode () {
-      if (typeof Storage !== 'undefined') {
-        localStorage.setItem('_olivia_darkmode', !this.$vuetify.theme.dark)
+      if (typeof Storage !== 'undefined' && process.browser) {
+        localStorage.setItem('_fullmoon_darkmode', !this.$vuetify.theme.dark)
       }
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     },
     toggleRtl () {
-      if (typeof Storage !== 'undefined') {
-        localStorage.setItem('_olivia_rtl', !this.$vuetify.rtl)
+      if (typeof Storage !== 'undefined' && process.browser) {
+        localStorage.setItem('_fullmoon_rtl', !this.$vuetify.rtl)
       }
       this.$vuetify.rtl = !this.$vuetify.rtl
+    },
+    setColorPallete () {
+      if (typeof Storage !== 'undefined' && process.browser) {
+        localStorage.setItem('_fullmoon_pallete', JSON.stringify(this.pallete || {}))
+        // window.location.reload()
+      }
     },
     richtext (content) {
       return this.$storyapi.richTextResolver.render(content)

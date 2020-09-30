@@ -1,10 +1,20 @@
 {
   "version": 2,
+  "env": {
+    "PUBLIC_URL": "https://fullmoon.now.sh"
+  },
+  "build": {
+    "env": {
+      "PUBLIC_URL": "https://fullmoon.now.sh"
+    }
+  },
   "builds": [
     {
       "src": "nuxt.config.js",
-      "use": "@nuxtjs/now-builder",
-      "config": {}
+      "use": "@nuxtjs/vercel-builder",
+      "config": {
+        "serverFiles": ["api/**"]
+      }
     }
   ]
 }

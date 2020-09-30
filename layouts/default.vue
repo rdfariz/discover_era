@@ -1,13 +1,14 @@
 <template>
   <v-app dark :class="isDarkMode ? 'dark--mode' : 'light--mode'">
+    <VueSkipTo to="#main" label="Skip to main content" />
     <v-app-bar
       app
       :fixed="content.appbar_position === 'fixed'"
       :absolute="content.appbar_position === 'absolute'"
       :dense="content.appbar_type === 'dense'"
       :src="content.appbar_background || ''"
-      height="75"
-      :color="content.appbar_color.color ? content.appbar_color.color : ''"
+      :height="content.appbar_height || ''"
+      :color="content.appbar_color && content.appbar_color.color ? content.appbar_color.color : ''"
       :value="$vuetify.breakpoint.mobile"
     >
       <Container>
@@ -15,76 +16,12 @@
           <v-btn icon @click="drawer = !drawer">
             <v-icon>{{ 'mdi-menu' }}</v-icon>
           </v-btn>
-
-          <!-- <v-toolbar-title class="font-weight-bold">
+          <v-toolbar-title class="font-weight-bold mt-1 ml-3">
             <nuxt-link to="/">
-              fullmoon
+              Fullmoon
             </nuxt-link>
-          </v-toolbar-title> -->
-
+          </v-toolbar-title>
           <v-spacer />
-          <!-- <v-btn class="text-capitalize mx-1" text depressed to="/info">
-            Info
-            <v-icon right>
-              mdi-chevron-down
-            </v-icon>
-          </v-btn>
-          <v-btn class="text-capitalize mx-1" text depressed to="/about">
-            About
-            <v-icon right>
-              mdi-chevron-down
-            </v-icon>
-          </v-btn>
-          <v-btn
-            class="text-capitalize mx-1"
-            text
-            depressed
-            to="/blog"
-          >
-            Blog
-            <v-icon right>
-              mdi-chevron-down
-            </v-icon>
-          </v-btn> -->
-          <v-menu
-            rounded
-            offset-y
-            :nudge-bottom="10"
-          >
-            <template v-slot:activator="{ attrs, on }">
-              <v-btn class="mx-1" icon v-bind="attrs" v-on="on">
-                <v-icon>mdi-cog</v-icon>
-              </v-btn>
-            </template>
-
-            <v-list>
-              <v-list-item>
-                <v-list-item-action>
-                  <v-switch
-                    v-model="isDarkMode"
-                    color="purple"
-                  />
-                </v-list-item-action>
-                <v-list-item-title>Dark Mode</v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-action>
-                  <v-switch
-                    v-model="isRtl"
-                    color="purple"
-                  />
-                </v-list-item-action>
-                <v-list-item-title>RTL</v-list-item-title>
-              </v-list-item>
-              <!-- <v-btn icon @click="toggleDarkMode">
-                <v-icon>mdi-brightness-6</v-icon>
-              </v-btn> -->
-              <!-- <v-btn icon @click="toggleRtl">
-                <v-icon>mdi-align-horizontal-right</v-icon>
-              </v-btn> -->
-            </v-list>
-          </v-menu>
-          <!-- <v-app-bar-nav-icon @click="drawer = !drawer" /> -->
         </v-layout>
       </Container>
     </v-app-bar>
@@ -106,64 +43,105 @@
           </v-sheet>
         </v-flex>
         <v-divider />
+        <v-slide-y-transition>
+          <div v-show="isShowSearchDrawer">
+            <v-list-item>
+              <v-list-item-content>
+                <v-text-field
+                  v-model="search"
+                  label="Cari sesuatu.."
+                  single-line
+                  outlined
+                  dense
+                  :disabled="isSearchLoading"
+                  clearable
+                  color="primary"
+                  :loading="isSearchLoading"
+                  append-icon="mdi-magnify"
+                  class="hide-detail mt-1"
+                  @click:append="onSubmitSearch"
+                  @keydown.enter="onSubmitSearch"
+                />
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider />
+          </div>
+        </v-slide-y-transition>
       </template>
       <template>
-        <v-layout row wrap align-center fill-height>
-          <v-container grid-list-xs>
-            <v-layout row wrap align-center justify-center fill-height>
-              <v-flex xs10 class="my-6">
-                <v-list rounded>
-                  <v-list-item
-                    v-for="item in menu"
-                    :key="item.title"
-                    link
-                    :to="item.link"
-                    color="primary"
-                  >
-                    <v-list-item-content>
-                      <v-list-item-title class="font-weight-bold">
-                        {{ item.title }}
-                      </v-list-item-title>
-                    </v-list-item-content>
-                    <v-list-item-icon>
-                      <v-icon small>
-                        {{ item.icon }}
-                      </v-icon>
-                    </v-list-item-icon>
-                  </v-list-item>
-                </v-list>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-layout>
+        <perfect-scrollbar>
+          <v-layout row wrap align-center fill-height class="ma-0 pa-0">
+            <v-container grid-list-xs>
+              <v-layout
+                row
+                wrap
+                align-center
+                justify-center
+                fill-height
+              >
+                <v-flex xs12 class="my-4">
+                  <ListMenu :menu="menu" />
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-layout>
+        </perfect-scrollbar>
       </template>
       <template v-slot:append>
         <v-divider />
+        <v-flex xs12 class="my-1 text-center">
+          <v-layout row wrap justify-center>
+            <v-flex xs10>
+              <ButtonSettings />
+            </v-flex>
+          </v-layout>
+        </v-flex>
+        <v-divider />
         <v-flex xs12 class="my-6 text-center">
-          <!-- <v-sheet v-if="drawerLogo" class="my-2" :height="drawerLogoHeight" color="transparent">
-            <v-img :contain="drawerLogoContain" height="100%" :src="drawerLogo" />
-          </v-sheet> -->
-          <span>© fullmoon studio 2020.</span><br>
-          <span>All Rights Reserved.</span>
+          <v-layout row wrap justify-center>
+            <v-flex xs10>
+              <v-btn class="mx-1" icon>
+                <v-icon>mdi-facebook</v-icon>
+              </v-btn>
+              <v-btn class="mx-1" icon>
+                <v-icon>mdi-twitter</v-icon>
+              </v-btn>
+              <v-btn class="mx-1" icon>
+                <v-icon>mdi-whatsapp</v-icon>
+              </v-btn>
+            </v-flex>
+          </v-layout>
         </v-flex>
       </template>
     </v-navigation-drawer>
     <v-main>
       <nuxt />
+      <v-overlay :value="!isLoaded" color="primary" opacity="1">
+        <v-progress-circular
+          indeterminate
+          size="64"
+        />
+      </v-overlay>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import global from '@/mixins/global'
-import Container from '@/components/container/'
-// import logo from '@/static/logo.svg'
+import loading from '@/mixins/loading'
+import search from '@/mixins/search'
+
+import Container from '@/components/container'
+import ListMenu from '@/components/list_menu'
+import ButtonSettings from '@/components/button_settings'
 
 export default {
   components: {
-    Container
+    Container,
+    ListMenu,
+    ButtonSettings
   },
-  mixins: [global],
+  mixins: [global, loading, search],
   data: () => ({
     appBar: true,
     drawer: true,
@@ -178,16 +156,42 @@ export default {
       return this.story.content || {}
     },
     menu () {
-      return this.content.menu.map((el) => {
-        return { icon: el.icon.icon, link: el.link, title: el.title }
-      })
+      if (this.content.menu) {
+        return this.content.menu.map((el) => {
+          if (el.component && el.component === 'menu-item-nested') {
+            const items = el.items.map((item) => {
+              return {
+                title: item.title || '',
+                icon: (item.icon && item.icon.icon) ? item.icon.icon : '',
+                link: item.link || '',
+                link_external: item.link_external || false,
+                disabled: item.disabled || false
+              }
+            })
+            return {
+              title: el.title || '',
+              disabled: el.disabled || false,
+              items: items || []
+            }
+          } else {
+            return {
+              title: el.title || '',
+              icon: (el.icon && el.icon.icon) ? el.icon.icon : '',
+              link: el.link || '',
+              link_external: el.link_external || false,
+              disabled: el.disabled || false
+            }
+          }
+        })
+      } else {
+        return []
+      }
     },
     drawerLogoDark () {
       return this.content.drawer_logo_dark || this.drawerLogo
     },
     drawerLogo () {
       return this.content.drawer_logo || ''
-      // return logo
     },
     drawerLogoHeight () {
       return this.content.drawer_logo_height || ''
@@ -198,6 +202,7 @@ export default {
   },
   created () {
     this.initDrawer()
+    this.setColorPallete()
   },
   methods: {
     toggleDrawer () {
@@ -206,7 +211,6 @@ export default {
     initDrawer () {
       if (this.$vuetify.breakpoint.mobile) {
         this.drawer = false
-        // this.drawerMini = false
       } else {
         this.drawerMini = this.content.drawer_mini
         this.drawer = true

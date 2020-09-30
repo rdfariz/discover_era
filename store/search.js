@@ -1,4 +1,5 @@
 export const state = () => ({
+  keyword: '',
   data: [],
   rawData: [],
   loading: false,
@@ -7,6 +8,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  SET_KEYWORD (state, data) {
+    state.keyword = data
+  },
   SET_LOADING (state, data) {
     state.loading = data
   },
@@ -27,19 +31,22 @@ export const actions = {
     commit('SET_DATA', [])
     commit('SET_META', { perPage: 0, total: 0 })
   },
+  setKeyword ({ commit }, payload = '') {
+    commit('SET_KEYWORD', payload)
+  },
   setLoading ({ commit }, payload) {
     commit('SET_LOADING', payload)
   },
   async getData ({ commit, dispatch }, params = {}) {
     dispatch('setLoading', true)
-    await this.$storyapi.get('cdn/stories/', {
-      ...params
+    await this.$api.get('/api/search', {
+      params: { ...params }
     })
       .then((res) => {
-        const { data, perPage, total } = res
+        const { data, meta } = res.data
         if (data) {
           const final = {}
-          const stories = res.data.stories
+          const stories = data.stories
           stories.map((el) => {
             if (final[el.content.component] && final[el.content.component].length > 0) {
               final[el.content.component].push({ ...el })
@@ -49,7 +56,7 @@ export const actions = {
           })
           commit('SET_RAW_DATA', stories)
           commit('SET_DATA', final)
-          commit('SET_META', { perPage, total })
+          commit('SET_META', { perPage: meta.perPage || 0, total: meta.total || 0 })
         } else {
           dispatch('reset')
         }
