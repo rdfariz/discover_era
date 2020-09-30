@@ -3,6 +3,8 @@ import pckg from './package.json'
 
 dotenv.config()
 
+const isServerlessEnvironment = process.env.ON_VERCEL === 'true'
+
 export default {
   /*
   ** Nuxt target
@@ -128,7 +130,7 @@ export default {
   /*
   ** Server Middleware
   */
-  serverMiddleware: {
+  serverMiddleware: isServerlessEnvironment ? {} : {
     '/api': '~/api'
   },
   /*
@@ -136,7 +138,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://fullmoon.now.sh' : 'http://localhost:3000'
+    // baseURL: process.env.NODE_ENV === 'production' ? 'https://fullmoon.now.sh' : 'http://localhost:3000'
   },
   /*
   ** vuetify module configuration
