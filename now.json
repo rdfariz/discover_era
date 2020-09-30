@@ -1,13 +1,5 @@
 {
   "version": 2,
-  "env": {
-    "PUBLIC_URL": "https://fullmoon.now.sh"
-  },
-  "build": {
-    "env": {
-      "PUBLIC_URL": "https://fullmoon.now.sh"
-    }
-  },
   "builds": [
     {
       "src": "nuxt.config.js",
