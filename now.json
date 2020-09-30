@@ -1,12 +1,9 @@
 {
   "version": 2,
-  "env": {
-      "ON_VERCEL": "true"
-  },
   "builds": [
     {
-        "src": "api/**/*.js",
-        "use": "@now/node"
+      "src": "api/**/*.js",
+      "use": "@now/node"
     },
     {
       "src": "nuxt.config.js",

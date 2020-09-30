@@ -1,5 +1,6 @@
 export const state = () => ({
   keyword: '',
+  listKeyword: [],
   data: [],
   rawData: [],
   loading: false,
@@ -10,6 +11,9 @@ export const state = () => ({
 export const mutations = {
   SET_KEYWORD (state, data) {
     state.keyword = data
+  },
+  SET_LISTKEYWORD (state, data) {
+    state.listKeyword = data
   },
   SET_LOADING (state, data) {
     state.loading = data
@@ -37,16 +41,30 @@ export const actions = {
   setLoading ({ commit }, payload) {
     commit('SET_LOADING', payload)
   },
-  async getData ({ commit, dispatch }, params = {}) {
+  async getListKeyword ({ commit, dispatch }, params = {}) {
     dispatch('setLoading', true)
-    await this.$axios.get('/api/search', {
-      params: { ...params }
+    await this.$storyapi.get('cdn/stories/', {
+      ...params
     })
       .then((res) => {
-        const { data, meta } = res.data
+        const { data } = res
+        const stories = data.stories
+        commit('SET_LISTKEYWORD', stories)
+      }).catch(() => {
+        commit('SET_LISTKEYWORD', [])
+      })
+    dispatch('setLoading', false)
+  },
+  async getData ({ commit, dispatch }, params = {}) {
+    dispatch('setLoading', true)
+    await this.$storyapi.get('cdn/stories/', {
+      ...params
+    })
+      .then((res) => {
+        const { data, perPage, total } = res
         if (data) {
           const final = {}
-          const stories = data.stories
+          const stories = res.data.stories
           stories.map((el) => {
             if (final[el.content.component] && final[el.content.component].length > 0) {
               final[el.content.component].push({ ...el })
@@ -56,7 +74,7 @@ export const actions = {
           })
           commit('SET_RAW_DATA', stories)
           commit('SET_DATA', final)
-          commit('SET_META', { perPage: meta.perPage || 0, total: meta.total || 0 })
+          commit('SET_META', { perPage, total })
         } else {
           dispatch('reset')
         }

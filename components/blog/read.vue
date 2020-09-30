@@ -1,5 +1,5 @@
 <template>
-  <v-card v-editable="content" flat class="pa-2 pa-md-4 rich-text">
+  <v-card v-editable="content" flat class="pa-2 pa-md-4">
     <v-toolbar color="transparent" flat class="mb-2">
       <v-toolbar-title>
         <v-skeleton-loader
@@ -13,69 +13,71 @@
       <v-btn icon>
         <v-icon>mdi-fullscreen</v-icon>
       </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
+      <v-btn v-print="printObj" icon>
+        <v-icon>mdi-printer</v-icon>
       </v-btn>
     </v-toolbar>
     <!-- <v-divider class="my-2" /> -->
-    <v-card-title primary-title>
-      <v-skeleton-loader
-        v-if="!isLoaded"
-        type="card-heading"
-        width="100%"
-      />
-      <h2 v-else>
-        {{ title }}
-      </h2>
-    </v-card-title>
-    <v-card-text>
-      <v-skeleton-loader v-if="!isLoaded" type="list-item-three-line" />
-      <p v-else v-html="body" />
-    </v-card-text>
-    <v-divider class="my-4" />
-    <v-card-actions>
-      <v-container grid-list-xs fluid>
+    <div id="contentPrint">
+      <v-card-title primary-title>
         <v-skeleton-loader
           v-if="!isLoaded"
-          type="list-item-two-line"
-          width="50%"
+          type="card-heading"
+          width="100%"
         />
-        <template v-else>
-          <v-layout v-if="tagList && tagList.length > 0" align-center row wrap>
-            <v-icon x-small class="mr-2">
-              fa-tag
-            </v-icon>
-            <span v-for="(tag, index) in tagList" :key="index" class="text-capitalize">
-              <template v-if="index > 0">,</template>
-              {{ tag }}
-            </span>
-          </v-layout>
-          <v-layout align-center row wrap>
-            <p class="ma-0">
-              {{ toDate(publishedAt) }}
-            </p>
-            <v-spacer />
-          </v-layout>
-          <v-layout align-center row wrap>
-            <span>Share on: </span>
-            <ShareNetwork
-              v-for="(network, index) in socialShare"
-              :key="index"
-              :network="network"
-              :url="fullUrl"
-              :title="title"
-              :description="richText"
-              :quote="intro"
-              :hashtags="tagListText"
-            >
-              <span class="ma-1 text-capitalize">
-                {{ network }}
+        <h2 v-else>
+          {{ title }}
+        </h2>
+      </v-card-title>
+      <v-card-text>
+        <v-skeleton-loader v-if="!isLoaded" type="list-item-three-line" />
+        <p v-else v-html="body" />
+      </v-card-text>
+      <v-divider class="my-4" />
+      <v-card-actions>
+        <v-container grid-list-xs fluid>
+          <v-skeleton-loader
+            v-if="!isLoaded"
+            type="list-item-two-line"
+            width="50%"
+          />
+          <template v-else>
+            <v-layout v-if="tagList && tagList.length > 0" align-center row wrap>
+              <v-icon x-small class="mr-2">
+                fa-tag
+              </v-icon>
+              <span v-for="(tag, index) in tagList" :key="index" class="text-capitalize">
+                <template v-if="index > 0">,</template>
+                {{ tag }}
               </span>
-            </ShareNetwork>
-          </v-layout>
-        </template>
-      </v-container>
-    </v-card-actions>
+            </v-layout>
+            <v-layout align-center row wrap>
+              <p class="ma-0">
+                {{ toDate(publishedAt) }}
+              </p>
+              <v-spacer />
+            </v-layout>
+            <v-layout align-center row wrap>
+              <span>Share on: </span>
+              <ShareNetwork
+                v-for="(network, index) in socialShare"
+                :key="index"
+                :network="network"
+                :url="fullUrl"
+                :title="title"
+                :description="richText"
+                :quote="intro"
+                :hashtags="tagListText"
+              >
+                <span class="ma-1 text-capitalize">
+                  {{ network }}
+                </span>
+              </ShareNetwork>
+            </v-layout>
+          </template>
+        </v-container>
+      </v-card-actions>
+    </div>
   </v-card>
 </template>
 
@@ -95,6 +97,8 @@ export default {
       default: () => {}
     }
   },
+  data: () => ({
+  }),
   computed: {
     content () {
       return this.story.content || {}
@@ -153,6 +157,14 @@ export default {
     },
     socialShare () {
       return this.content.social_share || []
+    },
+    printObj () {
+      return {
+        id: 'contentPrint',
+        popTitle: this.title || '',
+        extraCss: '',
+        extraHead: ''
+      }
     }
   },
   head () {

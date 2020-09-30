@@ -82,7 +82,6 @@ import illustration2 from '@/static/images/background/2.jpg'
 // import illustration2 from '@/static/images/illustration/19.svg'
 import illustration3 from '@/static/images/illustration/stubborn/17.svg'
 
-// import Truncate from '@/components/text/truncate'
 import Container from '@/components/container/'
 import Fragment from '@/components/fragment/'
 import Background from '@/components/background/'
@@ -90,14 +89,11 @@ import Background from '@/components/background/'
 export default {
   components: {
     Container,
-    // Truncate,
     Fragment,
     Background
   },
   mixins: [global, search],
-  asyncData ({ $http, isDev, route, store, env, params, query, req, res, redirect, error }) {
-    // const test = await $http.$get('/api/search')
-    // console.log(test)
+  asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
     if (route.name === 'index') {
       store.dispatch('search/setKeyword', '')
     }

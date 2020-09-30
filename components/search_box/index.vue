@@ -1,5 +1,18 @@
 <template>
-  <v-text-field
+  <!-- <v-autocomplete
+    :loading="isLoading"
+    color="white"
+    hide-no-data
+    hide-selected
+    item-text="Description"
+    item-value="title"
+    label="Public APIs"
+    placeholder="Start typing to Search"
+    prepend-icon="mdi-database-search"
+    return-object
+  /> -->
+  <v-autocomplete
+    :items="listKeyword"
     label="Cari sesuatu.."
     single-line
     outlined
@@ -20,6 +33,11 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    listKeyword () {
+      return this.$store.getters.search.listKeyword
     }
   },
   created () {

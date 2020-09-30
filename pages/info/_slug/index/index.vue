@@ -6,7 +6,7 @@
     <Container>
       <v-layout>
         <v-flex xs12>
-          <Read :story="story" />
+          <Read id="main" :story="story" />
         </v-flex>
       </v-layout>
     </Container>

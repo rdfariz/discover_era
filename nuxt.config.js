@@ -3,8 +3,6 @@ import pckg from './package.json'
 
 dotenv.config()
 
-const isServerlessEnvironment = process.env.ON_VERCEL === 'true'
-
 export default {
   /*
   ** Nuxt target
@@ -68,7 +66,8 @@ export default {
     { src: '~/plugins/vue-social-sharing.js', ssr: false },
     { src: '~/plugins/vue-read-progress.js', ssr: false },
     { src: '~/plugins/vue-skip-to.js', ssr: false },
-    { src: '~/plugins/vue-perfect-scrollbar.js', ssr: false }
+    { src: '~/plugins/vue-perfect-scrollbar.js', ssr: false },
+    { src: '~/plugins/vue-print-nb.js', ssr: false }
   ],
   /*
   ** Render configuration
@@ -130,7 +129,7 @@ export default {
   /*
   ** Server Middleware
   */
-  serverMiddleware: isServerlessEnvironment ? {} : {
+  serverMiddleware: {
     '/api': '~/api'
   },
   /*

@@ -32,18 +32,18 @@ export const actions = {
   },
   async getData ({ commit, dispatch }, params = null) {
     dispatch('setLoading', true)
-    await this.$axios.get('/api/blog', {
-      params: {
-        version: 'draft',
-        sort_by: 'first_published_at:desc',
-        ...params
-      }
+    await this.$storyapi.get('cdn/stories', {
+      version: 'draft',
+      starts_with: 'blog/',
+      sort_by: 'first_published_at:desc',
+      'filter_query[component][not_in]': 'blog-overview',
+      ...params
     })
       .then((res) => {
-        const { data, meta } = res.data
+        const { data, perPage, total } = res
         if (data) {
           commit('SET_DATA', data.stories)
-          commit('SET_META', { perPage: meta.perPage || 0, total: meta.total || 0 })
+          commit('SET_META', { perPage, total })
         } else {
           dispatch('reset')
         }
@@ -54,13 +54,12 @@ export const actions = {
   async getDetailData ({ commit, dispatch }, params = {}) {
     const { slug } = params
     dispatch('setLoading', true)
-    await this.$axios.get(`/api/blog/${slug || ''}`, {
-      params: {
-        version: 'draft'
-      }
+    await this.$storyapi.get(`cdn/stories/blog/${slug || ''}`, {
+      version: 'draft',
+      starts_with: 'blog/'
     })
       .then((res) => {
-        const { data } = res.data
+        const { data } = res
         commit('SET_DETAIL_DATA', data.story)
       }).catch(() => {
       })
