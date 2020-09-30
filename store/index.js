@@ -40,8 +40,8 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit, dispatch }, { $axios, params, route }) {
-    await $axios.get('/api/layout')
+  async nuxtServerInit ({ commit, dispatch }, { params, route }) {
+    await this.$storyapi.get('cdn/stories/layout')
       .then((res) => {
         const story = res.data.story
         commit('SET_LAYOUT', story)
@@ -51,8 +51,10 @@ export const actions = {
       .catch(() => {
       })
 
+    // await dispatch('search/getListKeyword')
+
     if (route.name === 'index-search-keyword') {
-      dispatch('search/setKeyword', params.keyword || '')
+      await dispatch('search/setKeyword', params.keyword || '')
     }
   },
   setPallete ({ commit }, payload) {

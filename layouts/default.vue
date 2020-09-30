@@ -28,7 +28,6 @@
     <v-navigation-drawer
       v-model="drawer"
       fixed
-      :mini-variant="false"
       mini-variant-width="85"
       width="300"
       height="100%"
@@ -89,14 +88,14 @@
       </template>
       <template v-slot:append>
         <v-divider />
-        <v-flex xs12 class="my-1 text-center">
+        <v-flex xs12 class="my-6 text-center">
           <v-layout row wrap justify-center>
             <v-flex xs10>
               <ButtonSettings />
             </v-flex>
           </v-layout>
         </v-flex>
-        <v-divider />
+        <!-- <v-divider />
         <v-flex xs12 class="my-6 text-center">
           <v-layout row wrap justify-center>
             <v-flex xs10>
@@ -111,7 +110,7 @@
               </v-btn>
             </v-flex>
           </v-layout>
-        </v-flex>
+        </v-flex> -->
       </template>
     </v-navigation-drawer>
     <v-main>
@@ -144,9 +143,7 @@ export default {
   mixins: [global, loading, search],
   data: () => ({
     appBar: true,
-    drawer: true,
-    drawerMini: true,
-    detailMenu: false
+    drawer: true
   }),
   computed: {
     story () {
@@ -163,6 +160,7 @@ export default {
               return {
                 title: item.title || '',
                 icon: (item.icon && item.icon.icon) ? item.icon.icon : '',
+                icon_code: item.icon_code || '',
                 link: item.link || '',
                 link_external: item.link_external || false,
                 disabled: item.disabled || false
@@ -177,6 +175,7 @@ export default {
             return {
               title: el.title || '',
               icon: (el.icon && el.icon.icon) ? el.icon.icon : '',
+              icon_code: el.icon_code || '',
               link: el.link || '',
               link_external: el.link_external || false,
               disabled: el.disabled || false
@@ -212,7 +211,6 @@ export default {
       if (this.$vuetify.breakpoint.mobile) {
         this.drawer = false
       } else {
-        this.drawerMini = this.content.drawer_mini
         this.drawer = true
       }
     }

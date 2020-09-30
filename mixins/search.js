@@ -8,6 +8,9 @@ export default {
         return this.$store.dispatch('search/setKeyword', payload || '')
       }
     },
+    listKeyword () {
+      return this.$store.getters.search.listKeyword || []
+    },
     routeName () {
       return this.$route.name
     },

@@ -66,7 +66,8 @@ export default {
     { src: '~/plugins/vue-social-sharing.js', ssr: false },
     { src: '~/plugins/vue-read-progress.js', ssr: false },
     { src: '~/plugins/vue-skip-to.js', ssr: false },
-    { src: '~/plugins/vue-perfect-scrollbar.js', ssr: false }
+    { src: '~/plugins/vue-perfect-scrollbar.js', ssr: false },
+    { src: '~/plugins/vue-print-nb.js', ssr: false }
   ],
   /*
   ** Render configuration
@@ -136,7 +137,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://fullmoon.now.sh' : 'http://localhost:3000'
+    // baseURL: process.env.NODE_ENV === 'production' ? 'https://fullmoon.now.sh' : 'http://localhost:3000'
   },
   /*
   ** vuetify module configuration

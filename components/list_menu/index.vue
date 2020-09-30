@@ -27,7 +27,7 @@
               </v-list-item-content>
               <v-list-item-icon>
                 <v-icon small>
-                  {{ child.icon || '' }}
+                  {{ child.icon || child.icon_code || '' }}
                 </v-icon>
               </v-list-item-icon>
             </v-list-item>
@@ -50,7 +50,7 @@
             </v-list-item-content>
             <v-list-item-icon>
               <v-icon small>
-                {{ item.icon }}
+                {{ item.icon || item.icon_code || '' }}
               </v-icon>
             </v-list-item-icon>
           </v-list-item>
