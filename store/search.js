@@ -39,7 +39,7 @@ export const actions = {
   },
   async getData ({ commit, dispatch }, params = {}) {
     dispatch('setLoading', true)
-    await this.$axios.get('/api/search', {
+    await this.$api.get('/api/search', {
       params: { ...params }
     })
       .then((res) => {
