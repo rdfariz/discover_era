@@ -1,6 +1,6 @@
 export default function ({ $axios, redirect }, inject) {
   const api = $axios.create()
-  api.setBaseURL(process.env.VERCEL_URL || process.env.PUBLIC_URL || 'http://localhost:3000')
+  api.setBaseURL(process.env.BROWSER_BASE_URL || 'http://localhost:3000')
 
   // Every request to server
   api.onRequest((config) => {

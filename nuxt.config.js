@@ -135,7 +135,9 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: process.env.VERCEL_URL || process.env.BROWSER_BASE_URL || process.env.BAE_URL || 'http://localhost:3000' // Used as fallback if no runtime config is provided
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
