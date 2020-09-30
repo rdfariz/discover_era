@@ -69,15 +69,23 @@
         </v-slide-y-transition>
       </template>
       <template>
-        <v-layout row wrap align-center fill-height>
-          <v-container grid-list-xs>
-            <v-layout row wrap align-center justify-center fill-height>
-              <v-flex xs12 class="my-4">
-                <ListMenu :menu="menu" />
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-layout>
+        <perfect-scrollbar>
+          <v-layout row wrap align-center fill-height class="ma-0 pa-0">
+            <v-container grid-list-xs>
+              <v-layout
+                row
+                wrap
+                align-center
+                justify-center
+                fill-height
+              >
+                <v-flex xs12 class="my-4">
+                  <ListMenu :menu="menu" />
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-layout>
+        </perfect-scrollbar>
       </template>
       <template v-slot:append>
         <v-divider />

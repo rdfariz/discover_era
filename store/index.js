@@ -40,14 +40,15 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit, dispatch }, { params, route }) {
-    await this.$storyapi.get('cdn/stories/layout')
+  async nuxtServerInit ({ commit, dispatch }, { $axios, params, route }) {
+    await $axios.get('/api/layout')
       .then((res) => {
         const story = res.data.story
         commit('SET_LAYOUT', story)
         const content = story.content || {}
         dispatch('setPallete', content)
-      }).catch(() => {
+      })
+      .catch(() => {
       })
 
     if (route.name === 'index-search-keyword') {
@@ -55,7 +56,6 @@ export const actions = {
     }
   },
   setPallete ({ commit }, payload) {
-    // const colorName = ['primary', 'primarylight', 'primarydark', 'secondary', 'secondarylight', 'secondarydark', 'anchor']
     const pallete = {
       primary: payload.primary.color || defaultColors.primary,
       primarylight: payload.primarylight.color || defaultColors.primarylight,
@@ -65,9 +65,6 @@ export const actions = {
       secondarydark: payload.secondarydark.color || defaultColors.secondarydark,
       anchor: payload.anchor.color || defaultColors.anchor
     }
-    // colorName.forEach((name) => {
-    //   pallete[name] = payload[name].color
-    // })
     commit('SET_PALLETE', pallete)
   },
   setLoading ({ commit }, payload) {

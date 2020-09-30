@@ -1,6 +1,6 @@
 export default function ({ $axios, redirect }, inject) {
   const api = $axios.create()
-  api.setBaseURL('https://spreadsheet-json.vercel.app/api')
+  // api.setBaseURL('https://spreadsheet-json.vercel.app/api')
 
   // Every request to server
   api.onRequest((config) => {

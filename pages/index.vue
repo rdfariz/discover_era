@@ -95,7 +95,9 @@ export default {
     Background
   },
   mixins: [global, search],
-  asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
+  asyncData ({ $http, isDev, route, store, env, params, query, req, res, redirect, error }) {
+    // const test = await $http.$get('/api/search')
+    // console.log(test)
     if (route.name === 'index') {
       store.dispatch('search/setKeyword', '')
     }

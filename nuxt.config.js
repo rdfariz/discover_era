@@ -1,6 +1,5 @@
 import dotenv from 'dotenv'
 import pckg from './package.json'
-import { theme } from './config/vuetify.options'
 
 dotenv.config()
 
@@ -21,7 +20,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pckg.description || '' },
       // PWA primary color
-      { name: 'theme-color', content: theme.primary }
+      { name: 'theme-color', content: '#5352ed' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }
@@ -31,7 +30,7 @@ export default {
   ** Customize the progress-bar color
   */
   loading: {
-    color: theme.primary,
+    color: '#5352ed',
     height: '5px'
   },
   /*
@@ -40,7 +39,8 @@ export default {
   css: [
     '~/assets/transition.scss',
     '~/assets/vuetify-overide.scss',
-    '@fortawesome/fontawesome-free/css/all.css'
+    '@fortawesome/fontawesome-free/css/all.css',
+    'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
   ],
   /*
   ** Custom Layout Transition
@@ -61,10 +61,10 @@ export default {
     { src: '~/plugins/kinesis.js', ssr: false },
     { src: '~/plugins/infinite-loading.js', ssr: false },
     { src: '~/plugins/vue-swiper.js', ssr: false },
-    { src: '~/plugins/feather-icon.js', ssr: false },
     { src: '~/plugins/vue-social-sharing.js', ssr: false },
     { src: '~/plugins/vue-read-progress.js', ssr: false },
-    { src: '~/plugins/vue-skip-to.js', ssr: false }
+    { src: '~/plugins/vue-skip-to.js', ssr: false },
+    { src: '~/plugins/vue-perfect-scrollbar.js', ssr: false }
   ],
   /*
   ** Render configuration
@@ -86,8 +86,8 @@ export default {
       display: 'fullscreen',
       title: pckg.title || 'Fullmoon',
       description: pckg.description || 'Fullmoon - Creating Innovation and Competence in the new normal era',
-      theme_color: theme.primary,
-      background_color: theme.primary,
+      theme_color: '#5352ed',
+      background_color: '#5352ed',
       start_url: '/',
       short_name: 'Fullmoon',
       useWebmanifestExtension: false
@@ -123,6 +123,12 @@ export default {
       }
     ]
   ],
+  /*
+  ** Server Middleware
+  */
+  serverMiddleware: {
+    '/api': '~/api'
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

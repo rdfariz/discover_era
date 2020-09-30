@@ -15,3 +15,17 @@
 }
 .vue-skip-to__nav-list-item {
 }
+
+// Vue Perfect Scrollbar
+.ps {
+  height: 100%;
+
+  &.y-only {
+    overflow-y: auto;
+    overflow-x: hidden !important;
+  }
+  &.x-only {
+    overflow-y: hidden !important;
+    overflow-x: auto;
+  }
+}
