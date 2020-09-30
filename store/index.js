@@ -40,8 +40,8 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit, dispatch }, { $api, params, route }) {
-    await $api.get('/api/layout')
+  async nuxtServerInit ({ commit, dispatch }, { $axios, params, route }) {
+    await $axios.get('/api/layout')
       .then((res) => {
         const story = res.data.story
         commit('SET_LAYOUT', story)

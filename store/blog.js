@@ -32,7 +32,7 @@ export const actions = {
   },
   async getData ({ commit, dispatch }, params = null) {
     dispatch('setLoading', true)
-    await this.$api.get('/api/blog', {
+    await this.$axios.get('/api/blog', {
       params: {
         version: 'draft',
         sort_by: 'first_published_at:desc',
@@ -54,7 +54,7 @@ export const actions = {
   async getDetailData ({ commit, dispatch }, params = {}) {
     const { slug } = params
     dispatch('setLoading', true)
-    await this.$api.get(`/api/blog/${slug || ''}`, {
+    await this.$axios.get(`/api/blog/${slug || ''}`, {
       params: {
         version: 'draft'
       }
