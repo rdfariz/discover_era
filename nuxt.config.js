@@ -136,7 +136,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: process.env.VERCEL_URL || process.env.BROWSER_BASE_URL || process.env.BAE_URL || 'http://localhost:3000' // Used as fallback if no runtime config is provided
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://fullmoon.now.sh' : 'http://localhost:3000'
   },
   /*
   ** vuetify module configuration
