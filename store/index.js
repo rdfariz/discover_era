@@ -13,6 +13,9 @@ export const getters = {
   pallete: (state) => {
     return state.pallete
   },
+  home: (state) => {
+    return { ...state.home }
+  },
   search: (state) => {
     return { ...state.search }
   },
@@ -51,8 +54,7 @@ export const actions = {
       .catch(() => {
       })
 
-    // await dispatch('search/getListKeyword')
-
+    await dispatch('home/getData')
     if (route.name === 'index-search-keyword') {
       await dispatch('search/setKeyword', params.keyword || '')
     }

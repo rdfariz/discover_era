@@ -10,9 +10,6 @@
         <v-breadcrumbs v-else class="pa-0" large :items="breadcrumbs" />
       </v-toolbar-title>
       <v-spacer />
-      <v-btn icon>
-        <v-icon>mdi-fullscreen</v-icon>
-      </v-btn>
       <v-btn v-print="printObj" icon>
         <v-icon>mdi-printer</v-icon>
       </v-btn>
