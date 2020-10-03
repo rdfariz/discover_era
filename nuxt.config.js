@@ -77,7 +77,7 @@ export default {
     bundleRenderer: {
       directives: {
         shouldPreload: (file, type) => {
-          return ['script', 'style', 'font'].includes(type)
+          return ['font'].includes(type)
         }
       }
     }
