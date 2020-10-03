@@ -10,7 +10,7 @@
         <v-breadcrumbs v-else class="pa-0 font-weight-medium" large :items="breadcrumbs" />
       </v-toolbar-title>
       <v-spacer />
-      <v-btn v-if="body" v-print="printObj" icon>
+      <v-btn v-if="body" v-print="printObj" icon class="noprint">
         <v-icon>mdi-printer</v-icon>
       </v-btn>
     </v-toolbar>

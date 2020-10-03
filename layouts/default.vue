@@ -10,6 +10,7 @@
       :height="content.appbar_height || ''"
       :color="content.appbar_color && content.appbar_color.color ? content.appbar_color.color : ''"
       :value="$vuetify.breakpoint.mobile"
+      class="noprint"
     >
       <Container>
         <v-layout align-center row wrap>
@@ -33,6 +34,7 @@
       height="100%"
       app
       :right="isRtl"
+      class="noprint"
       :class="isReadPage ? 'read--mode' : ''"
     >
       <template v-slot:prepend>
@@ -68,23 +70,21 @@
         </v-slide-y-transition>
       </template>
       <template>
-        <perfect-scrollbar>
-          <v-layout row wrap align-center fill-height class="ma-0 pa-0">
-            <v-container grid-list-xs>
-              <v-layout
-                row
-                wrap
-                align-center
-                justify-center
-                fill-height
-              >
-                <v-flex xs12 class="my-4">
-                  <ListMenu :menu="menu" />
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-layout>
-        </perfect-scrollbar>
+        <v-layout row wrap align-center fill-height class="ma-0 pa-0">
+          <v-container grid-list-xs>
+            <v-layout
+              row
+              wrap
+              align-center
+              justify-center
+              fill-height
+            >
+              <v-flex xs12 class="my-4">
+                <ListMenu :menu="menu" />
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-layout>
       </template>
       <template v-slot:append>
         <v-divider />
