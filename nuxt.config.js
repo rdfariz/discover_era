@@ -77,7 +77,7 @@ export default {
     bundleRenderer: {
       directives: {
         shouldPreload: (file, type) => {
-          return ['font'].includes(type)
+          return ['script', 'style', 'font'].includes(type)
         }
       }
     }
@@ -114,7 +114,6 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    ['@nuxtjs/html-minifier', { log: 'once', logHtml: true }],
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     [
