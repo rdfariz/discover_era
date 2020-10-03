@@ -21,6 +21,9 @@ export default {
         this.toggleRtl()
       }
     },
+    isMobile () {
+      return this.$vuetify.breakpoint.mobile
+    },
     isLoading () {
       return this.$store.getters.loading
     },
@@ -57,8 +60,13 @@ export default {
     richtext (content) {
       return this.$storyapi.richTextResolver.render(content)
     },
-    toDate (date = '', format = 'D MMMM YYYY, h:mm a') {
-      return moment(date).format(format)
+    toDate (date = '', format = 'dddd, D MMMM YYYY, H:mm') {
+      if (date) {
+        moment.locale('id')
+        return moment(date).format(format)
+      } else {
+        return ''
+      }
     }
   }
 }

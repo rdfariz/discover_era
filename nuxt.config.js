@@ -16,11 +16,13 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: pckg.title || 'Fullmoon',
+    titleTemplate: '%s',
+    title: 'Fullmoon',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pckg.description || '' },
+      { hid: 'description', name: 'description', content: 'Fullmoon - Creating Innovation and Competence in the new normal era' },
+      { name: 'keywords', content: 'fullmoon, olivia, webdesign, fullmoon olivia, olivia 2020' },
       // PWA primary color
       { name: 'theme-color', content: '#5352ed' }
     ],

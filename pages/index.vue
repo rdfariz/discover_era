@@ -46,7 +46,7 @@
                           :cleanup-styles-on-destroy="false"
                         >
                           <swiper-slide v-for="(item, index) in recommendContent" :key="index">
-                            <v-card color="transparent" flat class="pa-1 mr-1 mr-md-3">
+                            <v-card color="transparent" flat class="text-left pa-1 mr-1 mr-md-3">
                               <v-sheet :color="isDarkMode ? '' : 'grey lighten-4'">
                                 <v-img height="200" :src="item.thumbnail" />
                               </v-sheet>
@@ -79,11 +79,6 @@
 import global from '@/mixins/global'
 import search from '@/mixins/search'
 
-import illustration1 from '@/static/images/background/1.jpg'
-import illustration2 from '@/static/images/background/2.jpg'
-// import illustration2 from '@/static/images/illustration/19.svg'
-import illustration3 from '@/static/images/illustration/stubborn/17.svg'
-
 import Container from '@/components/container/'
 import Fragment from '@/components/fragment/'
 import Background from '@/components/background/'
@@ -95,39 +90,18 @@ export default {
     Background
   },
   mixins: [global, search],
-  asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
-  },
   data: () => ({
-    illustration: [illustration1, 'https://superscene.pro/img/header/person.png', illustration2, illustration3],
-    lomba: [
-      {
-        title: 'Web design',
-        src: illustration1
-      },
-      {
-        title: 'Music cover',
-        src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
-      },
-      {
-        title: 'Video animasi',
-        src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
-      },
-      {
-        title: 'Game produksi',
-        src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
-      }
-    ],
     swiperOptions: {
       speed: 1000,
       spaceBetween: 0,
-      slidesPerView: 1,
+      slidesPerView: 1.06,
       loop: false,
       pagination: {
         el: '.swiper-pagination'
       },
       breakpoints: {
         480: {
-          slidesPerView: 1
+          slidesPerView: 1.06
         },
         640: {
           slidesPerView: 2
@@ -170,6 +144,11 @@ export default {
       if (swiper) {
         swiper.initSwiper()
       }
+    }
+  },
+  head () {
+    return {
+      title: 'Home - Fullmoon'
     }
   }
 }

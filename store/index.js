@@ -19,6 +19,9 @@ export const getters = {
   search: (state) => {
     return { ...state.search }
   },
+  pages: (state) => {
+    return { ...state.pages }
+  },
   blog: (state) => {
     return { ...state.blog }
   },

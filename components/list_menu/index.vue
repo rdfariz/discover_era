@@ -4,7 +4,7 @@
     <v-layout row wrap justify-center align-center>
       <v-flex xs10>
         <template v-for="(item, index) in menu">
-          <v-list-group v-if="item.items" :key="index" no-action :disabled="item.disabled">
+          <v-list-group v-if="item.items" :key="index" no-action :disabled="item.disabled" :color="item.disabled ? '' : 'primary lighten-1'">
             <template v-slot:activator>
               <v-list-item-content>
                 <v-list-item-title class="font-weight-medium">
@@ -18,7 +18,6 @@
               :to="child.link"
               :disabled="child.disabled"
               link
-              :color="child.disabled ? '' : 'primary'"
             >
               <v-list-item-content>
                 <v-list-item-title class="font-weight-medium">
@@ -41,7 +40,7 @@
             :target="item.link_external ? '_blank' : ''"
             :disabled="item.disabled"
             link
-            :color="item.disabled ? '' : 'primary'"
+            :color="item.disabled ? '' : 'primary lighten-1'"
           >
             <v-list-item-content>
               <v-list-item-title class="font-weight-medium">
