@@ -33,7 +33,6 @@ export const actions = {
   async getData ({ commit, dispatch }, params = null) {
     dispatch('setLoading', true)
     await this.$storyapi.get('cdn/stories', {
-      version: 'draft',
       starts_with: 'blog/',
       sort_by: 'first_published_at:desc',
       'filter_query[component][not_in]': 'blog-overview',
@@ -55,7 +54,6 @@ export const actions = {
     const { slug } = params
     dispatch('setLoading', true)
     await this.$storyapi.get(`cdn/stories/blog/${slug || ''}`, {
-      version: 'draft',
       starts_with: 'blog/'
     })
       .then((res) => {

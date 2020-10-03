@@ -123,7 +123,7 @@ export default {
       {
         accessToken: process.env.NODE_ENV === 'production'
           ? 'UxTOoeRsp6D0HYFmcqkdZAtt'
-          : 'zdU9mrZK3l2eKGVuMfDGWgtt',
+          : 'UxTOoeRsp6D0HYFmcqkdZAtt',
         cacheProvider: 'memory'
       }
     ]
