@@ -82,9 +82,10 @@ $duration: 0.5s ease-out;
   position: relative;
 }
 .bg-page {
-  position: absolute !important;
-  z-index: 0;
-  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .w-full {

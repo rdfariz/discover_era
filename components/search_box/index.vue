@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     listKeyword () {
-      return this.$store.getters.search.listKeyword
+      return this.$store.getters.search.
     }
   },
   created () {

@@ -1,6 +1,6 @@
 <template>
   <div class="bg-page-container">
-    <v-sheet class="bg-page" :height="height" :color="color">
+    <!-- <v-sheet class="bg-page" :height="height" :color="color" :min-height="minHeight">
       <v-fade-transition>
         <v-img
           v-if="backgroundShow && background"
@@ -10,8 +10,8 @@
           gradient="to top right, rgba(100,115,201,.5), rgba(25,32,72,.7)"
         />
       </v-fade-transition>
-    </v-sheet>
-    <v-sheet :height="height">
+    </v-sheet> -->
+    <v-sheet class="bg-page" :color="color" :height="height" :min-height="minHeight">
       <slot />
     </v-sheet>
   </div>
@@ -33,6 +33,10 @@ export default {
       default: ''
     },
     height: {
+      type: [String, Number],
+      default: '100vh'
+    },
+    minHeight: {
       type: [String, Number],
       default: '100vh'
     }

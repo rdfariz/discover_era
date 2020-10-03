@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <Background color="primary" :height="isSearchPage ? '100%' : '100vh'">
+    <Background color="primary" :min-height="isSearchPage ? '100%' : '100vh'" height="100%">
       <v-layout fill-height row wrap align-center class="w-full ma-auto">
         <Container fluid>
           <v-layout row wrap align-center>
@@ -10,13 +10,13 @@
                   <Container>
                     <v-flex xs12 class="text-center text-md-left">
                       <p class="mb-0">
-                        Hai, aku
+                        {{ preIntro || '' }}
                       </p>
                       <h1 class="lg">
-                        fullmoon
+                        {{ title || '' }}
                       </h1>
                       <p>
-                        Hadir sebagai solusi masa depan bersama
+                        {{ intro || '' }}
                       </p>
                       <v-layout row wrap>
                         <v-text-field
@@ -34,26 +34,28 @@
                           @keydown.enter="onSubmitSearch"
                         />
                       </v-layout>
-                      <template v-if="!isSearchPage">
-                        <h3>For you</h3>
+                      <template v-if="!isSearchPage && recommendVisible">
+                        <h4 class="mt-2">
+                          {{ recommendTitle || '' }}
+                        </h4>
                         <swiper
                           ref="mySwiper"
-                          class="mt-2"
+                          class="mt-3"
                           :options="swiperOptions"
                           :delete-instance-on-destroy="true"
                           :cleanup-styles-on-destroy="false"
                         >
-                          <swiper-slide v-for="(item, index) in lomba" :key="index">
+                          <swiper-slide v-for="(item, index) in recommendContent" :key="index">
                             <v-card color="transparent" flat class="pa-1 mr-1 mr-md-3">
                               <v-sheet :color="isDarkMode ? '' : 'grey lighten-4'">
-                                <v-img height="200" :src="item.src" />
+                                <v-img height="200" :src="item.thumbnail" />
                               </v-sheet>
                               <v-card-title>
-                                <Truncate>Top western road trips</Truncate>
+                                <Truncate>{{ item.title || '' }}</Truncate>
                               </v-card-title>
 
                               <v-card-subtitle>
-                                <Truncate>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus excepturi, iste dignissimos quas tempore dolore. Voluptatum eveniet quis placeat debitis nihil officia corrupti in nam delectus, quisquam vel laborum nobis.</Truncate>
+                                <Truncate>{{ item.intro || '' }}</Truncate>
                               </v-card-subtitle>
                             </v-card>
                           </swiper-slide>
@@ -94,9 +96,6 @@ export default {
   },
   mixins: [global, search],
   asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
-    if (route.name === 'index') {
-      store.dispatch('search/setKeyword', '')
-    }
   },
   data: () => ({
     illustration: [illustration1, 'https://superscene.pro/img/header/person.png', illustration2, illustration3],
@@ -140,6 +139,24 @@ export default {
     }
   }),
   computed: {
+    title () {
+      return this.$store.getters.home.title || ''
+    },
+    preIntro () {
+      return this.$store.getters.home.preIntro || ''
+    },
+    intro () {
+      return this.$store.getters.home.intro || ''
+    },
+    recommendVisible () {
+      return this.$store.getters.home.recommendVisible || false
+    },
+    recommendTitle () {
+      return this.$store.getters.home.recommendTitle || ''
+    },
+    recommendContent () {
+      return this.$store.getters.home.recommendContent || []
+    },
     swiper () {
       return this.$refs.mySwiper.$swiper
     }
