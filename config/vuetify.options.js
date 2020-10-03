@@ -5,11 +5,11 @@ let rtl = false
 export const defaultColors = {
   primary: '#5352ed',
   primarylight: '#5352ed',
-  primarydark: '#FF6600',
+  primarydark: '#2980b9',
   secondary: '#3742fa',
   secondarylight: '#3742fa',
   secondarydark: '#505050',
-  anchor: '#5352ed'
+  anchor: '#2980b9'
 }
 let colors = { ...defaultColors }
 

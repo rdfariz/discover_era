@@ -16,7 +16,7 @@
 
 <script>
 import global from '@/mixins/global'
-import blogDetail from '@/mixins/blogDetail'
+import pagesDetail from '@/mixins/pagesDetail'
 import Container from '@/components/container/'
 import Read from '@/components/blog/read'
 
@@ -25,9 +25,9 @@ export default {
     Container,
     Read
   },
-  mixins: [global, blogDetail],
+  mixins: [global, pagesDetail],
   async asyncData ({ app, isDev, route, store, env, params, query, req, res, redirect, error }) {
-    await store.dispatch('blog/getDetailData', { slug: params.slug || '' })
+    await store.dispatch('pages/getDetailData', { slug: params.slug || '' })
   }
 }
 </script>

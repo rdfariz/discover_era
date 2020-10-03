@@ -12,7 +12,7 @@ export default {
   },
   computed: {
     story () {
-      return this.$store.getters.blog.detailData || {}
+      return this.$store.getters.pages.detailData || {}
     },
     content () {
       return this.story.content || {}

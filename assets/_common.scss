@@ -63,12 +63,27 @@ $duration: 0.5s ease-out;
   position: relative;
 }
 .bg-page {
+  width: 100%;
+  &--fixed {
+    position: fixed !important;
+    z-index: 0;
+  }
+  &--absolute {
+    position: absolute !important;
+    z-index: 0;
+  }
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
 }
 
+.max-w-full {
+  max-width: 100%;
+}
+.max-h-full {
+  max-height: 100%;
+}
 .w-full {
   width: 100%;
 }
@@ -99,4 +114,10 @@ $duration: 0.5s ease-out;
 
 img {
   max-width: 100%;
+}
+
+@media print {
+  .noprint {
+     visibility: hidden;
+  }
 }
