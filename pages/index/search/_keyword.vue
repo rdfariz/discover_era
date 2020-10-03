@@ -54,7 +54,8 @@ export default {
   async asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
     await store.dispatch('search/getData', {
       sort_by: 'first_published_at:desc',
-      'filter_query[body][like]': `*${params.keyword}*`
+      'filter_query[body][like]': `*${params.keyword}*`,
+      'filter_query[component][in]': 'blog,page'
     })
   },
   data: () => ({
