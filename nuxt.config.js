@@ -41,10 +41,10 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/styles.scss',
     '~/assets/transition.scss',
     '~/assets/vuetify-overide.scss',
-    '@fortawesome/fontawesome-free/css/all.css',
-    'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
+    '@fortawesome/fontawesome-free/css/all.css'
   ],
   /*
   ** Custom Layout Transition
@@ -114,6 +114,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    ['@nuxtjs/html-minifier', { log: 'once', logHtml: true }],
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     [
@@ -144,7 +145,6 @@ export default {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    customVariables: ['~/assets/styles.scss'],
     optionsPath: './config/vuetify.options.js'
   },
   /*
