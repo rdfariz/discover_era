@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <v-layout id="main" row wrap>
+    <v-layout v-if="story.length > 0" id="main" row wrap>
       <v-flex
         v-for="(blog, index) in story"
         :key="index"
