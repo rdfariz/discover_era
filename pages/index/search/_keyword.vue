@@ -17,9 +17,9 @@
         class="mb-4 mb-md-6 mt-4 mt-md-2"
       >
         <v-flex xs12 class="mb-2">
-          <h4 class="text-capitalize text-center text-md-left">
+          <h6 class="text--secondary text-capitalize text-center text-md-left">
             {{ parent }}
-          </h4>
+          </h6>
         </v-flex>
         <v-flex
           v-for="(item, i) in data[parent]"
@@ -32,9 +32,12 @@
           <blog-card :is-image-visible="false" :story="item" />
         </v-flex>
       </v-layout>
-      <p class="text-center">
-        Menampilkan {{ total || 0 }} dari {{ perPage || 0 }}
-      </p>
+      <v-pagination
+        :value="page"
+        class="my-4"
+        :length="pageLength"
+        @input="changePage"
+      />
     </template>
   </Container>
 </template>
@@ -53,9 +56,7 @@ export default {
   mixins: [global],
   async asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
     await store.dispatch('search/getData', {
-      sort_by: 'first_published_at:desc',
-      'filter_query[body][like]': `*${params.keyword}*`,
-      'filter_query[component][in]': 'blog,page'
+      'filter_query[body][like]': `*${params.keyword}*`
     })
   },
   data: () => ({
@@ -77,11 +78,22 @@ export default {
     loading () {
       return this.$store.getters.search.loading
     },
+    page () {
+      return this.$store.getters.search.page
+    },
     perPage () {
       return this.$store.getters.search.perPage
     },
     total () {
       return this.$store.getters.search.total
+    },
+    pageLength () {
+      return Math.ceil(this.total / this.perPage) || 1
+    }
+  },
+  methods: {
+    changePage (page) {
+      this.$store.dispatch('search/getData', { page })
     }
   },
   head () {

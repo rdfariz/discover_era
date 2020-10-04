@@ -1,5 +1,5 @@
 <template>
-  <v-container :class="[fluid ? '' : 'px-2 px-sm-6 px-md-12 px-lg-14', spacingTop ? 'mt-md-6' : '']" :fluid="fluid">
+  <v-container :class="[fluid ? '' : 'px-sm-6 px-md-12 px-lg-14', spacingTop ? 'mt-md-6' : '']" :fluid="fluid">
     <slot />
   </v-container>
 </template>
