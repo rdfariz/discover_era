@@ -32,6 +32,10 @@ a {
 $duration: 0.5s ease-out;
 .stack-item {
   transition: transform $duration;
+  &--mobile {
+    position: relative !important;
+    transform: none !important;
+  }
 }
 
 .lottie-cover {
@@ -49,9 +53,9 @@ $duration: 0.5s ease-out;
 .light--mode {
   background: #F6F6F6 !important;
 }
-.dark--mode {
-  // background: #000000 !important;
-}
+// .dark--mode {
+//   background: #000000 !important;
+// }
 
 .rich-text {
   * {

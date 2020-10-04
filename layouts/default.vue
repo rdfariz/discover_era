@@ -38,7 +38,7 @@
       :class="isReadPage ? 'read--mode' : ''"
     >
       <template v-slot:prepend>
-        <v-flex xs12 class="my-6">
+        <v-flex xs12 class="my-4 my-md-6">
           <v-sheet v-if="drawerLogo" :height="drawerLogoHeight" color="transparent">
             <v-img :contain="drawerLogoContain" height="100%" :src="isDarkMode ? drawerLogoDark : drawerLogo" />
           </v-sheet>
@@ -88,29 +88,13 @@
       </template>
       <template v-slot:append>
         <v-divider />
-        <v-flex xs12 class="my-6 text-center">
+        <v-flex xs12 class="my-3 my-md-6 text-center">
           <v-layout row wrap justify-center>
             <v-flex xs10>
               <ButtonSettings />
             </v-flex>
           </v-layout>
         </v-flex>
-        <!-- <v-divider />
-        <v-flex xs12 class="my-6 text-center">
-          <v-layout row wrap justify-center>
-            <v-flex xs10>
-              <v-btn class="mx-1" icon>
-                <v-icon>mdi-facebook</v-icon>
-              </v-btn>
-              <v-btn class="mx-1" icon>
-                <v-icon>mdi-twitter</v-icon>
-              </v-btn>
-              <v-btn class="mx-1" icon>
-                <v-icon>mdi-whatsapp</v-icon>
-              </v-btn>
-            </v-flex>
-          </v-layout>
-        </v-flex> -->
       </template>
     </v-navigation-drawer>
     <v-main>

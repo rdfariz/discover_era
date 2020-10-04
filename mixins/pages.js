@@ -17,11 +17,17 @@ export default {
     loading () {
       return this.$store.getters.pages.loading
     },
+    page () {
+      return this.$store.getters.pages.page || 1
+    },
     perPage () {
-      return this.$store.getters.pages.perPage
+      return this.$store.getters.pages.perPage || 25
     },
     total () {
-      return this.$store.getters.pages.total
+      return this.$store.getters.pages.total || 0
+    },
+    pageLength () {
+      return Math.ceil(this.total / this.perPage) || 1
     }
   }
 }

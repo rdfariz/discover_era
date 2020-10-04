@@ -1,7 +1,7 @@
 <template>
   <v-card outlined>
-    <v-sheet v-if="thumbnail && isLoaded && isImageVisible" :height="isMobile ? '165' : '200'" :color="isDarkMode ? '' : 'grey lighten-4'">
-      <v-img :lazy-src="thumbnail" :src="thumbnail" :max-height="isMobile ? '165' : '200'">
+    <v-sheet v-if="isLoaded && isImageVisible" :height="isMobile ? '165' : '175'" :color="isDarkMode ? 'grey darken-3' : 'grey lighten-2'">
+      <v-img v-if="thumbnail" :lazy-src="thumbnail" :src="thumbnail" :max-height="isMobile ? '165' : '175'" :alt="title || ''">
         <template v-slot:placeholder>
           <v-row
             class="fill-height ma-0"
@@ -15,6 +15,18 @@
           </v-row>
         </template>
       </v-img>
+      <v-layout
+        v-else
+        row
+        wrap
+        justify-center
+        align-center
+        fill-height
+      >
+        <v-icon large>
+          mdi-image-off
+        </v-icon>
+      </v-layout>
     </v-sheet>
     <v-card-title primary-title>
       <v-skeleton-loader
@@ -69,7 +81,7 @@
               {{ publishedAt ? toDate(publishedAt) : '-' }}
             </span>
             <v-spacer />
-            <v-btn tabindex="-1" color="blue" text icon :to="`/blog/${slug}`">
+            <v-btn tabindex="-1" color="blue" text icon :to="`/${fullslug}`">
               <v-icon small>
                 fa-long-arrow-alt-right
               </v-icon>

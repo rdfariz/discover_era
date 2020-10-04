@@ -45,6 +45,11 @@
   }
 }
 
+.v-pagination__item, .v-pagination__navigation {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
 .v-list {
   * {
     transition: $transition-bg-theme !important;
@@ -140,7 +145,7 @@ h6 {
   // margin-bottom: 15px;
 }
 p {
-  font-size: 1.0625rem; // 17px
+  font-size: 1.0325rem; // 17px
   line-height: 1.375;
   // margin-bottom: 22px;
 }

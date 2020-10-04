@@ -1,20 +1,24 @@
 <template>
   <Container>
-    <v-layout row wrap>
-      <Stack
-        v-if="isLoaded"
-        ref="stack"
-        :monitor-images-loaded="true"
-        :column-min-width="320"
-        :gutter-width="5"
-        :gutter-height="5"
+    <v-layout id="main" row wrap>
+      <v-flex
+        v-for="(blog, index) in story"
+        :key="index"
+        xs12
+        sm6
+        md4
+        class="pa-2 pa-md-3"
       >
-        <StackItem v-for="(page, index) in story" :key="index" :class="isMobile ? '' : 'stack-item'">
-          <v-flex xs12 class="pa-2">
-            <blog-card :story="page" />
-          </v-flex>
-        </StackItem>
-      </Stack>
+        <blog-card is-image-visible :story="blog" />
+      </v-flex>
+      <v-flex xs12>
+        <v-pagination
+          :value="page"
+          class="my-4"
+          :length="pageLength"
+          @input="changePage"
+        />
+      </v-flex>
     </v-layout>
   </Container>
 </template>
@@ -36,16 +40,9 @@ export default {
   async asyncData ({ app, isDev, route, store, env, params, query, req, res, redirect, error }) {
     await store.dispatch('pages/getData')
   },
-  mounted () {
-    this.$nextTick(() => {
-      this.updatedLayout()
-    })
-  },
   methods: {
-    updatedLayout () {
-      if (this.$refs && this.$refs.stack) {
-        this.$refs.stack.update()
-      }
+    changePage (page) {
+      this.$store.dispatch('pages/getData', { page })
     }
   },
   head () {

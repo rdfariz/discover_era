@@ -4,7 +4,8 @@ export const state = () => ({
   data: [],
   rawData: [],
   loading: false,
-  perPage: 0,
+  page: 1,
+  perPage: 6,
   total: 0
 })
 
@@ -24,16 +25,21 @@ export const mutations = {
   SET_DATA (state, data) {
     state.data = data
   },
-  SET_META (state, { perPage, total }) {
-    state.perPage = perPage
-    state.total = total
+  SET_PAGE (state, data) {
+    state.page = data
+  },
+  SET_PERPAGE (state, data) {
+    state.perPage = data
+  },
+  SET_TOTAL (state, data) {
+    state.total = data
   }
 }
 
 export const actions = {
   reset ({ commit }) {
     commit('SET_DATA', [])
-    commit('SET_META', { perPage: 0, total: 0 })
+    commit('SET_PAGE', 1)
   },
   setKeyword ({ commit }, payload = '') {
     commit('SET_KEYWORD', payload)
@@ -55,13 +61,17 @@ export const actions = {
       })
     dispatch('setLoading', false)
   },
-  async getData ({ commit, dispatch }, params = {}) {
+  async getData ({ state, commit, dispatch }, params = {}) {
     dispatch('setLoading', true)
     await this.$storyapi.get('cdn/stories/', {
+      sort_by: 'first_published_at:desc',
+      'filter_query[component][in]': 'blog,page',
+      page: params.page || 1,
+      per_page: state.perPage,
       ...params
     })
       .then((res) => {
-        const { data, perPage, total } = res
+        const { data, total } = res
         if (data) {
           const final = {}
           const stories = res.data.stories
@@ -74,7 +84,8 @@ export const actions = {
           })
           commit('SET_RAW_DATA', stories)
           commit('SET_DATA', final)
-          commit('SET_META', { perPage, total })
+          commit('SET_TOTAL', total)
+          commit('SET_PAGE', params.page || 1)
         } else {
           dispatch('reset')
         }
