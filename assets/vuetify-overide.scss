@@ -1,3 +1,8 @@
+// Custom Variable
+@import './variables';
+@import './mixins';
+@import './functions';
+
 @font-face {
   font-family: 'TT Commons';
   src: url('/fonts/TTCommons-DemiBold.ttf');
@@ -37,11 +42,6 @@
   
   .v-navigation-drawer__border {
     display: none !important;
-  }
-  
-  .v-navigation-drawer__content {
-    // height: auto !important;
-    // max-height: 100% !important;
   }
 }
 

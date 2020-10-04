@@ -41,10 +41,10 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/styles.scss',
     '~/assets/transition.scss',
     '~/assets/vuetify-overide.scss',
-    '@fortawesome/fontawesome-free/css/all.css',
-    'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
+    '@fortawesome/fontawesome-free/css/all.css'
   ],
   /*
   ** Custom Layout Transition
@@ -128,12 +128,6 @@ export default {
     ]
   ],
   /*
-  ** Server Middleware
-  */
-  serverMiddleware: {
-    '/api': '~/api'
-  },
-  /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
@@ -145,7 +139,6 @@ export default {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    customVariables: ['~/assets/styles.scss'],
     optionsPath: './config/vuetify.options.js'
   },
   /*

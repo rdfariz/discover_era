@@ -36,7 +36,6 @@
     "swiper": "^6.1.2",
     "vue": "^2.6.12",
     "vue-awesome-swiper": "^4.1.1",
-    "vue-html-to-paper": "^1.3.1",
     "vue-infinite-loading": "^2.4.5",
     "vue-kinesis": "^1.1.5",
     "vue-print-nb": "^1.5.0",
@@ -44,8 +43,7 @@
     "vue-slick": "^1.1.15",
     "vue-social-sharing": "^3.0.0-beta.11",
     "vue-stack-grid": "^1.2.1",
-    "vue-typed-js": "^0.1.2",
-    "vue2-perfect-scrollbar": "^1.5.0"
+    "vue-typed-js": "^0.1.2"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
