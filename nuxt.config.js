@@ -84,6 +84,7 @@ export default {
   },
   // PWA Configuration
   pwa: {
+    workbox: {},
     manifest: {
       name: 'Fullmoon',
       lang: 'id',
@@ -114,7 +115,6 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    ['@nuxtjs/html-minifier', { log: 'once', logHtml: true }],
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     [

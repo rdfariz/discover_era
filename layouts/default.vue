@@ -51,7 +51,6 @@
                 <v-text-field
                   v-model="search"
                   label="Cari sesuatu.."
-                  single-line
                   outlined
                   dense
                   :disabled="isSearchLoading"

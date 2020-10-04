@@ -178,7 +178,7 @@ export default {
   },
   head () {
     const title = this.seo.title || this.title
-    const text = this.seo.description || this.body
+    const text = this.seo.description || this.intro
     const keyword = this.keyword
     return {
       title: title + ' - Fullmoon',

@@ -22,7 +22,6 @@
                         <v-text-field
                           v-model="search"
                           label="Cari sesuatu.."
-                          single-line
                           outlined
                           :disabled="isSearchLoading"
                           class="mr-2"

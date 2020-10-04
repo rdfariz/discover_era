@@ -29,7 +29,7 @@ export default {
     },
     isReadPage () {
       const route = this.$route.name
-      if (route === 'blog-slug' || route === 'info-slug-index') {
+      if (route === 'blog-slug' || route === 'info-slug-index' || route === 'pages-slug') {
         return true
       }
       return false
