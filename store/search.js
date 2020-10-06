@@ -1,6 +1,5 @@
 export const state = () => ({
   keyword: '',
-  listKeyword: [],
   data: [],
   rawData: [],
   loading: false,
@@ -12,9 +11,6 @@ export const state = () => ({
 export const mutations = {
   SET_KEYWORD (state, data) {
     state.keyword = data
-  },
-  SET_LISTKEYWORD (state, data) {
-    state.listKeyword = data
   },
   SET_LOADING (state, data) {
     state.loading = data
@@ -47,25 +43,13 @@ export const actions = {
   setLoading ({ commit }, payload) {
     commit('SET_LOADING', payload)
   },
-  async getListKeyword ({ commit, dispatch }, params = {}) {
-    dispatch('setLoading', true)
-    await this.$storyapi.get('cdn/stories/', {
-      ...params
-    })
-      .then((res) => {
-        const { data } = res
-        const stories = data.stories
-        commit('SET_LISTKEYWORD', stories)
-      }).catch(() => {
-        commit('SET_LISTKEYWORD', [])
-      })
-    dispatch('setLoading', false)
-  },
   async getData ({ state, commit, dispatch }, params = {}) {
     dispatch('setLoading', true)
     await this.$storyapi.get('cdn/stories/', {
+      is_startpage: 0,
       sort_by: 'first_published_at:desc',
-      'filter_query[component][in]': 'blog,page',
+      'filter_query[body][like]': `*${params.keyword}*`,
+      'filter_query[component][not_in]': 'home,layout',
       page: params.page || 1,
       per_page: state.perPage,
       ...params

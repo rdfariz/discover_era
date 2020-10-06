@@ -63,7 +63,8 @@ export const actions = {
     const { slug } = params
     dispatch('setLoading', true)
     await this.$storyapi.get(`cdn/stories/blog/${slug || ''}`, {
-      starts_with: 'blog/'
+      starts_with: 'blog/',
+      is_startpage: 0
     })
       .then((res) => {
         const { data } = res
