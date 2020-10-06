@@ -3,9 +3,10 @@
     rounded="lg"
     offset-y
     offset-x
-    :nudge-bottom="10"
-    :nudge-right="10"
+    :nudge-bottom="isRtl ? '-10' : 10"
+    :nudge-right="isRtl ? '-10' : 10"
     transition="slide-x-transition"
+    :left="isRtl"
   >
     <template v-slot:activator="{ attrs, on }">
       <v-btn class="mx-1" icon v-bind="attrs" v-on="on">

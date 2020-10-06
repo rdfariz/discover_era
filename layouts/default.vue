@@ -1,5 +1,5 @@
 <template>
-  <v-app dark :class="isDarkMode ? 'dark--mode' : 'light--mode'">
+  <v-app :class="isDarkMode ? 'dark--mode' : 'light--mode'">
     <VueSkipTo to="#main" label="Skip to main content" />
     <v-app-bar
       app
@@ -97,13 +97,14 @@
       </template>
     </v-navigation-drawer>
     <v-main>
-      <nuxt />
-      <v-overlay :value="!isLoaded" color="primary" opacity="1">
+      <v-overlay :value="!isLoaded" color="white" opacity="1">
         <v-progress-circular
           indeterminate
           size="64"
+          color="primary"
         />
       </v-overlay>
+      <nuxt />
     </v-main>
   </v-app>
 </template>
