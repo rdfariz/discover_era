@@ -85,14 +85,20 @@ export default {
   // PWA Configuration
   pwa: {
     workbox: {
+      dev: false,
+      offlineStrategy: 'StaleWhileRevalidate',
       runtimeCaching: [
         {
-          // Should be a regex string. Compiles into new RegExp('https://my-cdn.com/.*')
           urlPattern: 'https://api.storyblok.com/v1/cdn/stories/.*',
-          // Defaults to `NetworkFirst` if omitted
-          // handler: 'NetworkFirst',
-          // Defaults to `GET` if omitted
-          // method: 'GET'
+          handler: 'cacheFirst',
+          method: 'GET',
+          strategyOptions: {
+            cacheName: 'storyblok',
+            cacheExpiration: {
+              maxEntries: 100,
+              maxAgeSeconds: 60 * 60 * 24 * 10
+            }
+          }
         }
       ]
     },
