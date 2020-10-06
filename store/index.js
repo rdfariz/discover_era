@@ -25,8 +25,8 @@ export const getters = {
   blog: (state) => {
     return { ...state.blog }
   },
-  info: (state) => {
-    return { ...state.info }
+  tag: (state) => {
+    return { ...state.tag }
   },
   loading: (state) => {
     return state.loading
@@ -47,7 +47,9 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit ({ commit, dispatch }, { params, route }) {
-    await this.$storyapi.get('cdn/stories/layout')
+    await this.$storyapi.get('cdn/stories/layout', {
+      is_startpage: 1
+    })
       .then((res) => {
         const story = res.data.story
         commit('SET_LAYOUT', story)

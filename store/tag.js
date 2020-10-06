@@ -1,6 +1,7 @@
 export const state = () => ({
   data: [],
-  detailData: {},
+  rawData: [],
+  detailData: [],
   loading: false,
   page: 1,
   perPage: 6,
@@ -10,6 +11,9 @@ export const state = () => ({
 export const mutations = {
   SET_LOADING (state, data) {
     state.loading = data
+  },
+  SET_RAW_DATA (state, data) {
+    state.rawData = data
   },
   SET_DATA (state, data) {
     state.data = data
@@ -38,20 +42,15 @@ export const actions = {
   },
   async getData ({ state, commit, dispatch }, params = {}) {
     dispatch('setLoading', true)
-    await this.$storyapi.get('cdn/stories', {
+    await this.$storyapi.get('cdn/tags/', {
       is_startpage: 0,
-      starts_with: 'pages/',
       sort_by: 'first_published_at:desc',
-      page: params.page || 1,
-      per_page: state.perPage,
       ...params
     })
       .then((res) => {
-        const { data, total } = res
+        const { data } = res
         if (data) {
-          commit('SET_DATA', data.stories)
-          commit('SET_TOTAL', total)
-          commit('SET_PAGE', params.page || 1)
+          commit('SET_DATA', data.tags)
         } else {
           dispatch('reset')
         }
@@ -60,14 +59,33 @@ export const actions = {
     dispatch('setLoading', false)
   },
   async getDetailData ({ commit, dispatch }, params = {}) {
-    const { slug } = params
     dispatch('setLoading', true)
-    await this.$storyapi.get(`cdn/stories/pages/${slug || ''}`, {
-      starts_with: 'pages/'
+    await this.$storyapi.get('cdn/stories/', {
+      with_tag: params.id,
+      is_startpage: 0,
+      sort_by: 'first_published_at:desc',
+      'filter_query[component][not_in]': 'home,layout',
+      page: params.page || 1,
+      per_page: state.perPage,
+      ...params
     })
       .then((res) => {
-        const { data } = res
-        commit('SET_DETAIL_DATA', data.story)
+        const { data, total } = res
+        if (data) {
+          const final = {}
+          const stories = res.data.stories
+          stories.map((el) => {
+            if (final[el.content.component] && final[el.content.component].length > 0) {
+              final[el.content.component].push({ ...el })
+            } else {
+              final[el.content.component] = [{ ...el }]
+            }
+          })
+          commit('SET_RAW_DATA', stories)
+          commit('SET_DETAIL_DATA', final)
+          commit('SET_TOTAL', total)
+          commit('SET_PAGE', params.page || 1)
+        }
       }).catch(() => {
       })
     dispatch('setLoading', false)

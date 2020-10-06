@@ -43,6 +43,7 @@ export const actions = {
   async getData ({ commit, dispatch }, params = null) {
     dispatch('setLoading', true)
     await this.$storyapi.get('cdn/stories/home', {
+      is_startpage: 1,
       ...params
     })
       .then((res) => {

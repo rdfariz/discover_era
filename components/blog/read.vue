@@ -43,10 +43,12 @@
               <v-icon x-small class="mr-2">
                 fa-tag
               </v-icon>
-              <span v-for="(tag, index) in tagList" :key="index" class="text-capitalize">
-                <template v-if="index > 0">,</template>
+              <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
+                <template v-if="index > 0">
+                  ,
+                </template>
                 {{ tag }}
-              </span>
+              </nuxt-link>
             </v-layout>
             <v-layout v-if="publishedAt" align-center row wrap>
               <span class="ma-0">
