@@ -5,12 +5,11 @@
         <Container>
           <v-flex xs12 class="text-center text-md-left">
             <v-card dark color="transparent" flat>
-              <p class="mb-0">
-                kabar gembira
-              </p>
+              <p class="mb-0" />
               <h1 class="lg">
                 Blog
               </h1>
+              <p class="mb-0" />
             </v-card>
           </v-flex>
         </Container>

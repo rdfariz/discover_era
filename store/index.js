@@ -28,6 +28,9 @@ export const getters = {
   tag: (state) => {
     return { ...state.tag }
   },
+  contact: (state) => {
+    return { ...state.contact }
+  },
   loading: (state) => {
     return state.loading
   }

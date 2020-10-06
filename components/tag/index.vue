@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="`/tag/${name}`">
+  <v-card :to="`/tag/${name}`" outlined>
     <v-list-item three-line>
       <v-list-item-content>
         <v-list-item-title class="headline mb-1">

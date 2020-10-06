@@ -84,7 +84,18 @@ export default {
   },
   // PWA Configuration
   pwa: {
-    workbox: {},
+    workbox: {
+      runtimeCaching: [
+        {
+          // Should be a regex string. Compiles into new RegExp('https://my-cdn.com/.*')
+          urlPattern: 'https://api.storyblok.com/v1/cdn/stories/.*',
+          // Defaults to `NetworkFirst` if omitted
+          // handler: 'NetworkFirst',
+          // Defaults to `GET` if omitted
+          // method: 'GET'
+        }
+      ]
+    },
     manifest: {
       name: 'Fullmoon',
       lang: 'id',

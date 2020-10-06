@@ -83,7 +83,7 @@
               {{ publishedAt ? toDate(publishedAt) : '-' }}
             </span>
             <v-spacer />
-            <v-btn tabindex="-1" color="blue" text icon :to="`/${fullslug}`">
+            <v-btn tabindex="-1" color="primary" text icon :to="`/${fullslug}`">
               <v-icon small>
                 fa-long-arrow-alt-right
               </v-icon>

@@ -45,9 +45,34 @@
                           :cleanup-styles-on-destroy="false"
                         >
                           <swiper-slide v-for="(item, index) in recommendContent" :key="index">
-                            <v-card color="transparent" flat class="text-left pa-1 mr-1 mr-md-3">
-                              <v-sheet :color="isDarkMode ? '' : 'grey lighten-4'">
-                                <v-img height="200" :src="item.thumbnail" />
+                            <v-card color="transparent" flat class="text-left pa-1 mr-1 mr-md-3 box-sizing--border">
+                              <v-sheet :height="isMobile ? '165' : '175'" :color="isDarkMode ? 'grey darken-3' : 'grey lighten-2'">
+                                <v-img v-if="item.thumbnail" :lazy-src="item.thumbnail" :src="item.thumbnail" :max-height="isMobile ? '165' : '175'" :alt="item.title || ''">
+                                  <template v-slot:placeholder>
+                                    <v-row
+                                      class="fill-height ma-0"
+                                      align="center"
+                                      justify="center"
+                                    >
+                                      <v-progress-circular
+                                        indeterminate
+                                        color="primary"
+                                      />
+                                    </v-row>
+                                  </template>
+                                </v-img>
+                                <v-layout
+                                  v-else
+                                  row
+                                  wrap
+                                  justify-center
+                                  align-center
+                                  fill-height
+                                >
+                                  <v-icon large>
+                                    mdi-image-off
+                                  </v-icon>
+                                </v-layout>
                               </v-sheet>
                               <v-card-title>
                                 <Truncate>{{ item.title || '' }}</Truncate>
@@ -56,6 +81,11 @@
                               <v-card-subtitle>
                                 <Truncate>{{ item.intro || '' }}</Truncate>
                               </v-card-subtitle>
+                              <v-card-text>
+                                <v-btn small depressed outlined :to="item.link.cached_url || ''">
+                                  Baca Selengkapnya
+                                </v-btn>
+                              </v-card-text>
                             </v-card>
                           </swiper-slide>
                           <div slot="pagination" class="swiper-pagination" />
