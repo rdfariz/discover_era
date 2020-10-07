@@ -10,7 +10,7 @@
                 type="list-item"
                 width="100"
               />
-              <v-breadcrumbs v-else class="pa-0 font-weight-medium" large :items="breadcrumbs" />
+              <v-breadcrumbs v-else class="pa-0" large :items="breadcrumbs" />
             </v-toolbar-title>
             <v-spacer />
             <v-btn v-if="body" v-print="printObj" icon class="noprint">
@@ -66,11 +66,11 @@
                 type="card-heading"
                 width="100%"
               />
-              <h2 v-else class="font-weight-bold">
+              <h2 v-else>
                 {{ title }}
               </h2>
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="mt-4">
               <v-skeleton-loader v-if="!isLoaded" type="list-item-three-line" />
               <p v-else class="rich-text" v-html="body" />
             </v-card-text>
@@ -91,10 +91,12 @@
                   fa-tag
                 </v-icon>
                 <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
-                  <template v-if="index > 0">
-                    ,
-                  </template>
-                  {{ tag }}
+                  <span>
+                    <template v-if="index > 0">
+                      ,
+                    </template>
+                    {{ tag }}
+                  </span>
                 </nuxt-link>
               </v-layout>
               <v-layout v-if="publishedAt" align-center row wrap>

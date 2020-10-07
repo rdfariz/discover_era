@@ -12,9 +12,9 @@
                       <p class="mb-0">
                         {{ preIntro || '' }}
                       </p>
-                      <h2 class="text-h2 font-weight-bold">
+                      <h1 class="font-weight-bold">
                         {{ title || '' }}
-                      </h2>
+                      </h1>
                       <p>
                         {{ intro || '' }}
                       </p>
