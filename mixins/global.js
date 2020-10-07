@@ -1,7 +1,26 @@
-import moment from 'moment'
+import brand from '@/static/brand'
 
 export default {
   computed: {
+    _brand () {
+      return brand
+    },
+    appBar: {
+      get () {
+        return this.$store.getters.appBar
+      },
+      set (val) {
+        return this.$store.dispatch('setAppBar', val)
+      }
+    },
+    drawer: {
+      get () {
+        return this.$store.getters.drawer
+      },
+      set (val) {
+        return this.$store.dispatch('setDrawer', val)
+      }
+    },
     pallete () {
       return this.$store.getters.pallete || {}
     },
@@ -59,14 +78,6 @@ export default {
     },
     richtext (content) {
       return this.$storyapi.richTextResolver.render(content)
-    },
-    toDate (date = '', format = 'dddd, D MMMM YYYY, H:mm') {
-      if (date) {
-        moment.locale('id')
-        return moment(date).format(format)
-      } else {
-        return ''
-      }
     }
   }
 }

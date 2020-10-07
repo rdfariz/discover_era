@@ -17,24 +17,25 @@ export default {
   */
   head: {
     titleTemplate: '%s',
-    title: 'Fullmoon',
+    title: 'Discover',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Fullmoon - Creating Innovation and Competence in the new normal era' },
-      { name: 'keywords', content: 'fullmoon, olivia, webdesign, fullmoon olivia, olivia 2020' },
+      { hid: 'description', name: 'description', content: 'Discover - Creating Innovation and Competence in the new normal era' },
+      { name: 'keywords', content: 'Discover, olivia, webdesign, Discover olivia, olivia 2020' },
       // PWA primary color
       { name: 'theme-color', content: '#5352ed' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }
+      { rel: 'icon', type: 'image/x-icon', href: '/icon.png' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap' }
     ]
   },
   /*
   ** Customize the progress-bar color
   */
   loading: {
-    color: '#5352ed',
+    color: '#fcf302',
     height: '5px'
   },
   /*
@@ -103,15 +104,15 @@ export default {
       ]
     },
     manifest: {
-      name: 'Fullmoon',
+      name: 'Discover',
       lang: 'id',
       display: 'fullscreen',
-      title: pckg.title || 'Fullmoon',
-      description: pckg.description || 'Fullmoon - Creating Innovation and Competence in the new normal era',
+      title: pckg.title || 'Discover',
+      description: pckg.description || 'Discover - Creating Innovation and Competence in the new normal era',
       theme_color: '#5352ed',
       background_color: '#5352ed',
       start_url: '/',
-      short_name: 'Fullmoon',
+      short_name: 'Discover',
       useWebmanifestExtension: false
     }
   },

@@ -3,10 +3,18 @@ import { defaultColors } from '@/config/vuetify.options'
 export const state = () => ({
   loading: false,
   layout: {},
-  pallete: {}
+  pallete: {},
+  drawer: null,
+  appBar: false
 })
 
 export const getters = {
+  drawer: (state) => {
+    return state.drawer
+  },
+  appBar: (state) => {
+    return state.appBar
+  },
   layout: (state) => {
     return state.layout
   },
@@ -37,6 +45,12 @@ export const getters = {
 }
 
 export const mutations = {
+  SET_DRAWER (state, data) {
+    state.drawer = data
+  },
+  SET_APPBAR (state, data) {
+    state.appBar = data
+  },
   SET_PALLETE (state, data) {
     state.pallete = data
   },
@@ -56,8 +70,8 @@ export const actions = {
       .then((res) => {
         const story = res.data.story
         commit('SET_LAYOUT', story)
-        const content = story.content || {}
-        dispatch('setPallete', content)
+        // const content = story.content || {}
+        // dispatch('setPallete', content)
       })
       .catch(() => {
       })
@@ -66,6 +80,12 @@ export const actions = {
     if (route.name === 'index-search-keyword') {
       await dispatch('search/setKeyword', params.keyword || '')
     }
+  },
+  setDrawer ({ commit }, payload) {
+    commit('SET_DRAWER', payload)
+  },
+  setAppBar ({ commit }, payload) {
+    commit('SET_APPBAR', payload)
   },
   setPallete ({ commit }, payload) {
     const pallete = {

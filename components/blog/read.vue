@@ -1,66 +1,36 @@
 <template>
-  <v-card flat class="pa-2 pa-md-4">
-    <v-toolbar color="transparent" flat class="mb-2">
-      <v-toolbar-title>
-        <v-skeleton-loader
-          v-if="!isLoaded"
-          type="list-item"
-          width="100"
-        />
-        <v-breadcrumbs v-else class="pa-0 font-weight-medium" large :items="breadcrumbs" />
-      </v-toolbar-title>
-      <v-spacer />
-      <v-btn v-if="body" v-print="printObj" icon class="noprint">
-        <v-icon>mdi-printer</v-icon>
-      </v-btn>
-    </v-toolbar>
-    <!-- <v-divider class="my-2" /> -->
-    <div id="contentPrint">
-      <v-card-title primary-title>
-        <v-skeleton-loader
-          v-if="!isLoaded"
-          type="card-heading"
-          width="100%"
-        />
-        <h2 v-else class="font-weight-medium">
-          {{ title }}
-        </h2>
-      </v-card-title>
-      <v-card-text>
-        <v-skeleton-loader v-if="!isLoaded" type="list-item-three-line" />
-        <p v-else v-html="body" />
-      </v-card-text>
-      <v-divider class="my-4" />
-      <v-card-actions>
-        <v-container grid-list-xs fluid>
-          <v-skeleton-loader
-            v-if="!isLoaded"
-            type="list-item-two-line"
-            width="50%"
-          />
-          <template v-else>
-            <v-layout v-if="tagList && tagList.length > 0" align-center row wrap class="mb-6">
-              <v-icon x-small class="mr-2">
-                fa-tag
-              </v-icon>
-              <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
-                <template v-if="index > 0">
-                  ,
-                </template>
-                {{ tag }}
-              </nuxt-link>
-            </v-layout>
-            <v-layout v-if="publishedAt" align-center row wrap>
-              <span class="ma-0">
-                Terakhir diupdate:<br><span class="font-weight-medium">{{ toDate(publishedAt) }}</span>
-              </span>
-              <v-spacer />
-            </v-layout>
-            <v-layout v-if="socialShare && socialShare.length > 0" column wrap class="mt-6 noprint">
-              <v-flex xs12>
-                <span>Bagikan artikel, melalui</span>
-              </v-flex>
-              <v-flex xs12 class="mt-1">
+  <Container>
+    <v-layout justify-center row wrap>
+      <v-flex xs12 md9 class="pa-md-1">
+        <v-card flat class="pa-2 pa-md-4">
+          <v-toolbar color="transparent" flat class="mb-2">
+            <v-toolbar-title>
+              <v-skeleton-loader
+                v-if="!isLoaded"
+                type="list-item"
+                width="100"
+              />
+              <v-breadcrumbs v-else class="pa-0 font-weight-medium" large :items="breadcrumbs" />
+            </v-toolbar-title>
+            <v-spacer />
+            <v-btn v-if="body" v-print="printObj" icon class="noprint">
+              <v-icon>mdi-printer</v-icon>
+            </v-btn>
+            <v-menu
+              v-if="isLoaded && socialShare && socialShare.length > 0"
+              bottom
+              left
+              origin="center center"
+              offset-y
+              nudge-bottom="10"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-if="body" icon class="noprint ml-2" v-bind="attrs" v-on="on">
+                  <v-icon>mdi-share-variant</v-icon>
+                </v-btn>
+              </template>
+
+              <v-list>
                 <ShareNetwork
                   v-for="(network, index) in socialShare"
                   :key="index"
@@ -71,34 +41,88 @@
                   :quote="intro"
                   :hashtags="tagListText"
                 >
-                  <v-btn small depressed class="mr-2 mb-2 text-capitalize">
-                    <v-icon small>
-                      mdi-{{ network }}
-                    </v-icon>
-                    <span class="ml-2">
-                      {{ network }}
-                    </span>
-                  </v-btn>
-                </ShareNetwork>
-              </v-flex>
-            </v-layout>
-          </template>
-        </v-container>
-      </v-card-actions>
-    </div>
-  </v-card>
-</template>
+                  <v-list-item>
+                    <v-list-item-avatar>
+                      <v-icon small>
+                        mdi-{{ network }}
+                      </v-icon>
+                    </v-list-item-avatar>
 
-<style lang="scss">
-@import './index';
-</style>
+                    <v-list-item-content>
+                      <v-list-item-title class="text-capitalize">
+                        {{ network }}
+                      </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </ShareNetwork>
+              </v-list>
+            </v-menu>
+          </v-toolbar>
+          <v-divider class="my-2" />
+          <div id="contentPrint">
+            <v-card-title primary-title>
+              <v-skeleton-loader
+                v-if="!isLoaded"
+                type="card-heading"
+                width="100%"
+              />
+              <h2 v-else class="font-weight-bold">
+                {{ title }}
+              </h2>
+            </v-card-title>
+            <v-card-text>
+              <v-skeleton-loader v-if="!isLoaded" type="list-item-three-line" />
+              <p v-else class="rich-text" v-html="body" />
+            </v-card-text>
+          </div>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 md3 class="pa-md-1">
+        <v-card flat class="pa-2 pa-md-4">
+          <v-container grid-list-xs fluid>
+            <v-skeleton-loader
+              v-if="!isLoaded"
+              type="list-item-two-line"
+              width="50%"
+            />
+            <template v-else>
+              <v-layout v-if="tagList && tagList.length > 0" align-center row wrap class="mb-6">
+                <v-icon x-small class="mr-2">
+                  fa-tag
+                </v-icon>
+                <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
+                  <template v-if="index > 0">
+                    ,
+                  </template>
+                  {{ tag }}
+                </nuxt-link>
+              </v-layout>
+              <v-layout v-if="publishedAt" align-center row wrap>
+                <span class="ma-0">
+                  Terakhir diupdate<br><span class="font-weight-medium">{{ toDate(publishedAt) }}</span>
+                </span>
+                <v-spacer />
+              </v-layout>
+            </template>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </Container>
+</template>
 
 <script>
 import global from '@/mixins/global'
 import loading from '@/mixins/loading'
+import utils from '@/mixins/utils'
+
+import Container from '@/components/container/'
 
 export default {
-  mixins: [global, loading],
+  components: {
+    Container
+  },
+  mixins: [global, loading, utils],
   props: {
     story: {
       type: Object,
@@ -183,7 +207,7 @@ export default {
     const text = this.seo.description || this.intro
     const keyword = this.keyword
     return {
-      title: title + ' - Fullmoon',
+      title: title + ' - ' + this._brand.name,
       meta: [
         {
           hid: 'description',
