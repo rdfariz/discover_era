@@ -114,7 +114,6 @@
         <v-card-text>
           <p>Terima kasih sudah menghubungi layanan kami.</p>
           <v-btn
-            color="primary"
             text
             @click="dialog = false"
           >
@@ -199,7 +198,7 @@ export default {
   },
   head () {
     return {
-      title: 'Contact - Fullmoon'
+      title: `Contact - ${this._brand.name}`
     }
   }
 }

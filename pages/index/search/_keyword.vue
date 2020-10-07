@@ -96,7 +96,7 @@ export default {
   },
   head () {
     return {
-      title: `${this.params.keyword || ''} - Fullmoon`
+      title: `${this.params.keyword || ''} - ${this._brand.name || ''}`
     }
   }
 }

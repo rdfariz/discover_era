@@ -4,11 +4,11 @@
     <v-layout row wrap justify-center align-center>
       <v-flex xs10>
         <template v-for="(item, index) in menu">
-          <v-list-group v-if="item.items" :key="index" no-action :disabled="item.disabled" :color="item.disabled ? '' : 'primary lighten-1'">
+          <v-list-group v-if="item.items" :key="index" no-action :disabled="item.disabled" :color="item.disabled ? '' : 'lighten-1'">
             <template v-slot:activator>
               <v-list-item-content>
                 <v-list-item-title class="font-weight-medium">
-                  {{ item.title }}
+                  <span>{{ item.title }}</span>
                 </v-list-item-title>
               </v-list-item-content>
             </template>
@@ -21,7 +21,7 @@
             >
               <v-list-item-content>
                 <v-list-item-title class="font-weight-medium">
-                  {{ child.title || '' }}
+                  <span>{{ child.title || '' }}</span>
                 </v-list-item-title>
               </v-list-item-content>
               <v-list-item-icon>
@@ -40,11 +40,11 @@
             :target="item.link_external ? '_blank' : ''"
             :disabled="item.disabled"
             link
-            :color="item.disabled ? '' : 'primary lighten-1'"
+            :color="item.disabled ? '' : 'lighten-1'"
           >
             <v-list-item-content>
               <v-list-item-title class="font-weight-medium">
-                {{ item.title }}
+                <span>{{ item.title }}</span>
               </v-list-item-title>
             </v-list-item-content>
             <v-list-item-icon>

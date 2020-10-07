@@ -31,8 +31,8 @@ export default {
     }
   },
   data: () => ({
-    pageNotFound: 'Maaf, halaman yang anda cari tidak ditemukan - Fullmoon',
-    otherError: 'Hmm.. sepertinya ada error yang terjadi, refresh & cobalagi ya.. - Fullmoon'
+    pageNotFound: 'Maaf, halaman yang anda cari tidak ditemukan',
+    otherError: 'Hmm.. sepertinya ada error yang terjadi, refresh & cobalagi ya..'
   }),
   head () {
     const title =

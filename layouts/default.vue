@@ -9,17 +9,17 @@
       :src="content.appbar_background || ''"
       :height="content.appbar_height || ''"
       :color="content.appbar_color && content.appbar_color.color ? content.appbar_color.color : ''"
-      :value="$vuetify.breakpoint.mobile"
+      :value="appBar"
       class="noprint"
     >
       <Container>
         <v-layout align-center row wrap>
-          <v-btn icon @click="drawer = !drawer">
+          <v-btn class="hidden-md-and-up" icon @click="drawer = !drawer">
             <v-icon>{{ 'mdi-menu' }}</v-icon>
           </v-btn>
           <v-toolbar-title class="font-weight-bold mt-1 ml-3">
             <nuxt-link to="/">
-              Fullmoon
+              {{ _brand.name || '' }}
             </nuxt-link>
           </v-toolbar-title>
           <v-spacer />
@@ -27,15 +27,16 @@
       </Container>
     </v-app-bar>
     <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      mini-variant-width="85"
+      :value="drawer"
       width="300"
       height="100%"
-      app
       :right="isRtl"
+      app
+      fixed
       class="noprint"
       :class="isReadPage ? 'read--mode' : ''"
+      disable-resize-watcher
+      disable-route-watcher
     >
       <template v-slot:prepend>
         <v-flex xs12 class="my-4 my-md-6">
@@ -55,7 +56,7 @@
                   dense
                   :disabled="isSearchLoading"
                   clearable
-                  color="primary"
+                  :color="isDarkMode ? 'white' : 'primary'"
                   :loading="isSearchLoading"
                   append-icon="mdi-magnify"
                   class="hide-detail mt-1"
@@ -69,12 +70,11 @@
         </v-slide-y-transition>
       </template>
       <template>
-        <v-layout row wrap align-center fill-height class="ma-0 pa-0">
+        <v-layout row wrap fill-height class="ma-0 pa-0">
           <v-container grid-list-xs>
             <v-layout
               row
               wrap
-              align-center
               justify-center
               fill-height
             >
@@ -125,10 +125,6 @@ export default {
     ButtonSettings
   },
   mixins: [global, loading, search],
-  data: () => ({
-    appBar: true,
-    drawer: true
-  }),
   computed: {
     story () {
       return this.$store.getters.layout || {}
@@ -183,18 +179,28 @@ export default {
       return this.content.drawer_logo_contain || false
     }
   },
+  watch: {
+    $route () {
+      this.initDrawer()
+    },
+    isMobile () {
+      this.initDrawer()
+    }
+  },
   created () {
     this.initDrawer()
-    this.setColorPallete()
+    // this.setColorPallete()
   },
   methods: {
-    toggleDrawer () {
-      this.drawer = !this.drawer
-    },
     initDrawer () {
-      if (this.$vuetify.breakpoint.mobile) {
+      if (this.isMobile && !this.isReadPage) {
+        this.appBar = true
+        this.drawer = false
+      } else if (this.isReadPage) {
+        this.appBar = true
         this.drawer = false
       } else {
+        this.appBar = false
         this.drawer = true
       }
     }

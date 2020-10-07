@@ -35,7 +35,7 @@
         width="100%"
       />
       <h4 v-else class="max-w-full">
-        <nuxt-link :to="`/${fullslug}`" class="font-weight-medium primary--text" :class="isDarkMode ? 'text--lighten-2' : ''">
+        <nuxt-link :to="`/${fullslug}`" class="font-weight-medium" :class="isDarkMode ? 'text--lighten-2' : ''">
           <Truncate>
             <span v-if="title">{{ title }}</span>
             <span v-else>-</span>
@@ -83,7 +83,7 @@
               {{ publishedAt ? toDate(publishedAt) : '-' }}
             </span>
             <v-spacer />
-            <v-btn tabindex="-1" color="primary" text icon :to="`/${fullslug}`">
+            <v-btn tabindex="-1" text icon :to="`/${fullslug}`">
               <v-icon small>
                 fa-long-arrow-alt-right
               </v-icon>
@@ -98,13 +98,15 @@
 <script>
 import global from '@/mixins/global'
 import loading from '@/mixins/loading'
+import utils from '@/mixins/utils'
+
 import Truncate from '@/components/text/truncate'
 
 export default {
   components: {
     Truncate
   },
-  mixins: [global, loading],
+  mixins: [global, loading, utils],
   props: {
     isImageVisible: {
       type: Boolean,

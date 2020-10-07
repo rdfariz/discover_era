@@ -12,9 +12,9 @@
                       <p class="mb-0">
                         {{ preIntro || '' }}
                       </p>
-                      <h1 class="lg">
+                      <h2 class="text-h2 font-weight-bold">
                         {{ title || '' }}
-                      </h1>
+                      </h2>
                       <p>
                         {{ intro || '' }}
                       </p>
@@ -24,7 +24,7 @@
                           label="Cari sesuatu.."
                           outlined
                           :disabled="isSearchLoading"
-                          class="mr-2"
+                          class="mt-2"
                           clearable
                           color="white"
                           :loading="isSearchLoading"
@@ -177,7 +177,7 @@ export default {
   },
   head () {
     return {
-      title: 'Home - Fullmoon'
+      title: `Home - ${this._brand.name || ''}`
     }
   }
 }

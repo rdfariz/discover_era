@@ -64,7 +64,7 @@ export default {
   },
   head () {
     return {
-      title: 'Pages - Fullmoon'
+      title: `Pages - ${this._brand.name || ''}`
     }
   }
 }

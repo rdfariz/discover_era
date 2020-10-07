@@ -2,10 +2,12 @@
   <div />
 </template>
 <script>
+import global from '@/mixins/global'
 export default {
+  mixins: [global],
   head () {
     return {
-      title: 'Search - Fullmoon'
+      title: `Search - ${this._brand.name || ''}`
     }
   }
 }
