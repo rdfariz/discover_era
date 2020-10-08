@@ -105,11 +105,17 @@ a {
 p {
   font-size: 14px;
 }
-span {
+p.sm {
   font-size: 12px;
+}
+span {
+  font-size: 13px;
 }
 label {
   font-size: 12.5px !important;
+}
+input {
+  font-size: 13px !important;
 }
 
 @media screen and (max-width: 991px) {
@@ -126,6 +132,12 @@ label {
   }
   h3 {
     font-size: 1.75rem;
+  }
+  p, a {
+    font-size: 13px;
+  }
+  span {
+    font-size: 12px;
   }
 }
 

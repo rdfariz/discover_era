@@ -4,6 +4,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--v-secondary-base);
+  color: #0D0E0E;
+}
+
 a {
   text-decoration: none
 }
@@ -75,10 +84,12 @@ $duration: 0.5s ease-out;
   &--fixed {
     position: fixed !important;
     z-index: 0;
+    width: 100%;
   }
   &--absolute {
     position: absolute !important;
     z-index: 0;
+    width: 100%;
   }
   display: flex;
   justify-content: flex-start;

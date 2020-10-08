@@ -1,5 +1,5 @@
 <template>
-  <v-list rounded>
+  <v-list>
     <slot name="append" />
     <v-layout row wrap justify-center align-center>
       <v-flex xs10>

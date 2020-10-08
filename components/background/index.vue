@@ -1,13 +1,13 @@
 <template>
   <div class="bg-page-container">
-    <v-sheet class="bg-page--absolute" :height="height" :min-height="minHeight">
+    <v-sheet class="bg-page--absolute" :color="color" :height="height" :min-height="minHeight">
       <v-fade-transition>
         <v-img
           v-if="backgroundShow && background"
           :src="background"
           width="100%"
           :height="height"
-          gradient="to top right, rgba(0,0,0,1), rgba(0,0,0,0.7)"
+          gradient="to top right, rgba(0,0,0,0.8), rgba(0,0,0,0.6)"
         />
       </v-fade-transition>
     </v-sheet>

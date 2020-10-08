@@ -77,6 +77,8 @@ export const actions = {
       })
 
     await dispatch('home/getData')
+    await dispatch('blog/getData')
+
     if (route.name === 'index-search-keyword') {
       await dispatch('search/setKeyword', params.keyword || '')
     }

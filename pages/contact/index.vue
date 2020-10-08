@@ -4,7 +4,7 @@
       <v-layout row wrap>
         <v-flex xs12 md6 lg7 class="pa-1">
           <v-card dark color="transparent" flat>
-            <form>
+            <form @submit="submitMessage">
               <v-card-title primary-title class="relative">
                 <v-layout column wrap>
                   <p class="mb-0">
@@ -20,6 +20,7 @@
               </v-card-title>
               <v-card-text v-if="contactForm">
                 <v-text-field
+                  v-model="name"
                   label="Nama"
                   color="white"
                   placeholder="Masukkan nama kamu"
@@ -27,7 +28,7 @@
                   autofocus
                 />
                 <v-textarea
-                  name="input-7-1"
+                  v-model="message"
                   label="Pesan"
                   placeholder="Masukkan pesan kamu"
                   value=""
@@ -41,7 +42,7 @@
                   depressed
                   outlined
                   :loading="loadingSubmit"
-                  :disabled="loadingSubmit"
+                  :disabled="loadingSubmit || name === '' || message === ''"
                   @click="submitMessage"
                 >
                   Kirim Pesan
@@ -112,7 +113,7 @@
         </v-card-title>
 
         <v-card-text>
-          <p>Terima kasih sudah menghubungi layanan kami.</p>
+          <p>Terima kasih sudah menggunakan layanan kami.</p>
           <v-btn
             text
             @click="dialog = false"
@@ -145,7 +146,9 @@ export default {
   },
   data: () => ({
     loadingSubmit: false,
-    dialog: false
+    dialog: false,
+    name: '',
+    message: ''
   }),
   computed: {
     story () {
@@ -188,12 +191,17 @@ export default {
     }
   },
   methods: {
-    submitMessage () {
-      this.loadingSubmit = true
-      setTimeout(() => {
-        this.dialog = true
-        this.loadingSubmit = false
-      }, 500)
+    submitMessage (e) {
+      if (e && e.preventDefault()) {
+        e.preventDefault()
+      }
+      if (this.name && this.message) {
+        this.loadingSubmit = true
+        setTimeout(() => {
+          this.dialog = true
+          this.loadingSubmit = false
+        }, 500)
+      }
     }
   },
   head () {

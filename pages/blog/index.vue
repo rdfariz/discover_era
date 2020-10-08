@@ -1,15 +1,17 @@
 <template>
   <div>
-    <Background color="primary" min-height="200" height="100%">
+    <Background color="primary" min-height="225" height="100%">
       <v-layout fill-height row wrap align-center class="w-full ma-auto">
         <Container>
           <v-flex xs12 class="text-center text-md-left">
             <v-card dark color="transparent" flat>
               <p class="mb-0" />
-              <h1 class="lg">
+              <h1 class="my-1">
                 Blog
               </h1>
-              <p class="mb-0" />
+              <p class="mb-0">
+                Together Realizing Future Civilization
+              </p>
             </v-card>
           </v-flex>
         </Container>
@@ -23,12 +25,13 @@
           xs12
           sm6
           md4
-          class="pa-2 pa-md-3"
+          class="pa-2 pa-md-3 pa-lg-4"
         >
-          <blog-card is-image-visible :story="blog" />
+          <blog-card flat is-image-visible :story="blog" />
         </v-flex>
         <v-flex xs12>
           <v-pagination
+            v-if="pageLength > 1"
             :value="page"
             class="my-4"
             :length="pageLength"

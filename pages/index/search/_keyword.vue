@@ -1,6 +1,6 @@
 <template>
   <Container spacing-top>
-    <template v-if="headers.length === 0 && rawData.length === 0">
+    <template v-if="rawData.length === 0">
       <v-layout row wrap justify-center align-center>
         <v-flex xs12 class="text-center">
           <p class="mt-4">
@@ -11,19 +11,17 @@
     </template>
     <template v-else>
       <v-layout
-        v-for="(parent, index) in headers"
-        :key="index"
         wrap
         class="mb-4 mb-md-6 mt-4 mt-md-2"
       >
-        <v-flex xs12 class="mb-2">
+        <!-- <v-flex xs12 class="mb-2">
           <h6 class="text--secondary text-capitalize text-center text-md-left">
             {{ parent }}
           </h6>
-        </v-flex>
+        </v-flex> -->
         <v-flex
-          v-for="(item, i) in data[parent]"
-          :key="i"
+          v-for="(item, index) in rawData"
+          :key="index"
           xs12
           md6
           lg4
@@ -33,6 +31,7 @@
         </v-flex>
       </v-layout>
       <v-pagination
+        v-if="pageLength > 1"
         :value="page"
         class="my-4"
         :length="pageLength"

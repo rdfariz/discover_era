@@ -1,35 +1,37 @@
 <template>
-  <v-app :class="isDarkMode ? 'dark--mode' : 'light--mode'">
+  <v-app dark :class="isDarkMode ? 'dark--mode' : 'light--mode'">
     <VueSkipTo to="#main" label="Skip to main content" />
     <v-app-bar
       app
+      dark
       :fixed="content.appbar_position === 'fixed'"
       :absolute="content.appbar_position === 'absolute'"
       :dense="content.appbar_type === 'dense'"
       :src="content.appbar_background || ''"
       :height="content.appbar_height || ''"
-      :color="content.appbar_color && content.appbar_color.color ? content.appbar_color.color : ''"
+      color="black"
       :value="appBar"
       class="noprint"
-      :hide-on-scroll="isReadPage"
     >
       <Container>
         <v-layout align-center row wrap>
-          <v-btn class="hidden-md-and-up" icon @click="drawer = !drawer">
-            <v-icon>{{ 'mdi-menu' }}</v-icon>
+          <v-btn icon @click="drawer = !drawer">
+            <v-icon color="white">
+              mdi-menu
+            </v-icon>
           </v-btn>
-          <v-toolbar-title class="font-weight-bold mt-1 ml-3">
+          <!-- <v-toolbar-title class="font-weight-bold mt-1 ml-3">
             <nuxt-link to="/">
               <h6>{{ _brand.name || '' }}</h6>
             </nuxt-link>
-          </v-toolbar-title>
+          </v-toolbar-title> -->
           <v-spacer />
         </v-layout>
       </Container>
     </v-app-bar>
     <v-navigation-drawer
-      :value="drawer"
-      width="300"
+      v-model="drawer"
+      width="275"
       height="100%"
       :right="isRtl"
       app
@@ -40,34 +42,40 @@
       disable-route-watcher
     >
       <template v-slot:prepend>
-        <v-flex xs12 class="my-4 my-md-6">
-          <v-sheet v-if="drawerLogo" :height="drawerLogoHeight" color="transparent">
-            <v-img :contain="drawerLogoContain" height="100%" :src="isDarkMode ? drawerLogoDark : drawerLogo" />
-          </v-sheet>
+        <v-flex v-if="drawerLogo" xs12 class="my-4 my-md-6">
+          <v-layout row wrap justify-center align-center>
+            <v-flex xs8>
+              <v-sheet :height="drawerLogoHeight" width="100%" color="transparent">
+                <v-img :contain="drawerLogoContain" height="100%" :src="isDarkMode ? drawerLogoDark : drawerLogo" />
+              </v-sheet>
+            </v-flex>
+          </v-layout>
         </v-flex>
         <v-divider />
         <v-slide-y-transition>
-          <div v-show="isShowSearchDrawer">
-            <v-list-item>
-              <v-list-item-content>
-                <v-text-field
-                  v-model="search"
-                  label="Cari sesuatu.."
-                  outlined
-                  dense
-                  :disabled="isSearchLoading"
-                  clearable
-                  :color="isDarkMode ? 'white' : 'primary'"
-                  :loading="isSearchLoading"
-                  append-icon="mdi-magnify"
-                  class="hide-detail mt-1"
-                  @click:append="onSubmitSearch"
-                  @keydown.enter="onSubmitSearch"
-                />
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider />
-          </div>
+          <v-layout v-show="isShowSearchDrawer" row wrap justify-center align-center>
+            <v-flex xs10>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-text-field
+                    v-model="search"
+                    label="Cari sesuatu.."
+                    outlined
+                    dense
+                    :disabled="isSearchLoading"
+                    clearable
+                    :color="isDarkMode ? 'white' : 'primary'"
+                    :loading="isSearchLoading"
+                    append-icon="mdi-magnify"
+                    class="hide-detail mt-1"
+                    @click:append="onSubmitSearch"
+                    @keydown.enter="onSubmitSearch"
+                  />
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider />
+            </v-flex>
+          </v-layout>
         </v-slide-y-transition>
       </template>
       <template>
@@ -86,7 +94,7 @@
           </v-container>
         </v-layout>
       </template>
-      <template v-slot:append>
+      <!-- <template v-slot:append>
         <v-divider />
         <v-flex xs12 class="my-3 my-md-6 text-center">
           <v-layout row wrap justify-center>
@@ -95,7 +103,7 @@
             </v-flex>
           </v-layout>
         </v-flex>
-      </template>
+      </template> -->
     </v-navigation-drawer>
     <v-main>
       <v-overlay :value="!isLoaded" color="white" opacity="1">
@@ -117,13 +125,13 @@ import search from '@/mixins/search'
 
 import Container from '@/components/container'
 import ListMenu from '@/components/list_menu'
-import ButtonSettings from '@/components/button_settings'
+// import ButtonSettings from '@/components/button_settings'
 
 export default {
   components: {
     Container,
-    ListMenu,
-    ButtonSettings
+    ListMenu
+    // ButtonSettings
   },
   mixins: [global, loading, search],
   computed: {
@@ -203,8 +211,8 @@ export default {
         this.appBar = true
         this.drawer = false
       } else {
-        this.appBar = false
-        this.drawer = true
+        this.appBar = true
+        this.drawer = false
       }
     }
   }

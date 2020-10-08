@@ -6,9 +6,9 @@ export const defaultColors = {
   primary: '#000000',
   primarylight: '#000000',
   primarydark: '#000000',
-  secondary: '#ffffff',
-  secondarylight: '#ffffff',
-  secondarydark: '#ffffff',
+  secondary: '#FCDE3E',
+  secondarylight: '#FCDE3E',
+  secondarydark: '#FCDF3E',
   anchor: '#000000'
 }
 export const defaultColorsDark = {
@@ -18,7 +18,7 @@ export const defaultColorsDark = {
   secondary: '#ffffff',
   secondarylight: '#ffffff',
   secondarydark: '#ffffff',
-  anchor: '#fcf302'
+  anchor: '#FCDE3E'
 }
 
 // let colors = { ...defaultColors }

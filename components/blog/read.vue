@@ -43,14 +43,16 @@
                 >
                   <v-list-item>
                     <v-list-item-avatar>
-                      <v-icon small>
+                      <v-icon>
                         mdi-{{ network }}
                       </v-icon>
                     </v-list-item-avatar>
 
                     <v-list-item-content>
                       <v-list-item-title class="text-capitalize">
-                        {{ network }}
+                        <span class="mb-0">
+                          {{ network }}
+                        </span>
                       </v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
@@ -78,36 +80,51 @@
         </v-card>
       </v-flex>
       <v-flex xs12 md3 class="pa-md-1">
-        <v-card flat class="pa-2 pa-md-4">
-          <v-container grid-list-xs fluid>
-            <v-skeleton-loader
-              v-if="!isLoaded"
-              type="list-item-two-line"
-              width="50%"
-            />
-            <template v-else>
-              <v-layout v-if="tagList && tagList.length > 0" align-center row wrap class="mb-6">
-                <v-icon x-small class="mr-2">
-                  fa-tag
-                </v-icon>
-                <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
-                  <span>
-                    <template v-if="index > 0">
-                      ,
-                    </template>
-                    {{ tag }}
-                  </span>
-                </nuxt-link>
-              </v-layout>
-              <v-layout v-if="publishedAt" align-center row wrap>
-                <span class="ma-0">
-                  Terakhir diupdate<br><span class="font-weight-medium">{{ toDate(publishedAt) }}</span>
-                </span>
-                <v-spacer />
-              </v-layout>
-            </template>
-          </v-container>
-        </v-card>
+        <v-layout wrap justify-center>
+          <v-flex xs12 class="pb-4 px-1">
+            <v-card flat class="pa-2 pa-md-4">
+              <v-container grid-list-xs fluid>
+                <v-skeleton-loader
+                  v-if="!isLoaded"
+                  type="list-item-two-line"
+                  width="50%"
+                />
+                <template v-else>
+                  <v-layout v-if="tagList && tagList.length > 0" align-center row wrap class="mb-6">
+                    <v-icon x-small class="mr-2">
+                      fa-tag
+                    </v-icon>
+                    <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
+                      <span>
+                        <template v-if="index > 0">
+                          ,
+                        </template>
+                        {{ tag }}
+                      </span>
+                    </nuxt-link>
+                  </v-layout>
+                  <v-layout v-if="publishedAt" align-center row wrap>
+                    <span class="ma-0">
+                      Terakhir diupdate<br><span class="font-weight-medium">{{ toDate(publishedAt) }}</span>
+                    </span>
+                    <v-spacer />
+                  </v-layout>
+                </template>
+              </v-container>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 class="pb-2 px-1">
+            <span>Lainnya</span>
+          </v-flex>
+          <v-flex
+            v-for="(item, index) in blog"
+            :key="index"
+            xs12
+            class="pb-2 px-1"
+          >
+            <blog-card small flat :detail-data="false" :is-image-visible="false" :story="item" />
+          </v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
   </Container>
@@ -120,11 +137,13 @@ import utils from '@/mixins/utils'
 
 import Container from '@/components/container/'
 import Icon from '@/components/icon'
+import BlogCard from '@/components/blog/'
 
 export default {
   components: {
     Container,
-    Icon
+    Icon,
+    BlogCard
   },
   mixins: [global, loading, utils],
   props: {
@@ -136,6 +155,9 @@ export default {
   data: () => ({
   }),
   computed: {
+    blog () {
+      return this.$store.getters.blog.data || []
+    },
     breadcrumbs () {
       return [
         {
