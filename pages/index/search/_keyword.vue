@@ -54,6 +54,7 @@ export default {
   },
   mixins: [global],
   async asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
+    store.dispatch('search/setKeyword', params.keyword)
     await store.dispatch('search/getData', { keyword: params.keyword })
   },
   data: () => ({

@@ -1,4 +1,5 @@
 export const state = () => ({
+  logo: '',
   preIntro: '',
   title: '',
   intro: '',
@@ -6,12 +7,16 @@ export const state = () => ({
   recommendVisible: false,
   recommendTitle: '',
   recommendContent: [],
+  overviewContent: [],
   loading: false
 })
 
 export const mutations = {
   SET_LOADING (state, data) {
     state.loading = data
+  },
+  SET_LOGO (state, data = '') {
+    state.logo = data
   },
   SET_TITLE (state, data = '') {
     state.title = data
@@ -33,6 +38,9 @@ export const mutations = {
   },
   SET_RECOMMEND_CONTENT (state, data = []) {
     state.recommendContent = data
+  },
+  SET_OVERVIEW_CONTENT (state, data = []) {
+    state.overviewContent = data
   }
 }
 
@@ -53,6 +61,7 @@ export const actions = {
       .then((res) => {
         const data = res.data.story.content
         if (data) {
+          commit('SET_LOGO', data.logo)
           commit('SET_TITLE', data.title)
           commit('SET_PREINTRO', data.preIntro)
           commit('SET_INTRO', data.intro)
@@ -60,6 +69,7 @@ export const actions = {
           commit('SET_RECOMMEND_VISIBLE', data.recommendVisible)
           commit('SET_RECOMMEND_TITLE', data.recommendTitle)
           commit('SET_RECOMMEND_CONTENT', data.recommendContent)
+          commit('SET_OVERVIEW_CONTENT', data.overviewContent)
         }
       }).catch(() => {
       })

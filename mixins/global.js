@@ -46,6 +46,13 @@ export default {
     isLoading () {
       return this.$store.getters.loading
     },
+    isHomePage () {
+      const route = this.$route.name
+      if (route === 'index') {
+        return true
+      }
+      return false
+    },
     isReadPage () {
       const route = this.$route.name
       if (route === 'blog-slug' || route === 'info-slug-index' || route === 'pages-slug') {
@@ -60,19 +67,19 @@ export default {
   methods: {
     toggleDarkMode () {
       if (typeof Storage !== 'undefined' && process.browser) {
-        localStorage.setItem('_fullmoon_darkmode', !this.$vuetify.theme.dark)
+        localStorage.setItem('_discover_darkmode', !this.$vuetify.theme.dark)
       }
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     },
     toggleRtl () {
       if (typeof Storage !== 'undefined' && process.browser) {
-        localStorage.setItem('_fullmoon_rtl', !this.$vuetify.rtl)
+        localStorage.setItem('_discover_rtl', !this.$vuetify.rtl)
       }
       this.$vuetify.rtl = !this.$vuetify.rtl
     },
     setColorPallete () {
       if (typeof Storage !== 'undefined' && process.browser) {
-        localStorage.setItem('_fullmoon_pallete', JSON.stringify(this.pallete || {}))
+        localStorage.setItem('_discover_pallete', JSON.stringify(this.pallete || {}))
         // window.location.reload()
       }
     },
