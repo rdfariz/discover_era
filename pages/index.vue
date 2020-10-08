@@ -16,7 +16,7 @@
                         v-if="logo"
                         :lazy-src="logo"
                         :src="logo"
-                        max-width="75%"
+                        :max-width="isMobile ? '90%' : '75%'"
                         class="mx-auto my-6"
                         contain
                         :alt="'logo '+ title || _brand.name"
@@ -40,8 +40,8 @@
                       <p>
                         {{ intro || '' }}
                       </p>
-                      <v-layout row wrap justify-center align-center class="my-10">
-                        <v-flex xs11>
+                      <v-layout wrap justify-center align-center class="my-10">
+                        <v-flex xs12 md11>
                           <v-text-field
                             v-model="search"
                             placeholder="Find amazing people based on your interests"
