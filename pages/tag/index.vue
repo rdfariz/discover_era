@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Background color="primary" min-height="200" height="100%">
+    <Background color="primary" min-height="225" height="100%">
       <v-layout fill-height row wrap align-center class="w-full ma-auto">
         <Container>
           <v-flex xs12 class="text-center text-md-left">

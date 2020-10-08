@@ -2,6 +2,7 @@
   <div v-if="isLoaded" class="d-flex flex-wrap">
     <template v-if="variant === 'feather'">
       <AlertCircleIcon v-if="icon === 'alert-circle'" :size="size" />
+      <ArrowRightIcon v-else-if="icon === 'arrow-right'" :size="size" />
       <ArchiveIcon v-else-if="icon === 'archive'" :size="size" />
       <AtSignIcon v-else-if="icon === 'at-sign'" :size="size" />
       <AwardIcon v-else-if="icon === 'award'" :size="size" />
@@ -43,6 +44,7 @@
 <script>
 import loading from '@/mixins/loading'
 import {
+  ArrowRightIcon,
   AlertCircleIcon,
   ArchiveIcon,
   AtSignIcon,
@@ -77,6 +79,7 @@ import {
 
 export default {
   components: {
+    ArrowRightIcon,
     AlertCircleIcon,
     ArchiveIcon,
     AtSignIcon,
