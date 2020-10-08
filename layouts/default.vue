@@ -9,7 +9,7 @@
       :absolute="content.appbar_position === 'absolute'"
       :dense="content.appbar_type === 'dense'"
       :src="content.appbar_background || ''"
-      :height="isReadPage ? '' : '100%'"
+      :height="isReadPage || isMobile ? '' : '100%'"
       :color="isHomePage ? 'primary' : 'primary'"
       class="noprint"
     >
