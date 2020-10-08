@@ -10,11 +10,11 @@
                 type="list-item"
                 width="100"
               />
-              <v-breadcrumbs v-else class="pa-0 font-weight-medium" large :items="breadcrumbs" />
+              <v-breadcrumbs v-else class="pa-0" large :items="breadcrumbs" />
             </v-toolbar-title>
             <v-spacer />
             <v-btn v-if="body" v-print="printObj" icon class="noprint">
-              <v-icon>mdi-printer</v-icon>
+              <Icon icon="printer" size="1.5x" />
             </v-btn>
             <v-menu
               v-if="isLoaded && socialShare && socialShare.length > 0"
@@ -26,7 +26,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-btn v-if="body" icon class="noprint ml-2" v-bind="attrs" v-on="on">
-                  <v-icon>mdi-share-variant</v-icon>
+                  <Icon icon="share-2" size="1.5x" />
                 </v-btn>
               </template>
 
@@ -66,11 +66,11 @@
                 type="card-heading"
                 width="100%"
               />
-              <h2 v-else class="font-weight-bold">
+              <h2 v-else>
                 {{ title }}
               </h2>
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="mt-4">
               <v-skeleton-loader v-if="!isLoaded" type="list-item-three-line" />
               <p v-else class="rich-text" v-html="body" />
             </v-card-text>
@@ -91,10 +91,12 @@
                   fa-tag
                 </v-icon>
                 <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
-                  <template v-if="index > 0">
-                    ,
-                  </template>
-                  {{ tag }}
+                  <span>
+                    <template v-if="index > 0">
+                      ,
+                    </template>
+                    {{ tag }}
+                  </span>
                 </nuxt-link>
               </v-layout>
               <v-layout v-if="publishedAt" align-center row wrap>
@@ -117,10 +119,12 @@ import loading from '@/mixins/loading'
 import utils from '@/mixins/utils'
 
 import Container from '@/components/container/'
+import Icon from '@/components/icon'
 
 export default {
   components: {
-    Container
+    Container,
+    Icon
   },
   mixins: [global, loading, utils],
   props: {

@@ -1,7 +1,7 @@
 <template>
   <v-card outlined>
-    <v-sheet v-if="isLoaded && isImageVisible" :height="isMobile ? '165' : '175'" :color="isDarkMode ? 'grey darken-3' : 'grey lighten-2'">
-      <v-img v-if="thumbnail" :lazy-src="thumbnail" :src="thumbnail" :max-height="isMobile ? '165' : '175'" :alt="title || ''">
+    <v-sheet v-if="isLoaded && isImageVisible" :height="isMobile ? '175' : '200'" :color="isDarkMode ? 'grey darken-3' : 'grey lighten-2'">
+      <v-img v-if="thumbnail" :lazy-src="thumbnail" :src="thumbnail" :max-height="isMobile ? '175' : '200'" :alt="title || ''">
         <template v-slot:placeholder>
           <v-row
             class="fill-height ma-0"
@@ -28,20 +28,24 @@
         </v-icon>
       </v-layout>
     </v-sheet>
-    <v-card-title primary-title>
+    <v-card-title primary-title class="pb-md-3">
       <v-skeleton-loader
         v-if="!isLoaded"
         type="card-heading"
         width="100%"
       />
-      <h4 v-else class="max-w-full">
-        <nuxt-link :to="`/${fullslug}`" class="font-weight-medium" :class="isDarkMode ? 'text--lighten-2' : ''">
+      <template v-else class="max-w-full">
+        <nuxt-link :to="`/${fullslug}`" :class="isDarkMode ? 'text--lighten-2' : ''">
           <Truncate>
-            <span v-if="title">{{ title }}</span>
-            <span v-else>-</span>
+            <h6 v-if="title">
+              {{ title }}
+            </h6>
+            <h6 v-else>
+              -
+            </h6>
           </Truncate>
         </nuxt-link>
-      </h4>
+      </template>
     </v-card-title>
     <v-card-text>
       <v-skeleton-loader
@@ -50,8 +54,12 @@
       />
       <p v-else class="ma-0">
         <Truncate>
-          <span v-if="intro">{{ intro }}</span>
-          <span v-else>-</span>
+          <template v-if="intro">
+            {{ intro }}
+          </template>
+          <template v-else>
+            -
+          </template>
         </Truncate>
       </p>
     </v-card-text>
@@ -70,24 +78,26 @@
                 fa-tag
               </v-icon>
               <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
-                <template v-if="index > 0">
-                  ,
-                </template>
-                {{ tag }}
+                <span>
+                  <template v-if="index > 0">
+                    ,
+                  </template>
+                  {{ tag }}
+                </span>
               </nuxt-link>
             </template>
             <span v-else class="text--disabled">Tidak ada tag</span>
           </v-layout>
-          <v-layout align-center row wrap>
+          <v-layout class="mt-2" align-center row wrap>
             <span>
               {{ publishedAt ? toDate(publishedAt) : '-' }}
             </span>
             <v-spacer />
-            <v-btn tabindex="-1" text icon :to="`/${fullslug}`">
+            <!-- <v-btn tabindex="-1" text icon :to="`/${fullslug}`">
               <v-icon small>
                 fa-long-arrow-alt-right
               </v-icon>
-            </v-btn>
+            </v-btn> -->
           </v-layout>
         </template>
       </v-container>

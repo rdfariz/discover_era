@@ -48,9 +48,7 @@
               </v-list-item-title>
             </v-list-item-content>
             <v-list-item-icon>
-              <v-icon small>
-                {{ item.icon || item.icon_code || '' }}
-              </v-icon>
+              <Icon small :icon="item.icon_code || item.icon || ''" :variant="item.variant || 'mdi'" />
             </v-list-item-icon>
           </v-list-item>
         </template>
@@ -60,7 +58,11 @@
 </template>
 
 <script>
+import Icon from '@/components/icon'
 export default {
+  components: {
+    Icon
+  },
   props: {
     menu: {
       type: Array,

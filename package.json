@@ -36,6 +36,7 @@
     "swiper": "^6.1.2",
     "vue": "^2.6.12",
     "vue-awesome-swiper": "^4.1.1",
+    "vue-feather-icons": "^5.1.0",
     "vue-infinite-loading": "^2.4.5",
     "vue-kinesis": "^1.1.5",
     "vue-print-nb": "^1.5.0",

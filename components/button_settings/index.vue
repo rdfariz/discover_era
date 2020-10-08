@@ -10,7 +10,7 @@
   >
     <template v-slot:activator="{ attrs, on }">
       <v-btn class="mx-1" icon v-bind="attrs" v-on="on">
-        <v-icon>mdi-cog</v-icon>
+        <Icon icon="settings" size="1.5x" />
       </v-btn>
     </template>
 
@@ -22,7 +22,9 @@
             color="purple"
           />
         </v-list-item-action>
-        <v-list-item-title>Dark Mode</v-list-item-title>
+        <v-list-item-title>
+          <span>Dark Mode</span>
+        </v-list-item-title>
       </v-list-item>
       <v-list-item>
         <v-list-item-action>
@@ -31,7 +33,9 @@
             color="purple"
           />
         </v-list-item-action>
-        <v-list-item-title>RTL</v-list-item-title>
+        <v-list-item-title>
+          <span>RTL</span>
+        </v-list-item-title>
       </v-list-item>
       <!-- <v-btn icon @click="toggleDarkMode">
         <v-icon>mdi-brightness-6</v-icon>
@@ -45,7 +49,12 @@
 
 <script>
 import global from '@/mixins/global'
+
+import Icon from '@/components/icon'
 export default {
+  components: {
+    Icon
+  },
   mixins: [global]
 }
 </script>

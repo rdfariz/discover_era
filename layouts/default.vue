@@ -11,6 +11,7 @@
       :color="content.appbar_color && content.appbar_color.color ? content.appbar_color.color : ''"
       :value="appBar"
       class="noprint"
+      :hide-on-scroll="isReadPage"
     >
       <Container>
         <v-layout align-center row wrap>
@@ -19,7 +20,7 @@
           </v-btn>
           <v-toolbar-title class="font-weight-bold mt-1 ml-3">
             <nuxt-link to="/">
-              {{ _brand.name || '' }}
+              <h6>{{ _brand.name || '' }}</h6>
             </nuxt-link>
           </v-toolbar-title>
           <v-spacer />
@@ -143,7 +144,8 @@ export default {
                 icon_code: item.icon_code || '',
                 link: item.link || '',
                 link_external: item.link_external || false,
-                disabled: item.disabled || false
+                disabled: item.disabled || false,
+                variant: item.variant || ''
               }
             })
             return {
@@ -158,7 +160,8 @@ export default {
               icon_code: el.icon_code || '',
               link: el.link || '',
               link_external: el.link_external || false,
-              disabled: el.disabled || false
+              disabled: el.disabled || false,
+              variant: el.variant || ''
             }
           }
         })
