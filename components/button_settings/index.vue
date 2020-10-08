@@ -22,7 +22,9 @@
             color="purple"
           />
         </v-list-item-action>
-        <v-list-item-title>Dark Mode</v-list-item-title>
+        <v-list-item-title>
+          <span>Dark Mode</span>
+        </v-list-item-title>
       </v-list-item>
       <v-list-item>
         <v-list-item-action>
@@ -31,7 +33,9 @@
             color="purple"
           />
         </v-list-item-action>
-        <v-list-item-title>RTL</v-list-item-title>
+        <v-list-item-title>
+          <span>RTL</span>
+        </v-list-item-title>
       </v-list-item>
       <!-- <v-btn icon @click="toggleDarkMode">
         <v-icon>mdi-brightness-6</v-icon>

@@ -26,7 +26,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-btn v-if="body" icon class="noprint ml-2" v-bind="attrs" v-on="on">
-                  <v-icon>mdi-share-variant</v-icon>
+                  <Icon icon="share-2" />
                 </v-btn>
               </template>
 
@@ -119,10 +119,12 @@ import loading from '@/mixins/loading'
 import utils from '@/mixins/utils'
 
 import Container from '@/components/container/'
+import Icon from '@/components/icon'
 
 export default {
   components: {
-    Container
+    Container,
+    Icon
   },
   mixins: [global, loading, utils],
   props: {

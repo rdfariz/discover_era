@@ -144,7 +144,8 @@ export default {
                 icon_code: item.icon_code || '',
                 link: item.link || '',
                 link_external: item.link_external || false,
-                disabled: item.disabled || false
+                disabled: item.disabled || false,
+                variant: item.variant || ''
               }
             })
             return {
@@ -159,7 +160,8 @@ export default {
               icon_code: el.icon_code || '',
               link: el.link || '',
               link_external: el.link_external || false,
-              disabled: el.disabled || false
+              disabled: el.disabled || false,
+              variant: el.variant || ''
             }
           }
         })

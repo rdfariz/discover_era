@@ -112,6 +112,24 @@ label {
   font-size: 12.5px !important;
 }
 
+@media screen and (max-width: 991px) {
+  h1 {
+    font-size: 3rem; // 48px
+  }
+  h2 {
+    font-size: 2.5rem; // 40px
+  }
+}
+@media screen and (max-width: 575px) {
+  h1 {
+    font-size: 2.5rem; // 48px
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+}
+
+
 // h1 {
 //   font-weight: 600;
 //   font-size: 4rem; // 64px
@@ -197,20 +215,4 @@ label {
 // }
 // .small-p {
 //   font-size: 12px;
-// }
-// @media screen and (max-width: 991px) {
-//   h1 {
-//     font-size: 3rem; // 48px
-//   }
-//   h2 {
-//     font-size: 2.5rem; // 40px
-//   }
-// }
-// @media screen and (max-width: 575px) {
-//   h1 {
-//     font-size: 2.5rem; // 48px
-//   }
-//   h3 {
-//     font-size: 1.75rem;
-//   }
 // }

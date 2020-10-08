@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <Background color="primary" :min-height="isSearchPage ? '100%' : '100vh'" height="100%">
+    <Background color="primary" :min-height="isSearchPage ? '100%' : '100vh'" height="100%" :background="background">
       <v-layout fill-height row wrap align-center class="w-full ma-auto">
         <Container fluid>
           <v-layout row wrap align-center>
@@ -150,6 +150,9 @@ export default {
     },
     intro () {
       return this.$store.getters.home.intro || ''
+    },
+    background () {
+      return this.$store.getters.home.background || ''
     },
     recommendVisible () {
       return this.$store.getters.home.recommendVisible || false

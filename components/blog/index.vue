@@ -37,8 +37,12 @@
       <template v-else class="max-w-full">
         <nuxt-link :to="`/${fullslug}`" :class="isDarkMode ? 'text--lighten-2' : ''">
           <Truncate>
-            <h6 v-if="title">{{ title }}</h6>
-            <h6 v-else>-</h6>
+            <h6 v-if="title">
+              {{ title }}
+            </h6>
+            <h6 v-else>
+              -
+            </h6>
           </Truncate>
         </nuxt-link>
       </template>
@@ -50,8 +54,12 @@
       />
       <p v-else class="ma-0">
         <Truncate>
-          <template v-if="intro">{{ intro }}</template>
-          <template v-else>-</template>
+          <template v-if="intro">
+            {{ intro }}
+          </template>
+          <template v-else>
+            -
+          </template>
         </Truncate>
       </p>
     </v-card-text>

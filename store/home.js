@@ -2,6 +2,7 @@ export const state = () => ({
   preIntro: '',
   title: '',
   intro: '',
+  background: '',
   recommendVisible: false,
   recommendTitle: '',
   recommendContent: [],
@@ -20,6 +21,9 @@ export const mutations = {
   },
   SET_INTRO (state, data = '') {
     state.intro = data
+  },
+  SET_BACKGROUND (state, data = '') {
+    state.background = data
   },
   SET_RECOMMEND_VISIBLE (state, data = false) {
     state.recommendVisible = data
@@ -52,6 +56,7 @@ export const actions = {
           commit('SET_TITLE', data.title)
           commit('SET_PREINTRO', data.preIntro)
           commit('SET_INTRO', data.intro)
+          commit('SET_BACKGROUND', data.background)
           commit('SET_RECOMMEND_VISIBLE', data.recommendVisible)
           commit('SET_RECOMMEND_TITLE', data.recommendTitle)
           commit('SET_RECOMMEND_CONTENT', data.recommendContent)
