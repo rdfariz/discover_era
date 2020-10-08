@@ -14,7 +14,7 @@
             </v-toolbar-title>
             <v-spacer />
             <v-btn v-if="body" v-print="printObj" icon class="noprint">
-              <v-icon>mdi-printer</v-icon>
+              <Icon icon="printer" size="1.5x" />
             </v-btn>
             <v-menu
               v-if="isLoaded && socialShare && socialShare.length > 0"
@@ -26,7 +26,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-btn v-if="body" icon class="noprint ml-2" v-bind="attrs" v-on="on">
-                  <Icon icon="share-2" />
+                  <Icon icon="share-2" size="1.5x" />
                 </v-btn>
               </template>
 

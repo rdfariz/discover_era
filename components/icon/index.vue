@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoaded">
+  <div v-if="isLoaded" class="d-flex flex-wrap">
     <template v-if="variant === 'feather'">
       <AlertCircleIcon v-if="icon === 'alert-circle'" :size="size" />
       <ArchiveIcon v-else-if="icon === 'archive'" :size="size" />
@@ -112,7 +112,7 @@ export default {
   props: {
     size: {
       type: [String, Number],
-      default: '1.5x'
+      default: '1.3x'
     },
     variant: {
       type: String,
