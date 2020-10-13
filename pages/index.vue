@@ -1,8 +1,8 @@
 <template>
   <div id="main">
     <Background color="primary" :min-height="isSearchPage ? '100%' : '100vh'" height="100%" :background="background">
-      <v-layout fill-height row wrap align-center class="w-full ma-auto">
-        <Container>
+      <v-layout fill-height row wrap align-center class="w-full">
+        <Container spacing-top>
           <v-layout row wrap align-center justify-center>
             <v-flex xs12 md10>
               <Fragment dark background="transparent" height="100%">
@@ -12,27 +12,50 @@
                       <p class="mb-0">
                         {{ preIntro || '' }}
                       </p>
+                      <v-img
+                        v-if="logo"
+                        :lazy-src="logo"
+                        :src="logo"
+                        :max-width="isMobile ? '90%' : '75%'"
+                        class="mx-auto my-6"
+                        contain
+                        :alt="'logo '+ title || _brand.name"
+                      >
+                        <template v-slot:placeholder>
+                          <v-row
+                            class="fill-height ma-0"
+                            align="center"
+                            justify="center"
+                          >
+                            <v-progress-circular
+                              indeterminate
+                              color="primary"
+                            />
+                          </v-row>
+                        </template>
+                      </v-img>
                       <h1 class="font-weight-bold">
                         {{ title || '' }}
                       </h1>
                       <p>
                         {{ intro || '' }}
                       </p>
-                      <v-layout row wrap>
-                        <v-text-field
-                          v-model="search"
-                          label="Cari sesuatu.."
-                          outlined
-                          :disabled="isSearchLoading"
-                          class="mt-2"
-                          :dense="isMobile"
-                          clearable
-                          color="white"
-                          :loading="isSearchLoading"
-                          append-icon="mdi-magnify"
-                          @click:append="onSubmitSearch"
-                          @keydown.enter="onSubmitSearch"
-                        />
+                      <v-layout wrap justify-center align-center class="my-10">
+                        <v-flex xs12 md11>
+                          <v-text-field
+                            v-model="search"
+                            placeholder="Find amazing people based on your interests"
+                            outlined
+                            :disabled="isSearchLoading"
+                            :dense="isMobile"
+                            clearable
+                            color="white"
+                            :loading="isSearchLoading"
+                            append-icon="mdi-magnify"
+                            @click:append="onSubmitSearch"
+                            @keydown.enter="onSubmitSearch"
+                          />
+                        </v-flex>
                       </v-layout>
                       <template v-if="!isSearchPage && recommendVisible">
                         <p v-if="recommendTitle" class="mt-2">
@@ -138,6 +161,9 @@ export default {
     }
   }),
   computed: {
+    logo () {
+      return this.$store.getters.home.logo || ''
+    },
     title () {
       return this.$store.getters.home.title || ''
     },

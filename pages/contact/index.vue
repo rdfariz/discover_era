@@ -1,6 +1,6 @@
 <template>
   <Background color="primary" min-height="100vh" height="100%">
-    <Container>
+    <Container spacing-top>
       <v-layout row wrap>
         <v-flex xs12 md6 lg7 class="pa-1">
           <v-card dark color="transparent" flat>
@@ -38,9 +38,8 @@
                   rows="6"
                 />
                 <v-btn
-                  class="mr-4 text-capitalize"
                   depressed
-                  outlined
+                  color="success"
                   :loading="loadingSubmit"
                   :disabled="loadingSubmit || name === '' || message === ''"
                   @click="submitMessage"

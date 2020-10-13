@@ -73,6 +73,9 @@ $duration: 0.5s ease-out;
   img {
     max-width: 100%;
   }
+  a {
+    font-weight: 600;
+  }
 }
 
 .bg-page-container {
@@ -93,7 +96,7 @@ $duration: 0.5s ease-out;
   }
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 

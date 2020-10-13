@@ -34,8 +34,8 @@ if (typeof Storage !== 'undefined') { // eslint-disable-line
   // }
 
   // DarkMode & RTL
-  darkMode = localStorage.getItem('_fullmoon_darkmode') || false
-  rtl = localStorage.getItem('_fullmoon_rtl') || false
+  darkMode = localStorage.getItem('_discover_darkmode') || false
+  rtl = localStorage.getItem('_discover_rtl') || false
 }
 
 export const theme = {

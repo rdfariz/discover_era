@@ -1,16 +1,18 @@
 <template>
   <div>
-    <Background color="primary" min-height="225" height="100%">
+    <Background :color="color" :background="background" :min-height="height" height="100%">
       <v-layout fill-height row wrap align-center class="w-full ma-auto">
         <Container>
           <v-flex xs12 class="text-center text-md-left">
             <v-card dark color="transparent" flat>
-              <p class="mb-0" />
+              <p class="mb-0">
+                {{ preIntro }}
+              </p>
               <h1 class="my-1">
-                Blog
+                {{ title }}
               </h1>
               <p class="mb-0">
-                Together Realizing Future Civilization
+                {{ intro }}
               </p>
             </v-card>
           </v-flex>
@@ -59,6 +61,30 @@ export default {
   mixins: [global, blog, loading],
   async asyncData ({ app, isDev, route, store, env, params, query, req, res, redirect, error }) {
     await store.dispatch('blog/getData')
+  },
+  computed: {
+    layout () {
+      return this.$store.getters.layout.content || {}
+    },
+    height () {
+      return this.layout.blog_height || '225'
+    },
+    preIntro () {
+      return this.layout.blog_preIntro || ''
+    },
+    title () {
+      return this.layout.blog_title || ''
+    },
+    intro () {
+      return this.layout.blog_intro || ''
+    },
+    background () {
+      return this.layout.blog_background || ''
+    },
+    color () {
+      const data = this.layout.blog_color
+      return data && data.color ? data.color : ''
+    }
   },
   methods: {
     changePage (page) {

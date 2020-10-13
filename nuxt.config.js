@@ -109,8 +109,8 @@ export default {
       display: 'fullscreen',
       title: pckg.title || 'Discover',
       description: pckg.description || 'Discover - Creating Innovation and Competence in the new normal era',
-      theme_color: '#5352ed',
-      background_color: '#5352ed',
+      theme_color: '#FCDE3E',
+      background_color: '#FCDE3E',
       start_url: '/',
       short_name: 'Discover',
       useWebmanifestExtension: false

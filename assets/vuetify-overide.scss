@@ -24,7 +24,7 @@
 
 // Vuetify class overide
 .v-app-bar {
-  transition: $transition-bg-theme !important;
+  // transition: $transition-bg-theme !important;
   // border-radius: 0 0 $rounded-lg 0 !important;
   @include shadow-lg;
 }
@@ -34,7 +34,7 @@
   @include shadow-lg;
   &.read--mode:not(.v-navigation-drawer--is-mobile) {
     opacity: 0.4;
-    transition: $transition-unit;
+    // transition: $transition-unit;
     &:hover {
       opacity: 1;
     }
@@ -97,13 +97,16 @@ h5 {
 h6 {
   font-weight: 500;
   font-size: 1.125rem; // 18px
-  line-height: 1.125;
+  // line-height: 1.125;
 }
 a {
   font-size: 14px;
 }
 p {
   font-size: 14px;
+  // font-size: 22px;
+  // line-height: 28px;
+  // font-weight: 300;
 }
 p.sm {
   font-size: 12px;
@@ -112,7 +115,7 @@ span {
   font-size: 13px;
 }
 label {
-  font-size: 12.5px !important;
+  font-size: 13px !important;
 }
 input {
   font-size: 13px !important;

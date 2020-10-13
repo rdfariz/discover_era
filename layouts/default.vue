@@ -2,29 +2,33 @@
   <v-app dark :class="isDarkMode ? 'dark--mode' : 'light--mode'">
     <VueSkipTo to="#main" label="Skip to main content" />
     <v-app-bar
+      v-model="appBar"
       app
       dark
       :fixed="content.appbar_position === 'fixed'"
       :absolute="content.appbar_position === 'absolute'"
       :dense="content.appbar_type === 'dense'"
       :src="content.appbar_background || ''"
-      :height="content.appbar_height || ''"
-      color="black"
-      :value="appBar"
+      :height="isReadPage || isMobile ? '' : '100%'"
+      :color="isHomePage ? 'primary' : 'primary'"
       class="noprint"
     >
-      <Container>
+      <Container fluid>
         <v-layout align-center row wrap>
-          <v-btn icon @click="drawer = !drawer">
-            <v-icon color="white">
-              mdi-menu
-            </v-icon>
-          </v-btn>
-          <!-- <v-toolbar-title class="font-weight-bold mt-1 ml-3">
-            <nuxt-link to="/">
-              <h6>{{ _brand.name || '' }}</h6>
-            </nuxt-link>
-          </v-toolbar-title> -->
+          <Container>
+            <v-layout row wrap align-center>
+              <v-btn icon @click="drawer = !drawer">
+                <v-icon color="white">
+                  mdi-menu
+                </v-icon>
+              </v-btn>
+              <!-- <v-toolbar-title class="font-weight-bold mt-1 ml-3">
+                <nuxt-link to="/">
+                  <h6>{{ _brand.name || '' }}</h6>
+                </nuxt-link>
+              </v-toolbar-title> -->
+            </v-layout>
+          </Container>
           <v-spacer />
         </v-layout>
       </Container>
@@ -59,7 +63,7 @@
                 <v-list-item-content>
                   <v-text-field
                     v-model="search"
-                    label="Cari sesuatu.."
+                    placeholder="Find People"
                     outlined
                     dense
                     :disabled="isSearchLoading"
@@ -134,6 +138,9 @@ export default {
     // ButtonSettings
   },
   mixins: [global, loading, search],
+  data: () => ({
+    denseAppBar: false
+  }),
   computed: {
     story () {
       return this.$store.getters.layout || {}
@@ -191,6 +198,15 @@ export default {
     }
   },
   watch: {
+    isHomePage () {
+      if (this.isHomePage === true) {
+        this.denseAppBar = false
+      } else {
+        setTimeout(() => {
+          this.denseAppBar = true
+        }, 1000)
+      }
+    },
     $route () {
       this.initDrawer()
     },
