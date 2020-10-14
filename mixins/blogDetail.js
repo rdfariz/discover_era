@@ -12,22 +12,7 @@ export default {
   },
   computed: {
     story () {
-      return this.$store.getters.blog.detailData || {}
-    },
-    content () {
-      return this.story.content || {}
-    },
-    background_color () {
-      return this.content.background_color && this.content.background_color.color ? this.content.background_color.color : 'transparent'
-    },
-    background_height () {
-      return this.content.background_height || 'auto'
-    },
-    background () {
-      return this.content.background || ''
-    },
-    background_contain () {
-      return this.content.background_contain || false
+      return this.$store.getters.blog.detailData
     }
   }
 }

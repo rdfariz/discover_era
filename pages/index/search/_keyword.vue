@@ -2,10 +2,12 @@
   <Container spacing-top>
     <template v-if="rawData.length === 0">
       <v-layout row wrap justify-center align-center>
-        <v-flex xs12 class="text-center">
-          <p class="mt-4">
-            Tidak ada data yang relevan dengan kata <span class="font-weight-medium">{{ params.keyword || '' }}</span>
-          </p>
+        <v-flex xs12 class="text-center pa-2">
+          <v-alert type="error" class="mt-4" :icon="false">
+            <p class="ma-0">
+              Tidak ada data yang relevan dengan kata <span class="font-weight-medium">{{ params.keyword || '' }}</span>
+            </p>
+          </v-alert>
         </v-flex>
       </v-layout>
     </template>
@@ -48,6 +50,7 @@ import Container from '@/components/container'
 
 import noData from '@/static/images/undraw/no_data.svg'
 export default {
+  scrollToTop: true,
   components: {
     blogCard,
     Container

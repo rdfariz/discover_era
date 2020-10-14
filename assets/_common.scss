@@ -13,6 +13,10 @@ body {
   color: #0D0E0E;
 }
 
+.main-page {
+  min-height: 75vh;
+}
+
 a {
   text-decoration: none
 }
@@ -71,10 +75,24 @@ $duration: 0.5s ease-out;
     max-width: 100%;
   }
   img {
+    margin-top: 16px;
     max-width: 100%;
   }
   a {
     font-weight: 600;
+  }
+
+  &.overview {
+    @media screen and (max-width: 960px) {
+      h5,h6 {
+        font-size: 14px;
+      }      
+    }
+    @media screen and (max-width: 600px) {
+      h5,h6 {
+        font-size: 13px;
+      }
+    }
   }
 }
 

@@ -63,7 +63,7 @@
         type="list-item-two-line"
       />
       <template v-else>
-        <span v-if="small" class="ma-0">
+        <p v-if="small" class="sm ma-0">
           <Truncate>
             <template v-if="intro">
               {{ intro }}
@@ -72,7 +72,7 @@
               -
             </template>
           </Truncate>
-        </span>
+        </p>
         <p v-else class="ma-0">
           <Truncate>
             <template v-if="intro">
@@ -101,20 +101,22 @@
                   fa-tag
                 </v-icon>
                 <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
-                  <span>
+                  <p class="sm ma-0">
                     <template v-if="index > 0">
                       ,
                     </template>
                     {{ tag }}
-                  </span>
+                  </p>
                 </nuxt-link>
               </template>
-              <span v-else class="text--disabled">Tidak ada tag</span>
+              <p v-else class="sm ma-0 text--disabled">
+                Tidak ada tag
+              </p>
             </v-layout>
             <v-layout class="mt-1" align-center row wrap>
-              <span>
+              <p class="sm ma-0">
                 {{ publishedAt ? toDate(publishedAt) : '-' }}
-              </span>
+              </p>
               <v-spacer />
               <v-btn tabindex="-1" text icon :to="`/${fullslug}`">
                 <Icon icon="arrow-right" />
@@ -164,7 +166,7 @@ export default {
     },
     story: {
       type: Object,
-      default: () => {}
+      default: () => ({})
     }
   },
   computed: {

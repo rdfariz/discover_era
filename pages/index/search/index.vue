@@ -4,6 +4,7 @@
 <script>
 import global from '@/mixins/global'
 export default {
+  scrollToTop: true,
   mixins: [global],
   head () {
     return {

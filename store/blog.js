@@ -70,6 +70,7 @@ export const actions = {
         const { data } = res
         commit('SET_DETAIL_DATA', data.story)
       }).catch(() => {
+        commit('SET_DETAIL_DATA', null)
       })
     dispatch('setLoading', false)
   }

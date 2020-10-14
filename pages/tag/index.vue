@@ -36,6 +36,7 @@
 import Container from '@/components/container/'
 import cardTag from '@/components/tag/'
 export default {
+  scrollToTop: true,
   components: {
     Container,
     cardTag

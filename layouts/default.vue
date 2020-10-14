@@ -117,7 +117,10 @@
           color="primary"
         />
       </v-overlay>
-      <nuxt />
+      <div class="main-page">
+        <nuxt />
+      </div>
+      <Footer :item="footerData" :menu="footerMenu" />
     </v-main>
   </v-app>
 </template>
@@ -126,77 +129,24 @@
 import global from '@/mixins/global'
 import loading from '@/mixins/loading'
 import search from '@/mixins/search'
+import layout from '@/mixins/layout'
 
 import Container from '@/components/container'
 import ListMenu from '@/components/list_menu'
+import Footer from '@/components/footer'
 // import ButtonSettings from '@/components/button_settings'
 
 export default {
   components: {
     Container,
-    ListMenu
+    ListMenu,
+    Footer
     // ButtonSettings
   },
-  mixins: [global, loading, search],
+  mixins: [global, layout, loading, search],
   data: () => ({
     denseAppBar: false
   }),
-  computed: {
-    story () {
-      return this.$store.getters.layout || {}
-    },
-    content () {
-      return this.story.content || {}
-    },
-    menu () {
-      if (this.content.menu) {
-        return this.content.menu.map((el) => {
-          if (el.component && el.component === 'menu-item-nested') {
-            const items = el.items.map((item) => {
-              return {
-                title: item.title || '',
-                icon: (item.icon && item.icon.icon) ? item.icon.icon : '',
-                icon_code: item.icon_code || '',
-                link: item.link || '',
-                link_external: item.link_external || false,
-                disabled: item.disabled || false,
-                variant: item.variant || ''
-              }
-            })
-            return {
-              title: el.title || '',
-              disabled: el.disabled || false,
-              items: items || []
-            }
-          } else {
-            return {
-              title: el.title || '',
-              icon: (el.icon && el.icon.icon) ? el.icon.icon : '',
-              icon_code: el.icon_code || '',
-              link: el.link || '',
-              link_external: el.link_external || false,
-              disabled: el.disabled || false,
-              variant: el.variant || ''
-            }
-          }
-        })
-      } else {
-        return []
-      }
-    },
-    drawerLogoDark () {
-      return this.content.drawer_logo_dark || this.drawerLogo
-    },
-    drawerLogo () {
-      return this.content.drawer_logo || ''
-    },
-    drawerLogoHeight () {
-      return this.content.drawer_logo_height || ''
-    },
-    drawerLogoContain () {
-      return this.content.drawer_logo_contain || false
-    }
-  },
   watch: {
     isHomePage () {
       if (this.isHomePage === true) {

@@ -50,9 +50,9 @@
 
                     <v-list-item-content>
                       <v-list-item-title class="text-capitalize">
-                        <span class="mb-0">
+                        <p class="sm mb-0">
                           {{ network }}
-                        </span>
+                        </p>
                       </v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
@@ -95,18 +95,18 @@
                       fa-tag
                     </v-icon>
                     <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
-                      <span>
+                      <p class="sm ma-0">
                         <template v-if="index > 0">
                           ,
                         </template>
                         {{ tag }}
-                      </span>
+                      </p>
                     </nuxt-link>
                   </v-layout>
                   <v-layout v-if="publishedAt" align-center row wrap>
-                    <span class="ma-0">
+                    <p class="sm ma-0">
                       Terakhir diupdate<br><span class="font-weight-medium">{{ toDate(publishedAt) }}</span>
-                    </span>
+                    </p>
                     <v-spacer />
                   </v-layout>
                 </template>
@@ -114,7 +114,9 @@
             </v-card>
           </v-flex>
           <v-flex xs12 class="pb-2 px-1">
-            <span>Lainnya</span>
+            <p class="sm ma-0">
+              Lainnya
+            </p>
           </v-flex>
           <v-flex
             v-for="(item, index) in blog"
@@ -149,7 +151,7 @@ export default {
   props: {
     story: {
       type: Object,
-      default: () => {}
+      default: () => ({})
     }
   },
   data: () => ({
