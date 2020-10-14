@@ -103,7 +103,7 @@
                           </v-card-title>
 
                           <v-card-subtitle>
-                            <span>{{ item.intro || '' }}</span>
+                            <p class="sm">{{ item.intro || '' }}</p>
                           </v-card-subtitle>
                         </v-card>
                       </swiper-slide>
