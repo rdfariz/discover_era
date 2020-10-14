@@ -48,6 +48,7 @@ import blogCard from '@/components/blog'
 import Container from '@/components/container'
 
 export default {
+  scrollToTop: true,
   components: {
     blogCard,
     Container

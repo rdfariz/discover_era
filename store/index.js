@@ -24,6 +24,9 @@ export const getters = {
   home: (state) => {
     return { ...state.home }
   },
+  about: (state) => {
+    return { ...state.about }
+  },
   search: (state) => {
     return { ...state.search }
   },
@@ -77,6 +80,7 @@ export const actions = {
       })
 
     await dispatch('home/getData')
+    await dispatch('about/getData')
     await dispatch('blog/getData')
 
     if (route.name === 'index-search-keyword') {

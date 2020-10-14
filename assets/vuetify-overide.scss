@@ -104,15 +104,20 @@ a {
 }
 p {
   font-size: 14px;
+  &.lg {
+    * {
+      font-size: 16px;
+    }
+  }
+  &.sm {
+    font-size: 13px;
+  }
   // font-size: 22px;
   // line-height: 28px;
   // font-weight: 300;
 }
-p.sm {
-  font-size: 12px;
-}
 span {
-  font-size: 13px;
+  // font-size: 13px;
 }
 label {
   font-size: 13px !important;
@@ -121,7 +126,7 @@ input {
   font-size: 13px !important;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 960px) {
   h1 {
     font-size: 3rem; // 48px
   }
@@ -129,18 +134,27 @@ input {
     font-size: 2.5rem; // 40px
   }
 }
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 600px) {
   h1 {
     font-size: 2.5rem; // 48px
   }
   h3 {
     font-size: 1.75rem;
   }
-  p, a {
+  p {
+    font-size: 13px;
+    &.sm {
+      font-size: 12px;
+    }
+    &.lg {
+      font-size: 14px;
+    }
+  }
+  a {
     font-size: 13px;
   }
   span {
-    font-size: 12px;
+    // font-size: 12px;
   }
 }
 

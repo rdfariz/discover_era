@@ -8,26 +8,31 @@
             <template v-slot:activator>
               <v-list-item-content>
                 <v-list-item-title class="font-weight-medium">
-                  <span>{{ item.title }}</span>
+                  <p class="sm ma-0">
+                    {{ item.title }}
+                  </p>
                 </v-list-item-title>
               </v-list-item-content>
             </template>
             <v-list-item
               v-for="(child, index_child) in item.items"
               :key="index_child"
-              :to="child.link"
+              :to="!child.link_external ? child.link : ''"
+              :href="child.link_external ? child.link : ''"
+              :target="child.link_external ? '_blank' : ''"
               :disabled="child.disabled"
               link
+              :color="child.disabled ? '' : 'lighten-1'"
             >
               <v-list-item-content>
                 <v-list-item-title class="font-weight-medium">
-                  <span>{{ child.title || '' }}</span>
+                  <p class="sm ma-0">
+                    {{ child.title || '' }}
+                  </p>
                 </v-list-item-title>
               </v-list-item-content>
               <v-list-item-icon>
-                <v-icon small>
-                  {{ child.icon || child.icon_code || '' }}
-                </v-icon>
+                <Icon small :icon="child.icon_code || item.icon || ''" :variant="child.variant || 'mdi'" />
               </v-list-item-icon>
             </v-list-item>
           </v-list-group>
@@ -44,7 +49,9 @@
           >
             <v-list-item-content>
               <v-list-item-title class="font-weight-medium">
-                <span>{{ item.title }}</span>
+                <p class="sm ma-0">
+                  {{ item.title }}
+                </p>
               </v-list-item-title>
             </v-list-item-content>
             <v-list-item-icon>

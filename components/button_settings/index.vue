@@ -23,7 +23,9 @@
           />
         </v-list-item-action>
         <v-list-item-title>
-          <span>Dark Mode</span>
+          <p class="sm ma-0">
+            Dark Mode
+          </p>
         </v-list-item-title>
       </v-list-item>
       <v-list-item>
@@ -34,7 +36,9 @@
           />
         </v-list-item-action>
         <v-list-item-title>
-          <span>RTL</span>
+          <p class="sm ma-0">
+            RTL
+          </p>
         </v-list-item-title>
       </v-list-item>
       <!-- <v-btn icon @click="toggleDarkMode">

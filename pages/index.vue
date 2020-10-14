@@ -1,118 +1,116 @@
 <template>
   <div id="main">
     <Background color="primary" :min-height="isSearchPage ? '100%' : '100vh'" height="100%" :background="background">
-      <v-layout fill-height row wrap align-center class="w-full">
+      <v-layout fill-height row wrap align-center class="w-full mx-auto">
         <Container spacing-top>
           <v-layout row wrap align-center justify-center>
-            <v-flex xs12 md10>
+            <v-flex xs12 md12>
               <Fragment dark background="transparent" height="100%">
-                <template #leftContent>
-                  <Container>
-                    <v-flex xs12 class="text-center">
-                      <p class="mb-0">
-                        {{ preIntro || '' }}
-                      </p>
-                      <v-img
-                        v-if="logo"
-                        :lazy-src="logo"
-                        :src="logo"
-                        :max-width="isMobile ? '90%' : '75%'"
-                        class="mx-auto my-6"
-                        contain
-                        :alt="'logo '+ title || _brand.name"
+                <v-flex xs12 class="text-center">
+                  <p class="mb-0">
+                    {{ preIntro || '' }}
+                  </p>
+                  <v-img
+                    v-if="logo"
+                    :lazy-src="logo"
+                    :src="logo"
+                    :width="isMobile ? '375' : '500'"
+                    :max-width="isMobile ? '90%' : '75%'"
+                    class="mx-auto my-6"
+                    contain
+                    :alt="'logo '+ title || _brand.name"
+                  >
+                    <template v-slot:placeholder>
+                      <v-row
+                        class="fill-height ma-0"
+                        align="center"
+                        justify="center"
                       >
-                        <template v-slot:placeholder>
-                          <v-row
-                            class="fill-height ma-0"
-                            align="center"
-                            justify="center"
-                          >
-                            <v-progress-circular
-                              indeterminate
-                              color="primary"
-                            />
-                          </v-row>
-                        </template>
-                      </v-img>
-                      <h1 class="font-weight-bold">
-                        {{ title || '' }}
-                      </h1>
-                      <p>
-                        {{ intro || '' }}
-                      </p>
-                      <v-layout wrap justify-center align-center class="my-10">
-                        <v-flex xs12 md11>
-                          <v-text-field
-                            v-model="search"
-                            placeholder="Find amazing people based on your interests"
-                            outlined
-                            :disabled="isSearchLoading"
-                            :dense="isMobile"
-                            clearable
-                            color="white"
-                            :loading="isSearchLoading"
-                            append-icon="mdi-magnify"
-                            @click:append="onSubmitSearch"
-                            @keydown.enter="onSubmitSearch"
-                          />
-                        </v-flex>
-                      </v-layout>
-                      <template v-if="!isSearchPage && recommendVisible">
-                        <p v-if="recommendTitle" class="mt-2">
-                          {{ recommendTitle || '' }}
-                        </p>
-                        <swiper
-                          ref="mySwiper"
-                          class="mt-4"
-                          :options="swiperOptions"
-                          :delete-instance-on-destroy="true"
-                          :cleanup-styles-on-destroy="false"
-                        >
-                          <swiper-slide v-for="(item, index) in recommendContent" :key="index">
-                            <v-card color="transparent" flat class="text-center pa-1 mr-1 mr-md-3 box-sizing--border">
-                              <div>
-                                <v-avatar
-                                  v-if="item.thumbnail"
-                                  color="primary"
-                                  size="124"
-                                >
-                                  <v-img
-                                    :lazy-src="item.thumbnail"
-                                    :src="item.thumbnail"
-                                    :alt="item.title || ''"
-                                  >
-                                    <template v-slot:placeholder>
-                                      <v-row
-                                        class="fill-height ma-0"
-                                        align="center"
-                                        justify="center"
-                                      >
-                                        <v-progress-circular
-                                          indeterminate
-                                          color="secondary"
-                                        />
-                                      </v-row>
-                                    </template>
-                                  </v-img>
-                                </v-avatar>
-                              </div>
-                              <v-card-title>
-                                <p class="ma-auto mb-0 font-weight-medium">
-                                  {{ item.title || '' }}
-                                </p>
-                              </v-card-title>
-
-                              <v-card-subtitle>
-                                <span>{{ item.intro || '' }}</span>
-                              </v-card-subtitle>
-                            </v-card>
-                          </swiper-slide>
-                          <div slot="pagination" class="swiper-pagination" />
-                        </swiper>
-                      </template>
+                        <v-progress-circular
+                          indeterminate
+                          color="primary"
+                        />
+                      </v-row>
+                    </template>
+                  </v-img>
+                  <h1 class="font-weight-bold">
+                    {{ title || '' }}
+                  </h1>
+                  <p>
+                    {{ intro || '' }}
+                  </p>
+                  <v-layout row wrap>
+                    <v-flex xs12 md10 class="ma-auto">
+                      <v-text-field
+                        v-model="search"
+                        class="my-10"
+                        placeholder="Find amazing people based on your interests"
+                        outlined
+                        :disabled="isSearchLoading"
+                        clearable
+                        color="white"
+                        :loading="isSearchLoading"
+                        append-icon="mdi-magnify"
+                        @click:append="onSubmitSearch"
+                        @keydown.enter="onSubmitSearch"
+                      />
                     </v-flex>
-                  </Container>
-                </template>
+                  </v-layout>
+                  <template v-if="!isSearchPage && recommendVisible">
+                    <p v-if="recommendTitle" class="mt-2">
+                      {{ recommendTitle || '' }}
+                    </p>
+                    <swiper
+                      ref="mySwiper"
+                      class="mt-4"
+                      :options="swiperOptions"
+                      :delete-instance-on-destroy="true"
+                      :cleanup-styles-on-destroy="false"
+                    >
+                      <swiper-slide v-for="(item, index) in recommendContent" :key="index">
+                        <v-card color="transparent" flat class="text-center pa-1 mr-1 mr-md-3 box-sizing--border">
+                          <div>
+                            <v-avatar
+                              v-if="item.thumbnail"
+                              color="primary"
+                              size="124"
+                              rounded
+                            >
+                              <v-img
+                                :lazy-src="item.thumbnail"
+                                :src="item.thumbnail"
+                                :alt="item.title || ''"
+                              >
+                                <template v-slot:placeholder>
+                                  <v-row
+                                    class="fill-height ma-0"
+                                    align="center"
+                                    justify="center"
+                                  >
+                                    <v-progress-circular
+                                      indeterminate
+                                      color="secondary"
+                                    />
+                                  </v-row>
+                                </template>
+                              </v-img>
+                            </v-avatar>
+                          </div>
+                          <v-card-title>
+                            <p class="ma-auto mb-0 font-weight-medium">
+                              {{ item.title || '' }}
+                            </p>
+                          </v-card-title>
+
+                          <v-card-subtitle>
+                            <span>{{ item.intro || '' }}</span>
+                          </v-card-subtitle>
+                        </v-card>
+                      </swiper-slide>
+                      <div slot="pagination" class="swiper-pagination" />
+                    </swiper>
+                  </template>
+                </v-flex>
               </Fragment>
             </v-flex>
           </v-layout>
@@ -132,6 +130,7 @@ import Fragment from '@/components/fragment/'
 import Background from '@/components/background/'
 
 export default {
+  scrollToTop: true,
   components: {
     Container,
     Fragment,
@@ -155,7 +154,7 @@ export default {
           slidesPerView: 2
         },
         1200: {
-          slidesPerView: 3
+          slidesPerView: 4
         }
       }
     }
