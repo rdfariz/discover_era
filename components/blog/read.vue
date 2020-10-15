@@ -74,7 +74,10 @@
             </v-card-title>
             <v-card-text class="mt-4">
               <v-skeleton-loader v-if="!isLoaded" type="list-item-three-line" />
-              <p v-else class="rich-text" v-html="body" />
+              <template v-else>
+                <p v-if="body" class="rich-text" v-html="body" />
+                <div v-if="markdown" v-html="$md.render(markdown)" />
+              </template>
             </v-card-text>
           </div>
         </v-card>
@@ -197,6 +200,9 @@ export default {
     },
     body () {
       return this.richtext(this.content.body || '')
+    },
+    markdown () {
+      return this.content.markdown || ''
     },
     createdAt () {
       return this.story.created_at || ''
