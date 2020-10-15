@@ -116,19 +116,21 @@
               </v-container>
             </v-card>
           </v-flex>
-          <v-flex xs12 class="pb-2 px-1">
-            <p class="sm ma-0">
-              Lainnya
-            </p>
-          </v-flex>
-          <v-flex
-            v-for="(item, index) in blog"
-            :key="index"
-            xs12
-            class="pb-2 px-1"
-          >
-            <blog-card small flat :detail-data="false" :is-image-visible="false" :story="item" />
-          </v-flex>
+          <template v-if="!isPages">
+            <v-flex xs12 class="pb-2 px-1">
+              <p class="sm ma-0">
+                Other article
+              </p>
+            </v-flex>
+            <v-flex
+              v-for="(item, index) in blog"
+              :key="index"
+              xs12
+              class="pb-2 px-1"
+            >
+              <blog-card small flat :detail-data="false" :is-image-visible="false" :story="item" />
+            </v-flex>
+          </template>
         </v-layout>
       </v-flex>
     </v-layout>
@@ -155,6 +157,10 @@ export default {
     story: {
       type: Object,
       default: () => ({})
+    },
+    isPages: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({
@@ -166,10 +172,10 @@ export default {
     breadcrumbs () {
       return [
         {
-          text: this.$route.name === 'blog-slug' ? 'Blog' : 'Pages',
+          text: this.$route.name === 'blog-slug' ? 'Blog' : 'Home',
           exact: true,
           disabled: false,
-          to: `/${this.$route.name === 'blog-slug' ? 'blog' : 'pages'}`
+          to: `/${this.$route.name === 'blog-slug' ? 'blog' : ''}`
         },
         {
           text: this.title,

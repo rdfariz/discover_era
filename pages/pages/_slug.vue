@@ -2,7 +2,7 @@
   <div id="main" class="bg-page-container">
     <template v-if="story">
       <vue-read-progress color="#2ed573" opacity="0.7" height="5px" :shadow="false" />
-      <Read id="main" :story="story" />
+      <Read id="main" :story="story" :is-pages="true" />
     </template>
     <template v-else>
       <Container>

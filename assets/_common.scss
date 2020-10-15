@@ -13,6 +13,10 @@ body {
   color: #0D0E0E;
 }
 
+*:focus {
+  outline: none;
+}
+
 .main-page {
   min-height: 75vh;
 }

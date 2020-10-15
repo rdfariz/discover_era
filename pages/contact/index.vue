@@ -8,15 +8,17 @@
               <form @submit="submitMessage">
                 <v-card-title primary-title class="relative">
                   <v-layout column wrap>
-                    <p class="mb-0">
-                      {{ preIntro }}
-                    </p>
-                    <h1 class="lg">
-                      {{ title }}
-                    </h1>
-                    <p>
-                      {{ intro }}
-                    </p>
+                    <div tabindex="0">
+                      <p class="mb-0">
+                        {{ preIntro }}
+                      </p>
+                      <h1 class="lg">
+                        {{ title }}
+                      </h1>
+                      <p>
+                        {{ intro }}
+                      </p>
+                    </div>
                   </v-layout>
                 </v-card-title>
                 <v-card-text v-if="contactForm">
@@ -55,7 +57,6 @@
               two-line
               color="transparent"
               dark
-              rounded
             >
               <v-list-item
                 v-for="(item, index) in social"

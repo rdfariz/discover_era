@@ -9,27 +9,40 @@
       :absolute="content.appbar_position === 'absolute'"
       :dense="content.appbar_type === 'dense'"
       :src="content.appbar_background || ''"
-      :height="isReadPage || isMobile ? '' : '100%'"
-      :color="isHomePage ? 'primary' : 'primary'"
+      :height="isMobile ? '' : '100%'"
+      color="primary"
       class="noprint"
+      hide-on-scroll
     >
       <Container fluid>
         <v-layout align-center row wrap>
           <Container>
             <v-layout row wrap align-center>
-              <v-btn icon @click="drawer = !drawer">
+              <v-btn v-if="isMobile" icon @click="drawer = !drawer">
                 <v-icon color="white">
                   mdi-menu
                 </v-icon>
               </v-btn>
-              <!-- <v-toolbar-title class="font-weight-bold mt-1 ml-3">
-                <nuxt-link to="/">
-                  <h6>{{ _brand.name || '' }}</h6>
-                </nuxt-link>
-              </v-toolbar-title> -->
+              <nuxt-link v-else to="/">
+                <v-avatar tile>
+                  <v-img
+                    :src="drawerLogoSquare"
+                    contain
+                    height="100%"
+                  />
+                </v-avatar>
+              </nuxt-link>
+              <v-spacer />
+              <template v-if="!isMobile">
+                <div v-for="(item, index) in menu" :key="index" class="ml-10">
+                  <template v-if="item.items" />
+                  <nuxt-link v-else :to="!item.link_external ? item.link : ''">
+                    <p class="white--text mb-0" :class="item.link === $route.path ? 'font-weight-bold' : ''">{{ item.title || '' }}</p>
+                  </nuxt-link>
+                </div>
+              </template>
             </v-layout>
           </Container>
-          <v-spacer />
         </v-layout>
       </Container>
     </v-app-bar>
