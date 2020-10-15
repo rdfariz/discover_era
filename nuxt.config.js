@@ -135,19 +135,23 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/markdownit',
     [
       'storyblok-nuxt',
       {
         accessToken: process.env.NODE_ENV === 'production'
           ? 'UxTOoeRsp6D0HYFmcqkdZAtt'
-          : 'zdU9mrZK3l2eKGVuMfDGWgtt',
-        cache: {
-          clear: 'auto',
-          type: 'memory'
-        }
+          : 'zdU9mrZK3l2eKGVuMfDGWgtt'
       }
     ]
   ],
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    html: true,
+    injected: true
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

@@ -22,6 +22,7 @@
                   <br>
                 </template>
                 <p v-if="item.body" class="rich-text overview" v-html="richtext(item.body || '')" />
+                <div v-if="item.markdown" v-html="$md.render(item.markdown || '')" />
                 <template v-if="item.items">
                   <v-layout row wrap>
                     <v-flex
