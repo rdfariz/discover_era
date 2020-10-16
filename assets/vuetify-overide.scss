@@ -65,6 +65,10 @@
   }
 }
 
+.v-card__title {
+  word-break: normal !important;
+}
+
 .v-application {
   font-family: 'Inter', 'Roboto', sans-serif !important;
   &.focus-invisible {
@@ -85,7 +89,7 @@ h2 {
   font-weight: 500;
   font-size: 2.75rem; // 44px
   letter-spacing: -0.5px;
-  line-height: 1;
+  line-height: 1.125;
 }
 h3 {
   font-weight: 500;

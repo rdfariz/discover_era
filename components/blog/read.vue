@@ -102,7 +102,7 @@
                     </p>
                   </v-layout>
                   <v-divider class="my-4" />
-                  <v-layout v-if="tagList && tagList.length > 0" align-center row wrap class="mb-2">
+                  <v-layout v-if="tagList && tagList.length > 0" align-center row wrap class="mb-5">
                     <v-icon small class="mr-2">
                       mdi-tag
                     </v-icon>
@@ -126,7 +126,7 @@
             </v-card>
           </v-flex>
           <template v-if="!isPages && relatedData.length > 0">
-            <v-flex xs12 class="pb-2 px-1">
+            <v-flex xs12 class="pb-2 px-1 mt-4">
               <p class="sm ma-0">
                 Artikel Lainnya
               </p>
