@@ -114,7 +114,7 @@ export default {
   },
   head () {
     return {
-      title: `Home - ${this._brand.name || ''}`
+      title: `Beranda - ${this._brand.name || ''}`
     }
   }
 }

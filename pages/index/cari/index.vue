@@ -10,7 +10,7 @@ export default {
   mixins: [global],
   head () {
     return {
-      title: `Search - ${this._brand.name || ''}`
+      title: `Cari - ${this._brand.name || ''}`
     }
   }
 }

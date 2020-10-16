@@ -40,7 +40,7 @@ export default {
   },
   head () {
     return {
-      title: `Blog - ${this._brand.name}`
+      title: `Artikel - ${this._brand.name}`
     }
   }
 }
