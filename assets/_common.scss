@@ -199,6 +199,9 @@ img {
   .noprint {
      visibility: hidden;
   }
+  iframe, video {
+    visibility: hidden;
+  }
 }
 
 .box-sizing {

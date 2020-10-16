@@ -6,7 +6,7 @@
     :background="item.background_image"
     :gradient="item.background_gradient"
   >
-    <v-layout fill-height row wrap align-center class="w-full ma-auto py-6 py-sm-12 py-md-16">
+    <v-layout fill-height row wrap align-center class="w-full ma-auto py-6 py-sm-12">
       <Container>
         <v-layout row wrap align-center justify-center>
           <v-flex xs12>
