@@ -12,24 +12,17 @@
       </v-layout>
     </template>
     <template v-else>
-      <v-layout
-        wrap
-        class="mb-4 mb-md-6 mt-4 mt-md-2"
-      >
-        <!-- <v-flex xs12 class="mb-2">
-          <h6 class="text--secondary text-capitalize text-center text-md-left">
-            {{ parent }}
-          </h6>
-        </v-flex> -->
+      <v-layout row wrap class="mb-4 mb-md-6 mt-4">
         <v-flex
           v-for="(item, index) in rawData"
           :key="index"
           xs12
+          sm6
           md6
           lg4
-          class="pa-2"
+          class="pa-2 pa-sm-1 pa-md-3 pa-lg-4 ma-auto ma-sm-0"
         >
-          <blog-card :is-image-visible="false" :story="item" />
+          <blog-card flat is-image-visible :story="item" />
         </v-flex>
       </v-layout>
       <v-pagination
@@ -42,13 +35,13 @@
     </template>
   </Container>
 </template>
+
 <script>
 import global from '@/mixins/global'
 
 import blogCard from '@/components/blog'
 import Container from '@/components/container'
 
-import noData from '@/static/images/undraw/no_data.svg'
 export default {
   scrollToTop: true,
   components: {
@@ -60,9 +53,6 @@ export default {
     store.dispatch('search/setKeyword', params.keyword)
     await store.dispatch('search/getData', { keyword: params.keyword })
   },
-  data: () => ({
-    noData
-  }),
   computed: {
     params () {
       return this.$route.params || {}

@@ -1,6 +1,6 @@
 export const state = () => ({
   data: [],
-  detailData: {},
+  detailData: [],
   loading: false,
   page: 1,
   perPage: 6,
@@ -63,11 +63,14 @@ export const actions = {
     const { slug } = params
     dispatch('setLoading', true)
     await this.$storyapi.get(`cdn/stories/pages/${slug || ''}`, {
+      is_startpage: 0,
       starts_with: 'pages/'
     })
       .then((res) => {
-        const { data } = res
-        commit('SET_DETAIL_DATA', data.story)
+        const data = res.data.story
+        if (data) {
+          commit('SET_DETAIL_DATA', data)
+        }
       }).catch(() => {
         commit('SET_DETAIL_DATA', null)
       })

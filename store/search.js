@@ -53,7 +53,7 @@ export const actions = {
       is_startpage: 0,
       sort_by: 'first_published_at:desc',
       'filter_query[body][like]': `*${params.keyword}*`,
-      'filter_query[component][in]': 'blog',
+      'filter_query[component][in]': 'blog,page',
       page: params.page || 1,
       per_page: state.perPage,
       ...params

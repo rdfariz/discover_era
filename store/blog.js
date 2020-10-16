@@ -1,6 +1,7 @@
 export const state = () => ({
   data: [],
   detailData: {},
+  relatedData: [],
   loading: false,
   page: 1,
   perPage: 6,
@@ -16,6 +17,9 @@ export const mutations = {
   },
   SET_DETAIL_DATA (state, data) {
     state.detailData = data
+  },
+  SET_RELATED_DATA (state, data) {
+    state.relatedData = data
   },
   SET_PAGE (state, data) {
     state.page = data
@@ -39,9 +43,9 @@ export const actions = {
   async getData ({ state, commit, dispatch }, params = {}) {
     dispatch('setLoading', true)
     await this.$storyapi.get('cdn/stories', {
+      is_startpage: 0,
       starts_with: 'blog/',
       sort_by: 'first_published_at:desc',
-      'filter_query[component][not_in]': 'blog-overview',
       page: params.page || 1,
       per_page: state.perPage,
       ...params

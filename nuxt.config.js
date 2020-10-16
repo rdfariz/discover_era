@@ -60,11 +60,6 @@ export default {
   */
   plugins: [
     '~/plugins/axios',
-    { src: '~/plugins/stack-grid.js', ssr: false },
-    { src: '~/plugins/particles.js', ssr: false },
-    { src: '~/plugins/typed.js', ssr: false },
-    { src: '~/plugins/kinesis.js', ssr: false },
-    { src: '~/plugins/infinite-loading.js', ssr: false },
     { src: '~/plugins/vue-swiper.js', ssr: false },
     { src: '~/plugins/vue-social-sharing.js', ssr: false },
     { src: '~/plugins/vue-read-progress.js', ssr: false },
@@ -109,8 +104,8 @@ export default {
       display: 'fullscreen',
       title: pckg.title || 'Discover',
       description: pckg.description || 'Discover - Creating Innovation and Competence in the new normal era',
-      theme_color: '#FCDE3E',
-      background_color: '#FCDE3E',
+      theme_color: '#000000',
+      background_color: '#000000',
       start_url: '/',
       short_name: 'Discover',
       useWebmanifestExtension: false
@@ -145,6 +140,7 @@ export default {
       }
     ]
   ],
+  // Converter MarkDown
   markdownit: {
     preset: 'default',
     linkify: true,
@@ -157,7 +153,6 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    // baseURL: process.env.NODE_ENV === 'production' ? 'https://fullmoon.now.sh' : 'http://localhost:3000'
   },
   /*
   ** vuetify module configuration

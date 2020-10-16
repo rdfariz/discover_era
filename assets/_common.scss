@@ -66,9 +66,9 @@ $duration: 0.5s ease-out;
 .light--mode {
   background: #F6F6F6 !important;
 }
-// .dark--mode {
-//   background: #000000 !important;
-// }
+.dark--mode {
+  background: #000000 !important;
+}
 
 .rich-text {
   * {
@@ -81,20 +81,46 @@ $duration: 0.5s ease-out;
   a {
     font-weight: 600;
   }
+}
 
-  &.overview {
-    @media screen and (max-width: 960px) {
-      h5,h6 {
-        font-size: 14px;
-      }      
+.overview--text {
+  h5 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  h6 {
+    font-size: 13px;
+    line-height: 20px;
+  }
+}
+.overview--category {
+  font-weight: 700;
+}
+@media screen and (min-width: 960px) {
+  .overview--title {
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 96.82px;
+  }
+  .overview--category {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25.2px;
+  }
+  .overview--text {
+    h5 {
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 50.4px;
     }
-    @media screen and (max-width: 600px) {
-      h5,h6 {
-        font-size: 13px;
-      }
+    h6 {
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 33.6px;
     }
   }
 }
+
 
 .bg-page-container {
   position: relative;

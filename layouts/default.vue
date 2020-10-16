@@ -1,35 +1,45 @@
 <template>
-  <v-app dark :class="isDarkMode ? 'dark--mode' : 'light--mode'">
+  <v-app dark :class="[isDarkMode ? 'dark--mode' : 'light--mode', modeAccessibility ? '' : 'focus-invisible']">
     <VueSkipTo to="#main" label="Skip to main content" />
     <v-app-bar
       v-model="appBar"
       app
       dark
-      :fixed="content.appbar_position === 'fixed'"
-      :absolute="content.appbar_position === 'absolute'"
-      :dense="content.appbar_type === 'dense'"
-      :src="content.appbar_background || ''"
-      :height="isReadPage || isMobile ? '' : '100%'"
-      :color="isHomePage ? 'primary' : 'primary'"
+      fixed
+      :height="isMobile ? '' : '100%'"
+      color="primary"
       class="noprint"
     >
       <Container fluid>
         <v-layout align-center row wrap>
           <Container>
             <v-layout row wrap align-center>
-              <v-btn icon @click="drawer = !drawer">
+              <v-btn v-if="isMobile" icon @click="drawer = !drawer">
                 <v-icon color="white">
                   mdi-menu
                 </v-icon>
               </v-btn>
-              <!-- <v-toolbar-title class="font-weight-bold mt-1 ml-3">
-                <nuxt-link to="/">
-                  <h6>{{ _brand.name || '' }}</h6>
-                </nuxt-link>
-              </v-toolbar-title> -->
+              <nuxt-link v-else to="/">
+                <v-avatar tile>
+                  <v-img
+                    :src="drawerLogoSquare"
+                    contain
+                    height="100%"
+                    :alt="'logo '+ _brand.name + '.'"
+                  />
+                </v-avatar>
+              </nuxt-link>
+              <v-spacer />
+              <template v-if="!isMobile">
+                <div v-for="(item, index) in menu" :key="index" class="ml-10">
+                  <template v-if="item.items" />
+                  <nuxt-link v-else :to="!item.link_external ? item.link : ''">
+                    <p class="white--text mb-0" :class="item.link === $route.path ? 'font-weight-bold' : ''">{{ item.title || '' }}</p>
+                  </nuxt-link>
+                </div>
+              </template>
             </v-layout>
           </Container>
-          <v-spacer />
         </v-layout>
       </Container>
     </v-app-bar>
@@ -98,16 +108,6 @@
           </v-container>
         </v-layout>
       </template>
-      <!-- <template v-slot:append>
-        <v-divider />
-        <v-flex xs12 class="my-3 my-md-6 text-center">
-          <v-layout row wrap justify-center>
-            <v-flex xs10>
-              <ButtonSettings />
-            </v-flex>
-          </v-layout>
-        </v-flex>
-      </template> -->
     </v-navigation-drawer>
     <v-main>
       <v-overlay :value="!isLoaded" color="white" opacity="1">
@@ -134,29 +134,18 @@ import layout from '@/mixins/layout'
 import Container from '@/components/container'
 import ListMenu from '@/components/list_menu'
 import Footer from '@/components/footer'
-// import ButtonSettings from '@/components/button_settings'
 
 export default {
   components: {
     Container,
     ListMenu,
     Footer
-    // ButtonSettings
   },
   mixins: [global, layout, loading, search],
   data: () => ({
-    denseAppBar: false
+    modeAccessibility: false
   }),
   watch: {
-    isHomePage () {
-      if (this.isHomePage === true) {
-        this.denseAppBar = false
-      } else {
-        setTimeout(() => {
-          this.denseAppBar = true
-        }, 1000)
-      }
-    },
     $route () {
       this.initDrawer()
     },
@@ -166,9 +155,19 @@ export default {
   },
   created () {
     this.initDrawer()
-    // this.setColorPallete()
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.initSkipToContent()
+    })
   },
   methods: {
+    initSkipToContent () {
+      const btn = document.getElementsByClassName('vue-skip-to__link')[0]
+      btn.addEventListener('click', () => {
+        this.modeAccessibility = true
+      })
+    },
     initDrawer () {
       if (this.isMobile && !this.isReadPage) {
         this.appBar = true

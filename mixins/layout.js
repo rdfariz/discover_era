@@ -42,6 +42,9 @@ export default {
         return []
       }
     },
+    drawerLogoSquare () {
+      return this.content.drawer_logo_square || ''
+    },
     drawerLogoDark () {
       return this.content.drawer_logo_dark || this.drawerLogo
     },
@@ -53,6 +56,9 @@ export default {
     },
     drawerLogoContain () {
       return this.content.drawer_logo_contain || true
+    },
+    footerHeight () {
+      return this.content.footer_height || ''
     },
     footerBackground () {
       return this.content.footer_background && this.content.footer_background.color ? this.content.footer_background.color : ''
@@ -104,6 +110,7 @@ export default {
     },
     footerData () {
       return {
+        height: this.footerHeight,
         background: this.footerBackground,
         backgroundImage: this.footerBackgroundImage,
         intro: this.footerIntro,

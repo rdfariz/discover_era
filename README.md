@@ -1,4 +1,4 @@
-# Fullmoon
+# Discover Era
 
 ## Build Setup
 

@@ -1,115 +1,67 @@
 <template>
   <div id="main">
-    <Background color="primary" :min-height="isSearchPage ? '100%' : '100vh'" height="100%" :background="background">
-      <v-layout fill-height row wrap align-center class="w-full mx-auto">
-        <Container spacing-top>
+    <Background
+      color="primary"
+      :min-height="isSearchPage ? '100%' : '90vh'"
+      height="100%"
+      :background="background"
+      :gradient="background_gradient"
+    >
+      <v-layout fill-height row wrap align-center class="w-full ma-auto">
+        <Container>
           <v-layout row wrap align-center justify-center>
             <v-flex xs12 md12>
               <Fragment dark background="transparent" height="100%">
-                <v-flex xs12 class="text-center">
-                  <p class="mb-0">
-                    {{ preIntro || '' }}
-                  </p>
-                  <v-img
-                    v-if="logo"
-                    :lazy-src="logo"
-                    :src="logo"
-                    :width="isMobile ? '375' : '500'"
-                    :max-width="isMobile ? '90%' : '75%'"
-                    class="mx-auto my-6"
-                    contain
-                    :alt="'logo '+ title || _brand.name"
-                  >
-                    <template v-slot:placeholder>
-                      <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                      >
-                        <v-progress-circular
-                          indeterminate
-                          color="primary"
-                        />
-                      </v-row>
-                    </template>
-                  </v-img>
-                  <h1 class="font-weight-bold">
-                    {{ title || '' }}
-                  </h1>
-                  <p>
-                    {{ intro || '' }}
-                  </p>
-                  <v-layout row wrap>
-                    <v-flex xs12 md10 class="ma-auto">
-                      <v-text-field
-                        v-model="search"
-                        class="my-10"
-                        placeholder="Find amazing people based on your interests"
-                        outlined
-                        :disabled="isSearchLoading"
-                        clearable
-                        color="white"
-                        :loading="isSearchLoading"
-                        append-icon="mdi-magnify"
-                        @click:append="onSubmitSearch"
-                        @keydown.enter="onSubmitSearch"
-                      />
-                    </v-flex>
-                  </v-layout>
-                  <template v-if="!isSearchPage && recommendVisible">
-                    <p v-if="recommendTitle" class="mt-2">
-                      {{ recommendTitle || '' }}
+                <v-flex xs12 sm10 md8 class="ma-auto text-center">
+                  <div tabindex="0">
+                    <p v-if="preIntro" class="mb-0">
+                      {{ preIntro || '' }}
                     </p>
-                    <swiper
-                      ref="mySwiper"
-                      class="mt-4"
-                      :options="swiperOptions"
-                      :delete-instance-on-destroy="true"
-                      :cleanup-styles-on-destroy="false"
+                    <v-img
+                      v-if="logo"
+                      :lazy-src="logo"
+                      :src="logo"
+                      :width="isMobile ? '400' : '600'"
+                      class="mx-auto my-6"
+                      contain
+                      :alt="'logo '+ _brand.name + '.'"
+                      :aria-label="'logo '+ _brand.name + '.'"
                     >
-                      <swiper-slide v-for="(item, index) in recommendContent" :key="index">
-                        <v-card color="transparent" flat class="text-center pa-1 mr-1 mr-md-3 box-sizing--border">
-                          <div>
-                            <v-avatar
-                              v-if="item.thumbnail"
-                              color="primary"
-                              size="124"
-                              rounded
-                            >
-                              <v-img
-                                :lazy-src="item.thumbnail"
-                                :src="item.thumbnail"
-                                :alt="item.title || ''"
-                              >
-                                <template v-slot:placeholder>
-                                  <v-row
-                                    class="fill-height ma-0"
-                                    align="center"
-                                    justify="center"
-                                  >
-                                    <v-progress-circular
-                                      indeterminate
-                                      color="secondary"
-                                    />
-                                  </v-row>
-                                </template>
-                              </v-img>
-                            </v-avatar>
-                          </div>
-                          <v-card-title>
-                            <p class="ma-auto mb-0 font-weight-medium">
-                              {{ item.title || '' }}
-                            </p>
-                          </v-card-title>
-
-                          <v-card-subtitle>
-                            <p class="sm">{{ item.intro || '' }}</p>
-                          </v-card-subtitle>
-                        </v-card>
-                      </swiper-slide>
-                      <div slot="pagination" class="swiper-pagination" />
-                    </swiper>
-                  </template>
+                      <template v-slot:placeholder>
+                        <v-row
+                          class="fill-height ma-0"
+                          align="center"
+                          justify="center"
+                        >
+                          <v-progress-circular
+                            indeterminate
+                            color="primary"
+                          />
+                        </v-row>
+                      </template>
+                    </v-img>
+                    <h1 v-if="title" class="font-weight-bold">
+                      {{ title || '' }}
+                    </h1>
+                    <p v-if="intro" :class="isMobile ? 'lg' : 'xl'">
+                      {{ intro || '' }}
+                    </p>
+                  </div>
+                </v-flex>
+                <v-flex xs12 sm10 md8 class="ma-auto">
+                  <v-text-field
+                    v-model="search"
+                    class="my-8"
+                    placeholder="Find amazing people based on your interests"
+                    outlined
+                    :disabled="isSearchLoading"
+                    clearable
+                    color="white"
+                    :loading="isSearchLoading"
+                    append-icon="mdi-magnify"
+                    @click:append="onSubmitSearch"
+                    @keydown.enter="onSubmitSearch"
+                  />
                 </v-flex>
               </Fragment>
             </v-flex>
@@ -137,28 +89,6 @@ export default {
     Background
   },
   mixins: [global, search],
-  data: () => ({
-    swiperOptions: {
-      speed: 1000,
-      spaceBetween: 0,
-      slidesPerView: 1,
-      loop: false,
-      pagination: {
-        el: '.swiper-pagination'
-      },
-      breakpoints: {
-        480: {
-          slidesPerView: 1
-        },
-        640: {
-          slidesPerView: 2
-        },
-        1200: {
-          slidesPerView: 4
-        }
-      }
-    }
-  }),
   computed: {
     logo () {
       return this.$store.getters.home.logo || ''
@@ -175,14 +105,8 @@ export default {
     background () {
       return this.$store.getters.home.background || ''
     },
-    recommendVisible () {
-      return this.$store.getters.home.recommendVisible || false
-    },
-    recommendTitle () {
-      return this.$store.getters.home.recommendTitle || ''
-    },
-    recommendContent () {
-      return this.$store.getters.home.recommendContent || []
+    background_gradient () {
+      return this.$store.getters.home.background_gradient
     },
     swiper () {
       return this.$refs.mySwiper.$swiper
