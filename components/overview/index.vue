@@ -32,6 +32,7 @@
                       v-for="(item_child, index_child) in item.items"
                       :key="index_child"
                       xs12
+                      sm6
                       md6
                       lg4
                       class="pa-2 pa-md-4 mb-8 mb-md-0"
@@ -56,6 +57,7 @@
                             :src="item_child.thumbnail"
                             :alt="item_child.title + item_child.intro"
                             :height="item_child.thumbnail_height || 300"
+                            aspect-ratio="1"
                             class="mb-2"
                           >
                             <template v-slot:placeholder>

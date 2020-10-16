@@ -1,7 +1,14 @@
 <template>
   <v-card :flat="flat" :outlined="outlined && !flat">
-    <v-sheet v-if="isLoaded && isImageVisible" :height="isMobile ? '200' : '225'" :color="isDarkMode ? 'grey darken-3' : 'grey lighten-2'">
-      <v-img v-if="thumbnail" :lazy-src="thumbnail" :src="thumbnail" :max-height="isMobile ? '200' : '225'" :alt="title || ''">
+    <v-sheet v-if="isLoaded && isImageVisible" :height="isMobile ? '275' : '300'" :color="isDarkMode ? 'grey darken-3' : 'grey lighten-2'">
+      <v-img
+        v-if="thumbnail"
+        aspect-ratio="1"
+        :lazy-src="thumbnail"
+        :src="thumbnail"
+        :max-height="isMobile ? '100%' : '300'"
+        :alt="title || ''"
+      >
         <template v-slot:placeholder>
           <v-row
             class="fill-height ma-0"
