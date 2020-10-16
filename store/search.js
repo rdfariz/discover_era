@@ -5,7 +5,7 @@ export const state = () => ({
   tag: [],
   loading: false,
   page: 1,
-  perPage: 6,
+  perPage: 12,
   total: 0
 })
 

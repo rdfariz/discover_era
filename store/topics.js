@@ -3,7 +3,7 @@ export const state = () => ({
   detailData: [],
   loading: false,
   page: 1,
-  perPage: 6,
+  perPage: 12,
   total: 0
 })
 
@@ -76,6 +76,7 @@ export const actions = {
           commit('SET_PAGE', params.page || 1)
         }
       }).catch(() => {
+        commit('SET_DETAIL_DATA', [])
       })
     dispatch('setLoading', false)
   }

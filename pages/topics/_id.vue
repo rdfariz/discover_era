@@ -13,14 +13,11 @@
                 <v-flex xs12>
                   <div tabindex="0">
                     <p class="mb-0">
-                      CATEGORY
+                      Topic
                     </p>
                     <h1 class="my-1 overview--title">
                       {{ $route.params.id }}
                     </h1>
-                    <p class="mb-0">
-                      Find inspiration according to your interests
-                    </p>
                     <br>
                   </div>
                 </v-flex>
@@ -31,16 +28,7 @@
       </v-layout>
     </Background>
     <Container>
-      <template v-if="data.length === 0">
-        <v-layout row wrap justify-center align-center>
-          <v-flex xs12 class="text-center">
-            <p class="mt-4">
-              Tidak ada data yang relevan dengan tag <span class="font-weight-medium">{{ params.id || '' }}</span>
-            </p>
-          </v-flex>
-        </v-layout>
-      </template>
-      <template v-else>
+      <template v-if="data && data.length > 0">
         <v-layout row wrap>
           <v-flex
             v-for="(item, i) in data"
@@ -64,6 +52,9 @@
           </v-flex>
         </v-layout>
       </template>
+      <template v-else>
+        <NotFound :text="`There is no data relevant to topics ${params.id || ''}`" />
+      </template>
     </Container>
   </div>
 </template>
@@ -72,16 +63,18 @@ import global from '@/mixins/global'
 
 import blogCard from '@/components/blog'
 import Container from '@/components/container'
+import NotFound from '@/components/notfound'
 
 export default {
   scrollToTop: true,
   components: {
     blogCard,
-    Container
+    Container,
+    NotFound
   },
   mixins: [global],
   async asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
-    await store.dispatch('tag/getDetailData', {
+    await store.dispatch('topics/getDetailData', {
       id: params.id
     })
   },
@@ -93,22 +86,22 @@ export default {
       return Object.keys(this.data) || []
     },
     data () {
-      return this.$store.getters.tag.detailData
+      return this.$store.getters.topics.detailData
     },
     rawData () {
-      return this.$store.getters.tag.rawData
+      return this.$store.getters.topics.rawData
     },
     loading () {
-      return this.$store.getters.tag.loading
+      return this.$store.getters.topics.loading
     },
     page () {
-      return this.$store.getters.tag.page
+      return this.$store.getters.topics.page
     },
     perPage () {
-      return this.$store.getters.tag.perPage
+      return this.$store.getters.topics.perPage
     },
     total () {
-      return this.$store.getters.tag.total
+      return this.$store.getters.topics.total
     },
     pageLength () {
       return Math.ceil(this.total / this.perPage) || 1
@@ -116,7 +109,7 @@ export default {
   },
   methods: {
     changePage (page) {
-      this.$store.dispatch('tag/getDetailData', { id: this.params.id, page })
+      this.$store.dispatch('topics/getDetailData', { id: this.params.id, page })
     }
   },
   head () {

@@ -12,19 +12,19 @@ export default {
   },
   computed: {
     story () {
-      return this.$store.getters.tag.data
+      return this.$store.getters.topics.data
     },
     loading () {
-      return this.$store.getters.tag.loading
+      return this.$store.getters.topics.loading
     },
     page () {
-      return this.$store.getters.tag.page || 1
+      return this.$store.getters.topics.page || 1
     },
     perPage () {
-      return this.$store.getters.tag.perPage || 25
+      return this.$store.getters.topics.perPage || 12
     },
     total () {
-      return this.$store.getters.tag.total || 0
+      return this.$store.getters.topics.total || 0
     },
     pageLength () {
       return Math.ceil(this.total / this.perPage) || 1

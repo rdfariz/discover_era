@@ -121,7 +121,7 @@
                       </v-icon>
                     </v-avatar>
                     <template v-if="tagList && tagList.length > 0">
-                      <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/category/${tag}`" class="text-capitalize">
+                      <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/topics/${tag}`" class="text-capitalize">
                         <p class="sm ma-0">
                           <template v-if="index > 0">
                             ,
@@ -131,7 +131,7 @@
                       </nuxt-link>
                     </template>
                     <p v-else class="sm ma-0 text--disabled">
-                      Tidak ada tag
+                      There are no topics
                     </p>
                   </v-layout>
                 </v-flex>
@@ -150,9 +150,6 @@
                 {{ publishedAt ? toDate(publishedAt) : '-' }}
               </p>
               <v-spacer />
-              <!-- <v-btn tabindex="-1" text icon :to="`/${fullslug}`">
-                <Icon icon="arrow-right" />
-              </v-btn> -->
             </v-layout>
           </template>
         </v-container>

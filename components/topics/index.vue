@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="`/category/${name}`" outlined>
+  <v-card :to="`/topics/${name}`" outlined>
     <v-list-item three-line>
       <v-list-item-content>
         <v-list-item-title class="headline mb-1">

@@ -9,10 +9,10 @@
 <script>
 import global from '@/mixins/global'
 import loading from '@/mixins/loading'
-import category from '@/mixins/category'
+import topics from '@/mixins/topics'
 
 import Container from '@/components/container/'
-import CategoryList from '@/components/tag/list_tag'
+import CategoryList from '@/components/topics/list_topics'
 
 export default {
   scrollToTop: true,
@@ -20,21 +20,21 @@ export default {
     Container,
     CategoryList
   },
-  mixins: [global, loading, category],
+  mixins: [global, loading, topics],
   async asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
-    await store.dispatch('tag/getData')
+    await store.dispatch('topics/getData')
   },
   computed: {
     layout () {
       return this.$store.getters.layout.content || {}
     },
     overview () {
-      return this.layout.category_overview || []
+      return this.layout.topics_overview || []
     }
   },
   head () {
     return {
-      title: `Category - ${this._brand.name}`
+      title: `Topics - ${this._brand.name}`
     }
   }
 }
