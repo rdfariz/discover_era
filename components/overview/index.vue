@@ -98,6 +98,7 @@
                   :href="item.link_external ? item.link : ''"
                   :target="item.link_external ? '_blank' : ''"
                   class="mt-2"
+                  color="secondary"
                 >
                   <span>
                     {{ item.link_text || '' }}
