@@ -131,7 +131,7 @@
                       </nuxt-link>
                     </template>
                     <p v-else class="sm ma-0 text--disabled">
-                      There are no topics
+                      Tidak ada topik
                     </p>
                   </v-layout>
                 </v-flex>

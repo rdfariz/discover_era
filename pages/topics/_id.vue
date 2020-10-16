@@ -53,7 +53,7 @@
         </v-layout>
       </template>
       <template v-else>
-        <NotFound :text="`There is no data relevant to topics ${params.id || ''}`" />
+        <NotFound :text="`Tidak ada data yang relevan dengan topik ${params.id || ''}`" />
       </template>
     </Container>
   </div>

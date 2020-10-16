@@ -52,7 +52,7 @@
                   <v-text-field
                     v-model="search"
                     class="my-8"
-                    placeholder="Find amazing people based on your interests"
+                    :placeholder="search_placeholder"
                     outlined
                     :disabled="isSearchLoading"
                     clearable
@@ -101,6 +101,9 @@ export default {
     },
     intro () {
       return this.$store.getters.home.intro || ''
+    },
+    search_placeholder () {
+      return this.$store.getters.home.search_placeholder || ''
     },
     background () {
       return this.$store.getters.home.background || ''

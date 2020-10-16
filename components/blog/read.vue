@@ -117,7 +117,7 @@
                   </v-layout>
                   <v-layout v-if="publishedAt" align-center row wrap>
                     <p class="sm ma-0">
-                      Last updated<br><span class="font-weight-medium">{{ toDate(publishedAt) }}</span>
+                      Terakhir diperbarui<br><span class="font-weight-medium">{{ toDate(publishedAt) }}</span>
                     </p>
                     <v-spacer />
                   </v-layout>
@@ -128,7 +128,7 @@
           <template v-if="!isPages && relatedData.length > 0">
             <v-flex xs12 class="pb-2 px-1">
               <p class="sm ma-0">
-                Other Article
+                Artikel Lainnya
               </p>
             </v-flex>
             <template v-for="(item, index) in relatedData">

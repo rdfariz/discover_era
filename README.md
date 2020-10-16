@@ -1,4 +1,16 @@
 # Discover Era
+Creating Innovation and Competence in the new normal era
+
+## Deployment
+[Demo](https://discover-era.now.sh/)
+
+
+## Software Architecture
+* CMS: Storyblok
+* Front end: Nuxt.js (Vue.js)
+* Back end: Node.js
+* CI: Github - Vercel
+
 
 ## Build Setup
 

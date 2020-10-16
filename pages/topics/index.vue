@@ -2,7 +2,8 @@
   <div id="main">
     <Overview v-for="(item, index) in overview" :key="index" :item="item" />
     <Container>
-      <CategoryList />
+      <CategoryList v-if="story && story.length > 0" />
+      <NotFound v-else />
     </Container>
   </div>
 </template>
@@ -13,12 +14,14 @@ import topics from '@/mixins/topics'
 
 import Container from '@/components/container/'
 import CategoryList from '@/components/topics/list_topics'
+import NotFound from '@/components/notfound'
 
 export default {
   scrollToTop: true,
   components: {
     Container,
-    CategoryList
+    CategoryList,
+    NotFound
   },
   mixins: [global, loading, topics],
   async asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {

@@ -14,7 +14,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: 'Sorry the article you were looking for was not found'
+      default: 'Maaf, artikel yang anda cari tidak ditemukan'
     }
   }
 }

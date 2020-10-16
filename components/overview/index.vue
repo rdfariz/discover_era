@@ -56,6 +56,7 @@
                             :src="item_child.thumbnail"
                             :alt="item_child.title + item_child.intro"
                             :height="item_child.thumbnail_height || 300"
+                            class="mb-2"
                           >
                             <template v-slot:placeholder>
                               <v-row
@@ -75,7 +76,6 @@
                             :to="!item_child.link_external ? item_child.link : ''"
                             :href="item_child.link_external ? item_child.link : ''"
                             :target="item_child.link_external ? '_blank' : ''"
-                            class="mt-2"
                             color="secondary"
                             width="100%"
                           >

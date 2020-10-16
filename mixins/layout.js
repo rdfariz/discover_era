@@ -45,6 +45,9 @@ export default {
     drawerLogoSquare () {
       return this.content.drawer_logo_square || ''
     },
+    drawerLogoSquareDark () {
+      return this.content.drawer_logo_square_dark || ''
+    },
     drawerLogoDark () {
       return this.content.drawer_logo_dark || this.drawerLogo
     },

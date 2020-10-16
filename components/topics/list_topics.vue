@@ -21,18 +21,15 @@
       />
     </v-flex>
   </v-layout>
-  <NotFound v-else />
 </template>
 <script>
 import topics from '@/mixins/topics'
 
 import cardTag from '@/components/topics/'
-import NotFound from '@/components/notfound'
 
 export default {
   components: {
-    cardTag,
-    NotFound
+    cardTag
   },
   mixins: [topics],
   methods: {
