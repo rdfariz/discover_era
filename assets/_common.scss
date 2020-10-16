@@ -188,6 +188,16 @@ img {
   }
 }
 
+.box-sizing {
+  &--border {
+    box-sizing: border-box !important;
+  }
+}
+
+.loading-circle {
+  position: absolute;
+}
+
 // blockquote {
 //   border-left: 3px solid var(--v-primary-base);
 //   padding-left: 8px;
@@ -195,9 +205,3 @@ img {
 //     margin-bottom: 4px !important;
 //   }
 // }
-
-.box-sizing {
-  &--border {
-    box-sizing: border-box !important;
-  }
-}

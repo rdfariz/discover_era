@@ -5,6 +5,7 @@ export const state = () => ({
   intro: '',
   background: '',
   background_gradient: '',
+  search_placeholder: '',
   overviewContent: [],
   loading: false
 })
@@ -24,6 +25,9 @@ export const mutations = {
   },
   SET_INTRO (state, data = '') {
     state.intro = data
+  },
+  SET_SEARCH_PLACEHOLDER (state, data = '') {
+    state.search_placeholder = data
   },
   SET_BACKGROUND (state, data = '') {
     state.background = data
@@ -60,6 +64,7 @@ export const actions = {
           commit('SET_INTRO', data.intro)
           commit('SET_BACKGROUND', data.background)
           commit('SET_BACKGROUND_GRADIENT', data.background_gradient)
+          commit('SET_SEARCH_PLACEHOLDER', data.search_placeholder)
           commit('SET_OVERVIEW_CONTENT', data.overviewContent)
         }
       }).catch(() => {

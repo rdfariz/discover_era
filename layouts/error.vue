@@ -33,7 +33,7 @@ export default {
     }
   },
   computed: {
-    pageNotFound () { return 'Sorry, the page you tried cannot be found' },
+    pageNotFound () { return 'Maaf, halaman yang Anda cari tidak ditemukan' },
     otherError () { return 'Something went wrong' }
   },
   head () {

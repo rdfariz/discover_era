@@ -24,15 +24,15 @@
                 <v-card-text v-if="contactForm">
                   <v-text-field
                     v-model="name"
-                    label="Name"
+                    label="Nama"
                     color="white"
-                    placeholder="Enter your name"
+                    placeholder="Masukkan nama kamu"
                     outlined
                   />
                   <v-textarea
                     v-model="message"
-                    label="Message"
-                    placeholder="Enter your message"
+                    label="Pesan"
+                    placeholder="Masukkan pesan kamu"
                     value=""
                     color="white"
                     outlined
@@ -46,7 +46,7 @@
                     :disabled="loadingSubmit || name === '' || message === ''"
                     @click="submitMessage"
                   >
-                    Send
+                    Kirim
                   </Button>
                 </v-card-text>
               </form>
@@ -101,19 +101,19 @@
           <v-card-title class="font-weight-bold">
             <v-layout row wrap justify-center align-center>
               <v-flex xs12>
-                Successfully<br>sent the message
+                Pesan berhasil terkirim
               </v-flex>
             </v-layout>
           </v-card-title>
 
           <v-card-text>
-            <p>Thank you for using our service.</p>
+            <p>Terima kasih telah menggunakan layanan kami.</p>
             <v-btn
               text
               tile
               @click="dialog = false"
             >
-              Close
+              Tutup
             </v-btn>
           </v-card-text>
         </v-card>
