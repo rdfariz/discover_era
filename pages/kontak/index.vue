@@ -43,7 +43,7 @@
                     color="secondary"
                     depressed
                     :loading="loadingSubmit"
-                    :disabled="loadingSubmit || name === '' || message === ''"
+                    :disabled="loadingSubmit"
                     @click="submitMessage"
                   >
                     Kirim
