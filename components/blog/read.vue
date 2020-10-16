@@ -183,10 +183,10 @@ export default {
     breadcrumbs () {
       return [
         {
-          text: this.$route.name === 'blog-slug' ? 'Blog' : 'Home',
+          text: this.$route.name === 'artikel-slug' ? 'Artikel' : 'Beranda',
           exact: true,
           disabled: false,
-          to: `/${this.$route.name === 'blog-slug' ? 'blog' : ''}`
+          to: `/${this.$route.name === 'artikel-slug' ? 'artikel' : ''}`
         },
         {
           text: this.title,
