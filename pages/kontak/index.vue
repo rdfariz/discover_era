@@ -200,13 +200,11 @@ export default {
       if (e && e.preventDefault()) {
         e.preventDefault()
       }
-      if (this.name && this.message) {
-        this.loadingSubmit = true
-        setTimeout(() => {
-          this.dialog = true
-          this.loadingSubmit = false
-        }, 500)
-      }
+      this.loadingSubmit = true
+      setTimeout(() => {
+        this.dialog = true
+        this.loadingSubmit = false
+      }, 500)
     }
   },
   head () {
