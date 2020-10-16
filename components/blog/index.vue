@@ -42,25 +42,17 @@
           type="card-heading"
           width="100%"
         />
-        <template v-else class="max-w-full">
-          <Truncate>
-            <template v-if="small">
-              <p v-if="title" class="ma-0">
-                {{ title }}
-              </p>
-              <p v-else class="ma-0">
-                -
-              </p>
-            </template>
-            <template v-else>
-              <h6 v-if="title">
-                {{ title }}
-              </h6>
-              <h6 v-else>
-                -
-              </h6>
-            </template>
-          </Truncate>
+        <template v-else>
+          <p v-if="small" class="ma-0 max-w-full">
+            <Truncate>
+              {{ title || '-' }}
+            </Truncate>
+          </p>
+          <h6 v-else class="ma-0 max-w-full">
+            <Truncate>
+              {{ title || '-' }}
+            </Truncate>
+          </h6>
         </template>
       </v-card-title>
       <v-card-text>
