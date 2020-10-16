@@ -18,6 +18,9 @@
                     <h1 class="my-1 overview--title">
                       {{ $route.params.id }}
                     </h1>
+                    <p class="mb-0">
+                      {{ total }} Artikel
+                    </p>
                     <br>
                   </div>
                 </v-flex>

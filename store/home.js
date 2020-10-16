@@ -7,6 +7,8 @@ export const state = () => ({
   background_gradient: '',
   search_placeholder: '',
   overviewContent: [],
+  seo: {},
+  keyword: '',
   loading: false
 })
 
@@ -37,6 +39,12 @@ export const mutations = {
   },
   SET_OVERVIEW_CONTENT (state, data = []) {
     state.overviewContent = data
+  },
+  SET_SEO (state, data = {}) {
+    state.seo = data
+  },
+  SET_KEYWORD (state, data) {
+    state.keyword = data
   }
 }
 
@@ -66,6 +74,8 @@ export const actions = {
           commit('SET_BACKGROUND_GRADIENT', data.background_gradient)
           commit('SET_SEARCH_PLACEHOLDER', data.search_placeholder)
           commit('SET_OVERVIEW_CONTENT', data.overviewContent)
+          commit('SET_SEO', data.seo)
+          commit('SET_KEYWORD', data.keyword)
         }
       }).catch(() => {
       })
