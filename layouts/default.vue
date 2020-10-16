@@ -1,5 +1,5 @@
 <template>
-  <v-app dark :class="isDarkMode ? 'dark--mode' : 'light--mode'">
+  <v-app dark :class="[isDarkMode ? 'dark--mode' : 'light--mode', modeAccessibility ? '' : 'focus-invisible']">
     <VueSkipTo to="#main" label="Skip to main content" />
     <v-app-bar
       v-model="appBar"
@@ -12,7 +12,6 @@
       :height="isMobile ? '' : '100%'"
       color="primary"
       class="noprint"
-      hide-on-scroll
     >
       <Container fluid>
         <v-layout align-center row wrap>
@@ -29,6 +28,7 @@
                     :src="drawerLogoSquare"
                     contain
                     height="100%"
+                    :alt="'logo '+ _brand.name + '.'"
                   />
                 </v-avatar>
               </nuxt-link>
@@ -158,6 +158,7 @@ export default {
   },
   mixins: [global, layout, loading, search],
   data: () => ({
+    modeAccessibility: false,
     denseAppBar: false
   }),
   watch: {
@@ -181,7 +182,18 @@ export default {
     this.initDrawer()
     // this.setColorPallete()
   },
+  mounted () {
+    this.$nextTick(() => {
+      this.initSkipToContent()
+    })
+  },
   methods: {
+    initSkipToContent () {
+      const btn = document.getElementsByClassName('vue-skip-to__link')[0]
+      btn.addEventListener('click', () => {
+        this.modeAccessibility = true
+      })
+    },
     initDrawer () {
       if (this.isMobile && !this.isReadPage) {
         this.appBar = true

@@ -1,6 +1,5 @@
 export const state = () => ({
   data: [],
-  rawData: [],
   detailData: [],
   loading: false,
   page: 1,
@@ -11,9 +10,6 @@ export const state = () => ({
 export const mutations = {
   SET_LOADING (state, data) {
     state.loading = data
-  },
-  SET_RAW_DATA (state, data) {
-    state.rawData = data
   },
   SET_DATA (state, data) {
     state.data = data
@@ -45,20 +41,20 @@ export const actions = {
     await this.$storyapi.get('cdn/tags/', {
       is_startpage: 0,
       sort_by: 'first_published_at:desc',
+      page: params.page || 1,
+      per_page: state.perPage,
       ...params
     })
       .then((res) => {
         const { data } = res
         if (data) {
           commit('SET_DATA', data.tags)
-        } else {
-          dispatch('reset')
         }
       }).catch(() => {
       })
     dispatch('setLoading', false)
   },
-  async getDetailData ({ commit, dispatch }, params = {}) {
+  async getDetailData ({ state, commit, dispatch }, params = {}) {
     dispatch('setLoading', true)
     await this.$storyapi.get('cdn/stories/', {
       with_tag: params.id,
@@ -72,17 +68,8 @@ export const actions = {
       .then((res) => {
         const { data, total } = res
         if (data) {
-          const final = {}
           const stories = res.data.stories
-          stories.map((el) => {
-            if (final[el.content.component] && final[el.content.component].length > 0) {
-              final[el.content.component].push({ ...el })
-            } else {
-              final[el.content.component] = [{ ...el }]
-            }
-          })
-          commit('SET_RAW_DATA', stories)
-          commit('SET_DETAIL_DATA', final)
+          commit('SET_DETAIL_DATA', stories)
           commit('SET_TOTAL', total)
           commit('SET_PAGE', params.page || 1)
         }

@@ -1,6 +1,12 @@
 <template>
   <div id="main">
-    <Background color="primary" :min-height="isSearchPage ? '100%' : '90vh'" height="100%" :background="background">
+    <Background
+      color="primary"
+      :min-height="isSearchPage ? '100%' : '90vh'"
+      height="100%"
+      :background="background"
+      :gradient="background_gradient"
+    >
       <v-layout fill-height row wrap align-center class="w-full ma-auto">
         <Container>
           <v-layout row wrap align-center justify-center>
@@ -121,14 +127,8 @@ export default {
     background () {
       return this.$store.getters.home.background || ''
     },
-    recommendVisible () {
-      return this.$store.getters.home.recommendVisible || false
-    },
-    recommendTitle () {
-      return this.$store.getters.home.recommendTitle || ''
-    },
-    recommendContent () {
-      return this.$store.getters.home.recommendContent || []
+    background_gradient () {
+      return this.$store.getters.home.background_gradient
     },
     swiper () {
       return this.$refs.mySwiper.$swiper

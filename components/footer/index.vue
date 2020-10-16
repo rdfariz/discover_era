@@ -26,7 +26,7 @@
                     lg4
                     class="pa-2"
                   >
-                    <p class="ma-0 font-weight-medium">
+                    <p tabindex="0" class="ma-0 font-weight-medium">
                       {{ m.title }}
                     </p>
                     <v-divider class="my-3" />

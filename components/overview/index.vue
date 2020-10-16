@@ -4,6 +4,7 @@
     :min-height="!isMobile && item.height ? item.height : '100%'"
     height="100%"
     :background="item.background_image"
+    :gradient="item.background_gradient"
   >
     <v-layout fill-height row wrap align-center class="w-full ma-auto py-6 py-sm-12 py-md-16">
       <Container>
@@ -33,18 +34,20 @@
                       xs12
                       md6
                       lg4
-                      class="pa-2 pa-md-4"
+                      class="pa-2 pa-md-4 mb-8 mb-md-0"
                     >
                       <v-card flat color="transparent">
-                        <v-card-title class="pa-0">
-                          <Truncate>
-                            {{ item_child.title || '' }}
-                          </Truncate>
-                        </v-card-title>
+                        <div tabindex="0">
+                          <v-card-title class="pa-0 font-weight-bold">
+                            <Truncate>
+                              {{ item_child.title || '' }}
+                            </Truncate>
+                          </v-card-title>
 
-                        <v-card-subtitle class="pa-0 pt-3">
-                          <p class="sm font-weight-bold">{{ item_child.intro || '' }}</p>
-                        </v-card-subtitle>
+                          <v-card-subtitle class="pa-0 pt-3">
+                            <p class="sm">{{ item_child.intro || '' }}</p>
+                          </v-card-subtitle>
+                        </div>
 
                         <v-card-text class="pa-0">
                           <v-img
@@ -52,7 +55,6 @@
                             :lazy-src="item_child.thumbnail"
                             :src="item_child.thumbnail"
                             :alt="item_child.title + item_child.intro"
-                            :contain="isMobile"
                             :height="item_child.thumbnail_height || 300"
                           >
                             <template v-slot:placeholder>
@@ -74,6 +76,8 @@
                             :href="item_child.link_external ? item_child.link : ''"
                             :target="item_child.link_external ? '_blank' : ''"
                             class="mt-2"
+                            color="secondary"
+                            width="100%"
                           >
                             <span class="black--text">
                               {{ item_child.link_text || '' }}
@@ -93,11 +97,9 @@
                   :target="item.link_external ? '_blank' : ''"
                   class="mt-2"
                 >
-                  <span class="black--text">
+                  <span>
                     {{ item.link_text || '' }}
                   </span>
-                  <v-spacer />
-                  <Icon class="black--text" icon="arrow-right" />
                 </Button>
               </v-flex>
             </Fragment>
@@ -107,47 +109,6 @@
     </v-layout>
   </Background>
 </template>
-
-<style lang="scss">
-.overview--text {
-  h5 {
-    font-size: 14px;
-    line-height: 20px;
-  }
-  h6 {
-    font-size: 13px;
-    line-height: 20px;
-  }
-}
-.overview--category {
-  font-weight: 700;
-}
-
-@media screen and (min-width: 960px) {
-  .overview--title {
-    font-weight: 700;
-    font-size: 80px;
-    line-height: 96.82px;
-  }
-  .overview--category {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 25.2px;
-  }
-  .overview--text {
-    h5 {
-      font-weight: 400;
-      font-size: 36px;
-      line-height: 50.4px;
-    }
-    h6 {
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 33.6px;
-    }
-  }
-}
-</style>
 
 <script>
 import global from '@/mixins/global'

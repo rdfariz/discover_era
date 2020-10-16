@@ -85,7 +85,7 @@
       <v-flex xs12 md3 class="pa-md-1">
         <v-layout wrap justify-center>
           <v-flex xs12 class="pb-4 px-1">
-            <v-card flat class="pa-2 pa-md-4">
+            <v-card flat class="pa-2">
               <v-container grid-list-xs fluid>
                 <v-skeleton-loader
                   v-if="!isLoaded"
@@ -93,11 +93,20 @@
                   width="50%"
                 />
                 <template v-else>
-                  <v-layout v-if="tagList && tagList.length > 0" align-center row wrap class="mb-6">
-                    <v-icon x-small class="mr-2">
-                      fa-tag
+                  <v-layout align-center row wrap>
+                    <v-icon small class="mr-2">
+                      mdi-account
                     </v-icon>
-                    <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
+                    <p class="sm ma-0 text-capitalize">
+                      {{ creator }}
+                    </p>
+                  </v-layout>
+                  <v-divider class="my-4" />
+                  <v-layout v-if="tagList && tagList.length > 0" align-center row wrap class="mb-2">
+                    <v-icon small class="mr-2">
+                      mdi-tag
+                    </v-icon>
+                    <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/category/${tag}`" class="text-capitalize">
                       <p class="sm ma-0">
                         <template v-if="index > 0">
                           ,
@@ -116,20 +125,22 @@
               </v-container>
             </v-card>
           </v-flex>
-          <template v-if="!isPages">
+          <template v-if="!isPages && relatedData.length > 0">
             <v-flex xs12 class="pb-2 px-1">
               <p class="sm ma-0">
-                Other article
+                Other Article
               </p>
             </v-flex>
-            <v-flex
-              v-for="(item, index) in blog"
-              :key="index"
-              xs12
-              class="pb-2 px-1"
-            >
-              <blog-card small flat :detail-data="false" :is-image-visible="false" :story="item" />
-            </v-flex>
+            <template v-for="(item, index) in relatedData">
+              <v-flex
+                v-if="item.content.title !== title && index <= 5"
+                :key="index"
+                xs12
+                class="pb-2 px-1"
+              >
+                <blog-card small flat :detail-data="false" :is-image-visible="false" :story="item" />
+              </v-flex>
+            </template>
           </template>
         </v-layout>
       </v-flex>
@@ -166,7 +177,7 @@ export default {
   data: () => ({
   }),
   computed: {
-    blog () {
+    relatedData () {
       return this.$store.getters.blog.data || []
     },
     breadcrumbs () {
@@ -197,6 +208,9 @@ export default {
     },
     keyword () {
       return this.content.keyword || ''
+    },
+    creator () {
+      return this.content.creator || 'Anonymous'
     },
     title () {
       return this.content.title || ''

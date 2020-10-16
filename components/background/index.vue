@@ -7,7 +7,7 @@
           :src="background"
           width="100%"
           :height="height"
-          :gradient="gradient"
+          :gradient="gradient || 'to top right, rgba(0,0,0,0.8), rgba(0,0,0,0.6)'"
         />
       </v-fade-transition>
     </v-sheet>
@@ -34,7 +34,7 @@ export default {
     },
     gradient: {
       type: String,
-      default: 'to top right, rgba(0,0,0,0.8), rgba(0,0,0,0.6)'
+      default: ''
     },
     height: {
       type: [String, Number],

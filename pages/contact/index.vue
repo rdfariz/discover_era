@@ -39,14 +39,15 @@
                     no-resize
                     rows="6"
                   />
-                  <v-btn
+                  <Button
+                    color="secondary"
                     depressed
                     :loading="loadingSubmit"
                     :disabled="loadingSubmit || name === '' || message === ''"
                     @click="submitMessage"
                   >
                     Send
-                  </v-btn>
+                  </Button>
                 </v-card-text>
               </form>
             </v-card>
@@ -77,22 +78,13 @@
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                  <v-list-item-title class="font-weight-medium">
-                    {{ item.title }}
-                  </v-list-item-title>
+                  <v-list-item-title class="font-weight-medium" v-html="item.title" />
                   <v-list-item-subtitle>{{ item.subtitle }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
-              <v-list-item v-if="maps" class="mt-4">
-                <v-card width="100%" height="300" color="transparent" flat>
-                  <iframe
-                    width="100%"
-                    height="300"
-                    frameborder="0"
-                    style="border:0"
-                    :src="content.maps || ''"
-                    allowfullscreen
-                  />
+              <v-list-item v-if="markdown" class="mt-4">
+                <v-card width="100%" color="transparent" flat>
+                  <div v-html="$md.render(markdown || '')" />
                 </v-card>
               </v-list-item>
             </v-list>
@@ -117,6 +109,7 @@
             <p>Thank you for using our service.</p>
             <v-btn
               text
+              tile
               @click="dialog = false"
             >
               Close
@@ -125,6 +118,7 @@
         </v-card>
       </v-dialog>
     </Background>
+    <Overview v-for="(item, index) in overviewContent" :key="index" :item="item" />
   </div>
 </template>
 
@@ -133,6 +127,8 @@ import global from '@/mixins/global'
 
 import Container from '@/components/container'
 import Lottie from '@/components/lottie'
+import Button from '@/components/button'
+import Overview from '@/components/overview'
 
 import thankyouLottie from '@/static/lottie/9879-smiley-emoji.json'
 
@@ -140,7 +136,9 @@ export default {
   scrollToTop: true,
   components: {
     Container,
-    Lottie
+    Lottie,
+    Button,
+    Overview
   },
   mixins: [global],
   async asyncData ({ isDev, route, store, env, params, query, req, res, redirect, error }) {
@@ -159,6 +157,9 @@ export default {
     },
     content () {
       return this.story.content || {}
+    },
+    overviewContent () {
+      return this.content.overviewContent || []
     },
     contactForm () {
       return this.content.contactForm || true
@@ -189,8 +190,8 @@ export default {
         return []
       }
     },
-    maps () {
-      return this.content.maps || ''
+    markdown () {
+      return this.content.markdown || ''
     }
   },
   methods: {

@@ -1,7 +1,7 @@
 <template>
   <v-card :flat="flat" :outlined="outlined && !flat">
-    <v-sheet v-if="isLoaded && isImageVisible" :height="isMobile ? '175' : '200'" :color="isDarkMode ? 'grey darken-3' : 'grey lighten-2'">
-      <v-img v-if="thumbnail" :lazy-src="thumbnail" :src="thumbnail" :max-height="isMobile ? '175' : '200'" :alt="title || ''">
+    <v-sheet v-if="isLoaded && isImageVisible" :height="isMobile ? '200' : '225'" :color="isDarkMode ? 'grey darken-3' : 'grey lighten-2'">
+      <v-img v-if="thumbnail" :lazy-src="thumbnail" :src="thumbnail" :max-height="isMobile ? '200' : '225'" :alt="title || ''">
         <template v-slot:placeholder>
           <v-row
             class="fill-height ma-0"
@@ -28,14 +28,14 @@
         </v-icon>
       </v-layout>
     </v-sheet>
-    <v-card-title primary-title :class="small ? 'pb-1' : 'pb-md-3'">
-      <v-skeleton-loader
-        v-if="!isLoaded"
-        type="card-heading"
-        width="100%"
-      />
-      <template v-else class="max-w-full">
-        <nuxt-link :to="`/${fullslug}`" :class="isDarkMode ? 'text--lighten-2' : ''">
+    <v-card tile flat :to="`/${fullslug}`">
+      <v-card-title primary-title :class="small ? 'pb-1' : 'pb-1'">
+        <v-skeleton-loader
+          v-if="!isLoaded"
+          type="card-heading"
+          width="100%"
+        />
+        <template v-else class="max-w-full">
           <Truncate>
             <template v-if="small">
               <p v-if="title" class="ma-0">
@@ -54,37 +54,37 @@
               </h6>
             </template>
           </Truncate>
-        </nuxt-link>
-      </template>
-    </v-card-title>
-    <v-card-text>
-      <v-skeleton-loader
-        v-if="!isLoaded"
-        type="list-item-two-line"
-      />
-      <template v-else>
-        <p v-if="small" class="sm ma-0">
-          <Truncate>
-            <template v-if="intro">
-              {{ intro }}
-            </template>
-            <template v-else>
-              -
-            </template>
-          </Truncate>
-        </p>
-        <p v-else class="ma-0">
-          <Truncate>
-            <template v-if="intro">
-              {{ intro }}
-            </template>
-            <template v-else>
-              -
-            </template>
-          </Truncate>
-        </p>
-      </template>
-    </v-card-text>
+        </template>
+      </v-card-title>
+      <v-card-text>
+        <v-skeleton-loader
+          v-if="!isLoaded"
+          type="list-item-two-line"
+        />
+        <template v-else>
+          <p v-if="small" class="sm ma-0">
+            <Truncate>
+              <template v-if="intro">
+                {{ intro }}
+              </template>
+              <template v-else>
+                -
+              </template>
+            </Truncate>
+          </p>
+          <p v-else class="ma-0">
+            <Truncate>
+              <template v-if="intro">
+                {{ intro }}
+              </template>
+              <template v-else>
+                -
+              </template>
+            </Truncate>
+          </p>
+        </template>
+      </v-card-text>
+    </v-card>
     <template v-if="detailData">
       <v-divider />
       <v-card-actions>
@@ -96,31 +96,63 @@
           />
           <template v-else>
             <v-layout align-center row wrap>
-              <template v-if="tagList && tagList.length > 0">
-                <v-icon x-small class="mr-2">
-                  fa-tag
-                </v-icon>
-                <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/tag/${tag}`" class="text-capitalize">
-                  <p class="sm ma-0">
-                    <template v-if="index > 0">
-                      ,
+              <template>
+                <v-flex xs12>
+                  <v-layout row wrap align-center>
+                    <v-avatar
+                      size="25"
+                      class="mr-2"
+                    >
+                      <v-icon small color="primary">
+                        mdi-account
+                      </v-icon>
+                    </v-avatar>
+                    <p class="sm ma-0 text-capitalize">
+                      {{ creator }}
+                    </p>
+                  </v-layout>
+                  <v-layout row wrap align-center>
+                    <v-avatar
+                      size="25"
+                      class="mr-2"
+                    >
+                      <v-icon small color="primary">
+                        mdi-tag
+                      </v-icon>
+                    </v-avatar>
+                    <template v-if="tagList && tagList.length > 0">
+                      <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/category/${tag}`" class="text-capitalize">
+                        <p class="sm ma-0">
+                          <template v-if="index > 0">
+                            ,
+                          </template>
+                          {{ tag }}
+                        </p>
+                      </nuxt-link>
                     </template>
-                    {{ tag }}
-                  </p>
-                </nuxt-link>
+                    <p v-else class="sm ma-0 text--disabled">
+                      Tidak ada tag
+                    </p>
+                  </v-layout>
+                </v-flex>
               </template>
-              <p v-else class="sm ma-0 text--disabled">
-                Tidak ada tag
-              </p>
             </v-layout>
             <v-layout class="mt-1" align-center row wrap>
+              <v-avatar
+                size="25"
+                class="mr-2"
+              >
+                <v-icon small color="primary">
+                  mdi-calendar-clock
+                </v-icon>
+              </v-avatar>
               <p class="sm ma-0">
                 {{ publishedAt ? toDate(publishedAt) : '-' }}
               </p>
               <v-spacer />
-              <v-btn tabindex="-1" text icon :to="`/${fullslug}`">
+              <!-- <v-btn tabindex="-1" text icon :to="`/${fullslug}`">
                 <Icon icon="arrow-right" />
-              </v-btn>
+              </v-btn> -->
             </v-layout>
           </template>
         </v-container>
@@ -135,12 +167,10 @@ import loading from '@/mixins/loading'
 import utils from '@/mixins/utils'
 
 import Truncate from '@/components/text/truncate'
-import Icon from '@/components/icon'
 
 export default {
   components: {
-    Truncate,
-    Icon
+    Truncate
   },
   mixins: [global, loading, utils],
   props: {
@@ -175,6 +205,9 @@ export default {
     },
     component () {
       return this.content.component || ''
+    },
+    creator () {
+      return this.content.creator || 'Anonymous'
     },
     title () {
       return this.content.title || ''

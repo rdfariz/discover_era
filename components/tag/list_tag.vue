@@ -1,15 +1,20 @@
 <template>
   <v-layout v-if="story.length > 0" row wrap>
+    <!-- <v-flex xs12>
+      <p class="mb-0 text--secondary text-capitalize text-center text-md-left">
+        Category
+      </p>
+    </v-flex> -->
     <v-flex
-      v-for="(blog, index) in story"
+      v-for="(tag, index) in story"
       :key="index"
       xs12
       sm6
-      md6
-      lg4
-      class="pa-2 pa-sm-1 pa-md-3 pa-lg-4 ma-auto ma-sm-0"
+      md4
+      lg3
+      class="pa-2"
     >
-      <blog-card flat is-image-visible :story="blog" />
+      <card-tag :data="tag" />
     </v-flex>
     <v-flex xs12>
       <v-pagination
@@ -23,17 +28,18 @@
   </v-layout>
 </template>
 <script>
-import blog from '@/mixins/blog'
+import category from '@/mixins/category'
 
-import blogCard from '@/components/blog/'
+import cardTag from '@/components/tag/'
+
 export default {
   components: {
-    blogCard
+    cardTag
   },
-  mixins: [blog],
+  mixins: [category],
   methods: {
     changePage (page) {
-      this.$store.dispatch('blog/getData', { page })
+      this.$store.dispatch('tag/getData', { page })
     }
   }
 }

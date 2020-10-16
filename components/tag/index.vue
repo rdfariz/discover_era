@@ -1,9 +1,9 @@
 <template>
-  <v-card :to="`/tag/${name}`" outlined>
+  <v-card :to="`/category/${name}`" outlined>
     <v-list-item three-line>
       <v-list-item-content>
         <v-list-item-title class="headline mb-1">
-          #{{ name }}
+          <h6>{{ name }}</h6>
         </v-list-item-title>
         <v-list-item-subtitle>{{ taggings_count }} artikel</v-list-item-subtitle>
       </v-list-item-content>
