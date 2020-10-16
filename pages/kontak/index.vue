@@ -211,7 +211,7 @@ export default {
   },
   head () {
     return {
-      title: `Contact - ${this._brand.name}`
+      title: `Kontak - ${this._brand.name}`
     }
   }
 }

@@ -121,7 +121,7 @@
                       </v-icon>
                     </v-avatar>
                     <template v-if="tagList && tagList.length > 0">
-                      <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/topics/${tag}`" class="text-capitalize">
+                      <nuxt-link v-for="(tag, index) in tagList" :key="index" :to="`/topik/${tag}`" class="text-capitalize">
                         <p class="sm ma-0">
                           <template v-if="index > 0">
                             ,

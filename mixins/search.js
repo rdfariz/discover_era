@@ -18,13 +18,13 @@ export default {
       return this.$route.params
     },
     isShowSearchDrawer () {
-      if (this.routeName !== 'index' && this.routeName !== 'index-search' && this.routeName !== 'index-search-keyword') {
+      if (this.routeName !== 'index' && this.routeName !== 'index-cari' && this.routeName !== 'index-cari-keyword') {
         return true
       }
       return false
     },
     isSearchPage () {
-      if (this.routeName === 'index-search-keyword' || this.routeName === 'index-search') {
+      if (this.routeName === 'index-cari-keyword' || this.routeName === 'index-cari') {
         return true
       }
       return false
@@ -36,7 +36,7 @@ export default {
   methods: {
     onSubmitSearch () {
       if (this.search !== '' && this.search !== null) {
-        this.$router.push(`/search/${this.search}`)
+        this.$router.push(`/cari/${this.search}`)
       } else {
         this.$router.push('/')
       }

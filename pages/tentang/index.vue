@@ -32,7 +32,7 @@ export default {
   },
   head () {
     return {
-      title: `About - ${this._brand.name || ''}`
+      title: `Tentang - ${this._brand.name || ''}`
     }
   }
 }

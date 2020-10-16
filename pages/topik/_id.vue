@@ -13,7 +13,7 @@
                 <v-flex xs12>
                   <div tabindex="0">
                     <p class="mb-0">
-                      Topic
+                      Topik
                     </p>
                     <h1 class="my-1 overview--title">
                       {{ $route.params.id }}

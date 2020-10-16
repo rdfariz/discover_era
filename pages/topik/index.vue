@@ -37,7 +37,7 @@ export default {
   },
   head () {
     return {
-      title: `Topics - ${this._brand.name}`
+      title: `Topik - ${this._brand.name}`
     }
   }
 }

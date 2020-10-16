@@ -75,7 +75,7 @@ export const actions = {
     await dispatch('contact/getData')
     await dispatch('topics/getData')
 
-    if (route.name === 'index-search-keyword') {
+    if (route.name === 'index-cari-keyword') {
       await dispatch('search/setKeyword', params.keyword || '')
     }
   },

@@ -52,7 +52,7 @@ export default {
     },
     isReadPage () {
       const route = this.$route.name
-      if (route === 'blog-slug' || route === 'info-slug-index' || route === 'pages-slug') {
+      if (route === 'artikel-slug' || route === 'halaman-slug') {
         return true
       }
       return false
