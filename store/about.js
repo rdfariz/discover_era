@@ -18,7 +18,7 @@ export const actions = {
   },
   async getData ({ commit, dispatch }, params = null) {
     dispatch('setLoading', true)
-    await this.$storyapi.get('cdn/stories/about', {
+    await this.$storyapi.get('cdn/stories/tentang', {
       is_startpage: 1,
       cv: Math.floor(Date.now() / 1e3),
       ...params
