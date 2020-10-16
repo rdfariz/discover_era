@@ -44,7 +44,7 @@ export const actions = {
     dispatch('setLoading', true)
     await this.$storyapi.get('cdn/stories', {
       is_startpage: 0,
-      starts_with: 'blog/',
+      starts_with: 'artikel/',
       sort_by: 'first_published_at:desc',
       page: params.page || 1,
       per_page: state.perPage,
@@ -67,8 +67,8 @@ export const actions = {
   async getDetailData ({ commit, dispatch }, params = {}) {
     const { slug } = params
     dispatch('setLoading', true)
-    await this.$storyapi.get(`cdn/stories/blog/${slug || ''}`, {
-      starts_with: 'blog/',
+    await this.$storyapi.get(`cdn/stories/artikel/${slug || ''}`, {
+      starts_with: 'artikel/',
       is_startpage: 0,
       cv: Math.floor(Date.now() / 1e3)
     })

@@ -21,7 +21,7 @@ export const actions = {
   },
   async getData ({ state, commit, dispatch }, params = {}) {
     dispatch('setLoading', true)
-    await this.$storyapi.get('cdn/stories/contact', {
+    await this.$storyapi.get('cdn/stories/kontak', {
       is_startpage: 1,
       cv: Math.floor(Date.now() / 1e3),
       ...params
