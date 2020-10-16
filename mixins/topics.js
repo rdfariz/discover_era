@@ -21,7 +21,7 @@ export default {
       return this.$store.getters.topics.page || 1
     },
     perPage () {
-      return this.$store.getters.topics.perPage || 9
+      return this.$store.getters.topics.perPage || 6
     },
     total () {
       return this.$store.getters.topics.total || 0

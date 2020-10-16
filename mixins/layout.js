@@ -6,6 +6,9 @@ export default {
     content () {
       return this.story.content || {}
     },
+    search_placeholder () {
+      return this.$store.getters.home.search_placeholder || ''
+    },
     menu () {
       if (this.content.menu) {
         return this.content.menu.map((el) => {

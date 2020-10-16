@@ -73,7 +73,7 @@
                 <v-list-item-content>
                   <v-text-field
                     v-model="search"
-                    placeholder="Find People"
+                    :placeholder="search_placeholder"
                     outlined
                     dense
                     :disabled="isSearchLoading"
