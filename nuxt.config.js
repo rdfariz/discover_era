@@ -136,7 +136,8 @@ export default {
       {
         accessToken: process.env.NODE_ENV === 'production'
           ? 'UxTOoeRsp6D0HYFmcqkdZAtt'
-          : 'zdU9mrZK3l2eKGVuMfDGWgtt'
+          : 'zdU9mrZK3l2eKGVuMfDGWgtt',
+        cacheProvider: 'memory'
       }
     ]
   ],

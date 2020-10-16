@@ -44,6 +44,7 @@ export const actions = {
       sort_by: 'first_published_at:desc',
       page: params.page || 1,
       per_page: state.perPage,
+      cv: Math.floor(Date.now() / 1e3),
       ...params
     })
       .then((res) => {
@@ -64,7 +65,8 @@ export const actions = {
     dispatch('setLoading', true)
     await this.$storyapi.get(`cdn/stories/pages/${slug || ''}`, {
       is_startpage: 0,
-      starts_with: 'pages/'
+      starts_with: 'pages/',
+      cv: Math.floor(Date.now() / 1e3)
     })
       .then((res) => {
         const data = res.data.story

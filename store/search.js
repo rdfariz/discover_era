@@ -56,6 +56,7 @@ export const actions = {
       'filter_query[component][in]': 'blog,page',
       page: params.page || 1,
       per_page: state.perPage,
+      cv: Math.floor(Date.now() / 1e3),
       ...params
     })
       .then((res) => {

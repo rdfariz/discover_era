@@ -21,9 +21,6 @@ export default {
         return this.$store.dispatch('setDrawer', val)
       }
     },
-    pallete () {
-      return this.$store.getters.pallete || {}
-    },
     isDarkMode: {
       get () {
         return this.$vuetify.theme.dark
@@ -76,12 +73,6 @@ export default {
         localStorage.setItem('_discover_rtl', !this.$vuetify.rtl)
       }
       this.$vuetify.rtl = !this.$vuetify.rtl
-    },
-    setColorPallete () {
-      if (typeof Storage !== 'undefined' && process.browser) {
-        localStorage.setItem('_discover_pallete', JSON.stringify(this.pallete || {}))
-        // window.location.reload()
-      }
     },
     richtext (content) {
       return this.$storyapi.richTextResolver.render(content)

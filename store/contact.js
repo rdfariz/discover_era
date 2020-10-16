@@ -23,6 +23,7 @@ export const actions = {
     dispatch('setLoading', true)
     await this.$storyapi.get('cdn/stories/contact', {
       is_startpage: 1,
+      cv: Math.floor(Date.now() / 1e3),
       ...params
     })
       .then((res) => {

@@ -43,6 +43,7 @@ export const actions = {
       sort_by: 'first_published_at:desc',
       page: params.page || 1,
       per_page: state.perPage,
+      cv: Math.floor(Date.now() / 1e3),
       ...params
     })
       .then((res) => {
@@ -63,6 +64,7 @@ export const actions = {
       'filter_query[component][not_in]': 'home,layout',
       page: params.page || 1,
       per_page: state.perPage,
+      cv: Math.floor(Date.now() / 1e3),
       ...params
     })
       .then((res) => {

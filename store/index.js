@@ -1,9 +1,6 @@
-import { defaultColors } from '@/config/vuetify.options'
-
 export const state = () => ({
   loading: false,
   layout: {},
-  pallete: {},
   drawer: null,
   appBar: false
 })
@@ -17,9 +14,6 @@ export const getters = {
   },
   layout: (state) => {
     return state.layout
-  },
-  pallete: (state) => {
-    return state.pallete
   },
   home: (state) => {
     return { ...state.home }
@@ -54,9 +48,6 @@ export const mutations = {
   SET_APPBAR (state, data) {
     state.appBar = data
   },
-  SET_PALLETE (state, data) {
-    state.pallete = data
-  },
   SET_LAYOUT (state, data) {
     state.layout = data
   },
@@ -68,13 +59,12 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit ({ commit, dispatch }, { params, route }) {
     await this.$storyapi.get('cdn/stories/layout', {
-      is_startpage: 1
+      is_startpage: 1,
+      cv: Math.floor(Date.now() / 1e3)
     })
       .then((res) => {
         const story = res.data.story
         commit('SET_LAYOUT', story)
-        // const content = story.content || {}
-        // dispatch('setPallete', content)
       })
       .catch(() => {
       })
@@ -94,18 +84,6 @@ export const actions = {
   },
   setAppBar ({ commit }, payload) {
     commit('SET_APPBAR', payload)
-  },
-  setPallete ({ commit }, payload) {
-    const pallete = {
-      primary: payload.primary.color || defaultColors.primary,
-      primarylight: payload.primarylight.color || defaultColors.primarylight,
-      primarydark: payload.primarydark.color || defaultColors.primary,
-      secondary: payload.secondary.color || defaultColors.secondary,
-      secondarylight: payload.secondarylight.color || defaultColors.secondarylight,
-      secondarydark: payload.secondarydark.color || defaultColors.secondarydark,
-      anchor: payload.anchor.color || defaultColors.anchor
-    }
-    commit('SET_PALLETE', pallete)
   },
   setLoading ({ commit }, payload) {
     commit('SET_LOADING', payload)
