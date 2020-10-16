@@ -1,17 +1,8 @@
 <template>
-  <Container spacing-top>
+  <Container>
+    <NotFound :text="error.statusCode === 404 ? pageNotFound : otherError" />
     <v-layout row wrap justify-center align-center>
       <v-flex xs12 class="text-center pa-2">
-        <v-alert type="error" class="mt-4" :icon="false">
-          <p class="ma-0">
-            <template v-if="error.statusCode === 404">
-              {{ pageNotFound }}
-            </template>
-            <template v-else>
-              {{ otherError }}
-            </template>
-          </p>
-        </v-alert>
         <p>
           Back to
           <nuxt-link to="/">
@@ -27,10 +18,12 @@
 import global from '@/mixins/global'
 
 import Container from '@/components/container'
+import NotFound from '@/components/notfound'
 
 export default {
   components: {
-    Container
+    Container,
+    NotFound
   },
   mixins: [global],
   props: {

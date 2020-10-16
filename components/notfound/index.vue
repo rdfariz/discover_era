@@ -3,9 +3,19 @@
     <v-flex xs12 class="text-center pa-2">
       <v-alert type="error" class="mt-4" :icon="false">
         <p class="ma-0">
-          Sorry the article you were looking for was not found
+          {{ text }}
         </p>
       </v-alert>
     </v-flex>
   </v-layout>
 </template>
+<script>
+export default {
+  props: {
+    text: {
+      type: String,
+      default: 'Sorry the article you were looking for was not found'
+    }
+  }
+}
+</script>

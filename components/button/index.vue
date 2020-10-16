@@ -44,7 +44,7 @@ export default {
     },
     depressed: {
       type: Boolean,
-      default: false
+      default: true
     },
     to: {
       type: String,

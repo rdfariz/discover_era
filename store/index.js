@@ -30,8 +30,8 @@ export const getters = {
   blog: (state) => {
     return { ...state.blog }
   },
-  tag: (state) => {
-    return { ...state.tag }
+  topics: (state) => {
+    return { ...state.topics }
   },
   contact: (state) => {
     return { ...state.contact }
@@ -73,7 +73,7 @@ export const actions = {
     await dispatch('blog/getData')
     await dispatch('about/getData')
     await dispatch('contact/getData')
-    await dispatch('tag/getData')
+    await dispatch('topics/getData')
 
     if (route.name === 'index-search-keyword') {
       await dispatch('search/setKeyword', params.keyword || '')

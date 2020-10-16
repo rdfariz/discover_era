@@ -1,5 +1,5 @@
 <template>
-  <v-layout v-if="story.length > 0" row wrap>
+  <v-layout v-if="story && story.length > 0" row wrap>
     <v-flex
       v-for="(blog, index) in story"
       :key="index"

@@ -1,5 +1,5 @@
 <template>
-  <v-layout v-if="story.length > 0" row wrap>
+  <v-layout v-if="story && story.length > 0" row wrap>
     <v-flex
       v-for="(tag, index) in story"
       :key="index"
@@ -24,9 +24,9 @@
   <NotFound v-else />
 </template>
 <script>
-import category from '@/mixins/category'
+import topics from '@/mixins/topics'
 
-import cardTag from '@/components/tag/'
+import cardTag from '@/components/topics/'
 import NotFound from '@/components/notfound'
 
 export default {
@@ -34,10 +34,10 @@ export default {
     cardTag,
     NotFound
   },
-  mixins: [category],
+  mixins: [topics],
   methods: {
     changePage (page) {
-      this.$store.dispatch('tag/getData', { page })
+      this.$store.dispatch('topics/getData', { page })
     }
   }
 }

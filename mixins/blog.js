@@ -21,7 +21,7 @@ export default {
       return this.$store.getters.blog.page || 1
     },
     perPage () {
-      return this.$store.getters.blog.perPage || 25
+      return this.$store.getters.blog.perPage || 12
     },
     total () {
       return this.$store.getters.blog.total || 0
