@@ -21,14 +21,18 @@
       />
     </v-flex>
   </v-layout>
+  <NotFound v-else />
 </template>
 <script>
 import blog from '@/mixins/blog'
 
 import blogCard from '@/components/blog/'
+import NotFound from '@/components/notfound'
+
 export default {
   components: {
-    blogCard
+    blogCard,
+    NotFound
   },
   mixins: [blog],
   methods: {

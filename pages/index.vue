@@ -107,20 +107,6 @@ export default {
     },
     background_gradient () {
       return this.$store.getters.home.background_gradient
-    },
-    swiper () {
-      return this.$refs.mySwiper.$swiper
-    }
-  },
-  mounted () {
-    this.reInitSwiper()
-  },
-  methods: {
-    reInitSwiper () {
-      const swiper = this.$refs.mySwiper
-      if (swiper) {
-        swiper.initSwiper()
-      }
     }
   },
   head () {
