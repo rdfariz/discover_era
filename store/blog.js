@@ -4,7 +4,7 @@ export const state = () => ({
   relatedData: [],
   loading: false,
   page: 1,
-  perPage: 12,
+  perPage: 9,
   total: 0
 })
 
