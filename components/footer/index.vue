@@ -10,19 +10,19 @@
         <v-layout row wrap align-center justify-center>
           <v-flex xs12>
             <Fragment :dark="item.dark" background="transparent" height="100%">
-              <v-flex xs10 md3 class="mb-14">
+              <v-flex xs12 lg3 class="mb-6 mb-md-14">
                 <v-img :contain="item.logoContain" width="200" :height="item.logoHeight" :src="isDarkMode || item.dark ? item.logoDark : item.logo" />
                 <p class="sm my-2">
                   {{ item.intro }}
                 </p>
               </v-flex>
-              <v-flex xs12 md9 class="pl-md-3 pl-lg-4">
+              <v-flex xs12 lg9 class="pl-md-3 pl-lg-4">
                 <v-layout row wrap>
                   <v-flex
                     v-for="(m, i) in menu"
                     :key="i"
                     xs12
-                    md6
+                    md4
                     lg4
                     class="pa-2"
                   >
