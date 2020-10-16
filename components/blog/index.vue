@@ -36,26 +36,31 @@
       </v-layout>
     </v-sheet>
     <v-card tile flat :to="`/${fullslug}`">
-      <v-card-title primary-title :class="small ? 'pb-1' : 'pb-1'">
-        <v-skeleton-loader
-          v-if="!isLoaded"
-          type="card-heading"
-          width="100%"
-        />
-        <template v-else>
-          <p v-if="small" class="ma-0 max-w-full">
-            <Truncate>
-              {{ title || '-' }}
-            </Truncate>
-          </p>
-          <h6 v-else class="ma-0 max-w-full">
-            <Truncate>
-              {{ title || '-' }}
-            </Truncate>
-          </h6>
+      <v-tooltip top>
+        <template v-slot:activator="{ on, attrs }">
+          <v-card-title primary-title :class="small ? 'pb-0' : 'pb-0'" v-bind="attrs" v-on="on">
+            <v-skeleton-loader
+              v-if="!isLoaded"
+              type="card-heading"
+              width="100%"
+            />
+            <template v-else>
+              <p v-if="small" class="ma-0 max-w-full">
+                <Truncate>
+                  {{ title || '-' }}
+                </Truncate>
+              </p>
+              <h6 v-else class="ma-0 max-w-full">
+                <Truncate>
+                  {{ title || '-' }}
+                </Truncate>
+              </h6>
+            </template>
+          </v-card-title>
         </template>
-      </v-card-title>
-      <v-card-text>
+        <span>{{ title || '-' }}</span>
+      </v-tooltip>
+      <v-card-text :class="small ? 'pt-1' : 'pt-1'">
         <v-skeleton-loader
           v-if="!isLoaded"
           type="list-item-two-line"
