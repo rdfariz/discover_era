@@ -117,7 +117,7 @@
                   </v-layout>
                   <v-layout v-if="publishedAt" align-center row wrap>
                     <p class="sm ma-0">
-                      Terakhir diupdate<br><span class="font-weight-medium">{{ toDate(publishedAt) }}</span>
+                      Last updated<br><span class="font-weight-medium">{{ toDate(publishedAt) }}</span>
                     </p>
                     <v-spacer />
                   </v-layout>
