@@ -32,6 +32,7 @@ export default {
   head () {
     const title = this.seo.title || this.title
     const text = this.seo.description || this.intro
+    const description = text.replace(/(\r\n|\n|\r)/gm, '')
     const keyword = this.keyword
     return {
       title: title ? `${title} - ${this._brand.name}` : this._brand.name,
@@ -39,7 +40,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: text || ''
+          content: description || ''
         },
         { name: 'keywords', content: keyword || '' }
       ]

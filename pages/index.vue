@@ -93,6 +93,12 @@ export default {
     logo () {
       return this.$store.getters.home.logo || ''
     },
+    seo () {
+      return this.$store.getters.home.seo || {}
+    },
+    keyword () {
+      return this.$store.getters.home.keyword || ''
+    },
     title () {
       return this.$store.getters.home.title || ''
     },
@@ -113,8 +119,20 @@ export default {
     }
   },
   head () {
+    const title = this.seo.title || `Beranda - ${this._brand.name || ''}`
+    const text = this.seo.description || this.intro
+    const description = text.replace(/(\r\n|\n|\r)/gm, '')
+    const keyword = this.keyword
     return {
-      title: `Beranda - ${this._brand.name || ''}`
+      title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: description || ''
+        },
+        { name: 'keywords', content: keyword || '' }
+      ]
     }
   }
 }

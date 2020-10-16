@@ -5,7 +5,7 @@
         <v-list-item-title class="headline mb-1">
           <h6>{{ name }}</h6>
         </v-list-item-title>
-        <v-list-item-subtitle>{{ taggings_count }} artikel</v-list-item-subtitle>
+        <v-list-item-subtitle>{{ taggings_count }} Artikel</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
   </v-card>
