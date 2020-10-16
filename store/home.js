@@ -4,6 +4,7 @@ export const state = () => ({
   title: '',
   intro: '',
   background: '',
+  background_gradient: '',
   overviewContent: [],
   loading: false
 })
@@ -26,6 +27,9 @@ export const mutations = {
   },
   SET_BACKGROUND (state, data = '') {
     state.background = data
+  },
+  SET_BACKGROUND_GRADIENT (state, data = '') {
+    state.background_gradient = data
   },
   SET_OVERVIEW_CONTENT (state, data = []) {
     state.overviewContent = data
@@ -55,6 +59,7 @@ export const actions = {
           commit('SET_PREINTRO', data.preIntro)
           commit('SET_INTRO', data.intro)
           commit('SET_BACKGROUND', data.background)
+          commit('SET_BACKGROUND_GRADIENT', data.background_gradient)
           commit('SET_OVERVIEW_CONTENT', data.overviewContent)
         }
       }).catch(() => {
