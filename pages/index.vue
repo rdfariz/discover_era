@@ -89,28 +89,6 @@ export default {
     Background
   },
   mixins: [global, search],
-  data: () => ({
-    swiperOptions: {
-      speed: 1000,
-      spaceBetween: 0,
-      slidesPerView: 1,
-      loop: false,
-      pagination: {
-        el: '.swiper-pagination'
-      },
-      breakpoints: {
-        480: {
-          slidesPerView: 1
-        },
-        640: {
-          slidesPerView: 2
-        },
-        1200: {
-          slidesPerView: 4
-        }
-      }
-    }
-  }),
   computed: {
     logo () {
       return this.$store.getters.home.logo || ''

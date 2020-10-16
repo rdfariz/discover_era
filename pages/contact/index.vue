@@ -91,6 +91,7 @@
           </v-flex>
         </v-layout>
       </Container>
+
       <v-dialog
         v-model="dialog"
         width="300"

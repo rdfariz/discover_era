@@ -1,10 +1,5 @@
 <template>
   <v-layout v-if="story.length > 0" row wrap>
-    <!-- <v-flex xs12>
-      <p class="mb-0 text--secondary text-capitalize text-center text-md-left">
-        Category
-      </p>
-    </v-flex> -->
     <v-flex
       v-for="(tag, index) in story"
       :key="index"

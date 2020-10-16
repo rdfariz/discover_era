@@ -21,18 +21,7 @@ export const defaultColorsDark = {
   anchor: '#FCDE3E'
 }
 
-// let colors = { ...defaultColors }
-
-if (typeof Storage !== 'undefined') { // eslint-disable-line
-  // ColorPallete Configuration
-  // try {
-  //   const _pallete = localStorage.getItem('_fullmoon_pallete') || {}
-  //   const palletejson = JSON.parse(_pallete)
-  //   Object.assign(colors, palletejson)
-  // } catch (err) {
-  //   colors = { ...defaultColors }
-  // }
-
+if (typeof Storage !== 'undefined') {
   // DarkMode & RTL
   darkMode = localStorage.getItem('_discover_darkmode') || false
   rtl = localStorage.getItem('_discover_rtl') || false
@@ -71,6 +60,6 @@ export default {
     scrollBarWidth: 24
   },
   icons: {
-    iconfont: 'fa' // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+    iconfont: 'fa'
   }
 }

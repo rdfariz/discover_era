@@ -3,41 +3,37 @@
 @import './mixins';
 @import './functions';
 
-// .container {
-//   width: 100%;
-//   padding: 12px;
-//   margin-right: auto;
-//   margin-left: auto;
-// }
-// @media (min-width: 960px) {
-//   .container {
-//     max-width: 900px;
-//   }
-// }
-// @media (min-width: 1264px) {
-//   .container {
-//     max-width: 1185px;
-//   }
-// }
-@media (min-width: 1904px) {
+// Vuetify class overide
+.container {
+  width: 100%;
+  padding: 12px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: $md) {
+  .container {
+    max-width: 900px;
+  }
+}
+@media (min-width: $lg) {
+  .container {
+    max-width: 1185px;
+  }
+}
+@media (min-width: $xl) {
   .container {
     max-width: 1440px !important;
   }
 }
 
-// Vuetify class overide
 .v-app-bar {
-  // transition: $transition-bg-theme !important;
-  // border-radius: 0 0 $rounded-lg 0 !important;
   @include shadow-lg;
 }
 
 .v-navigation-drawer {
-  // border-radius: 0 0 $rounded-lg 0;
   @include shadow-lg;
   &.read--mode:not(.v-navigation-drawer--is-mobile) {
     opacity: 0.4;
-    // transition: $transition-unit;
     &:hover {
       opacity: 1;
     }
@@ -59,6 +55,10 @@
   }
 }
 
+.v-text-field--outlined, .v-text-field--solo {
+  border-radius: 0 !important;
+}
+
 .hide-detail {
   .v-text-field__details {
     display: none !important;
@@ -74,6 +74,7 @@
   }
 }
 
+// Fonts
 h1 {
   font-weight: 600;
   font-size: 4rem; // 64px
@@ -126,12 +127,6 @@ p {
   &.sm {
     font-size: 13px;
   }
-  // font-size: 22px;
-  // line-height: 28px;
-  // font-weight: 300;
-}
-span {
-  // font-size: 13px;
 }
 label {
   font-size: 13px !important;
@@ -140,7 +135,7 @@ input {
   font-size: 13px !important;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: $md) {
   h1 {
     font-size: 3rem; // 48px
   }
@@ -148,7 +143,7 @@ input {
     font-size: 2.5rem; // 40px
   }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $sm) {
   h1 {
     font-size: 2.5rem; // 48px
   }
@@ -170,11 +165,4 @@ input {
   a {
     font-size: 13px;
   }
-  span {
-    // font-size: 12px;
-  }
-}
-
-.v-text-field--outlined, .v-text-field--solo {
-  border-radius: 0 !important;
 }

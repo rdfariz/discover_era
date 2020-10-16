@@ -140,6 +140,7 @@ export default {
       }
     ]
   ],
+  // Converter MarkDown
   markdownit: {
     preset: 'default',
     linkify: true,
@@ -152,7 +153,6 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    // baseURL: process.env.NODE_ENV === 'production' ? 'https://fullmoon.now.sh' : 'http://localhost:3000'
   },
   /*
   ** vuetify module configuration

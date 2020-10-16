@@ -5,10 +5,7 @@
       v-model="appBar"
       app
       dark
-      :fixed="content.appbar_position === 'fixed'"
-      :absolute="content.appbar_position === 'absolute'"
-      :dense="content.appbar_type === 'dense'"
-      :src="content.appbar_background || ''"
+      fixed
       :height="isMobile ? '' : '100%'"
       color="primary"
       class="noprint"
@@ -111,16 +108,6 @@
           </v-container>
         </v-layout>
       </template>
-      <!-- <template v-slot:append>
-        <v-divider />
-        <v-flex xs12 class="my-3 my-md-6 text-center">
-          <v-layout row wrap justify-center>
-            <v-flex xs10>
-              <ButtonSettings />
-            </v-flex>
-          </v-layout>
-        </v-flex>
-      </template> -->
     </v-navigation-drawer>
     <v-main>
       <v-overlay :value="!isLoaded" color="white" opacity="1">
@@ -147,30 +134,18 @@ import layout from '@/mixins/layout'
 import Container from '@/components/container'
 import ListMenu from '@/components/list_menu'
 import Footer from '@/components/footer'
-// import ButtonSettings from '@/components/button_settings'
 
 export default {
   components: {
     Container,
     ListMenu,
     Footer
-    // ButtonSettings
   },
   mixins: [global, layout, loading, search],
   data: () => ({
-    modeAccessibility: false,
-    denseAppBar: false
+    modeAccessibility: false
   }),
   watch: {
-    isHomePage () {
-      if (this.isHomePage === true) {
-        this.denseAppBar = false
-      } else {
-        setTimeout(() => {
-          this.denseAppBar = true
-        }, 1000)
-      }
-    },
     $route () {
       this.initDrawer()
     },
@@ -180,7 +155,6 @@ export default {
   },
   created () {
     this.initDrawer()
-    // this.setColorPallete()
   },
   mounted () {
     this.$nextTick(() => {

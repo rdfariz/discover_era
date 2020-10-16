@@ -13,11 +13,6 @@
     </template>
     <template v-else>
       <v-layout row wrap class="mb-4 mb-md-6 mt-4">
-        <!-- <v-flex xs12>
-          <p class="mb-0 text--secondary text-capitalize text-center text-md-left">
-            Article
-          </p>
-        </v-flex> -->
         <v-flex
           v-for="(item, index) in rawData"
           :key="index"
@@ -40,13 +35,13 @@
     </template>
   </Container>
 </template>
+
 <script>
 import global from '@/mixins/global'
 
 import blogCard from '@/components/blog'
 import Container from '@/components/container'
 
-import noData from '@/static/images/undraw/no_data.svg'
 export default {
   scrollToTop: true,
   components: {
@@ -58,9 +53,6 @@ export default {
     store.dispatch('search/setKeyword', params.keyword)
     await store.dispatch('search/getData', { keyword: params.keyword })
   },
-  data: () => ({
-    noData
-  }),
   computed: {
     params () {
       return this.$route.params || {}
