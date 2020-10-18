@@ -23,6 +23,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Discover - Creating Innovation and Competence in the new normal era' },
       { name: 'keywords', content: 'Discover, olivia, webdesign, Discover olivia, olivia 2020' },
+      { name: 'google-site-verification', content: '3twLdFlFgYZuKwKzBbBySGEz9oQxi9jY2RvxddOYCDM' },
       // PWA primary color
       { name: 'theme-color', content: '#5352ed' }
     ],
