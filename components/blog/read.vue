@@ -62,7 +62,7 @@
           </v-toolbar>
           <v-divider class="my-2" />
           <div id="contentPrint">
-            <v-card-title primary-title>
+            <v-card-title primary-title tabindex="0">
               <v-skeleton-loader
                 v-if="!isLoaded"
                 type="card-heading"
@@ -72,7 +72,7 @@
                 {{ title }}
               </h2>
             </v-card-title>
-            <v-card-text class="mt-4">
+            <v-card-text class="mt-4" tabindex="0">
               <v-skeleton-loader v-if="!isLoaded" type="list-item-three-line" />
               <template v-else>
                 <p v-if="body" class="rich-text" v-html="body" />
@@ -97,7 +97,7 @@
                     <v-icon small class="mr-2">
                       mdi-account
                     </v-icon>
-                    <p class="sm ma-0 text-capitalize">
+                    <p class="sm ma-0 text-capitalize" tabindex="0">
                       {{ creator }}
                     </p>
                   </v-layout>

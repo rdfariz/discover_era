@@ -110,7 +110,7 @@
     </v-card>
     <template v-if="detailData">
       <v-divider />
-      <v-card-actions>
+      <v-card-actions tabindex="0">
         <v-container grid-list-xs>
           <v-skeleton-loader
             v-if="!isLoaded"
